@@ -68,4 +68,3 @@ export default class Iphone extends Component {
 		});      
 	}
 }
-// Hello
