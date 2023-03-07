@@ -1,6 +1,6 @@
 // import preact
 import { h, render, Component } from 'preact';
-// import stylesheets for ipad & button
+// import stylesheets for iphone & button
 import style from './style';
 import style_iphone from '../button/style_iphone';
 // import jquery for API calls
