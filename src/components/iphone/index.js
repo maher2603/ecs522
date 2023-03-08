@@ -46,7 +46,7 @@ export default class Iphone extends Component {
 					<div class={ style.city }>{ this.state.locate }</div>
 					<div class={ style.conditions }>{ this.state.cond }</div>
 					<span class={ tempStyles }>{ this.state.temp }</span>
-					<span>{ this.state.wspeed } <p>mph</p></span>
+					<span>{ this.state.wspeed }</span>
 				</div>
 				<div class={ style.details }></div>
 				<div class= { style_iphone.container }> 
@@ -68,7 +68,7 @@ export default class Iphone extends Component {
 			locate: location,
 			temp: temp_c,
 			cond : conditions,
-			wspeed: wind_speed
+			wspeed: wind_speed + " mph"
 		});      
 	}
 }
