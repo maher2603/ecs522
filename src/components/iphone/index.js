@@ -31,7 +31,7 @@ export default class Iphone extends Component {
 			error : function(req, err){ console.log('API call failed ' + err); }
 		})
 		// once the data is grabbed, hide the button
-		this.setState({ display: false });
+		// this.setState({ display: false });
 	}
 
 	// the main render method for the iphone component
