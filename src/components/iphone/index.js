@@ -47,6 +47,7 @@ export default class Iphone extends Component {
 					<div class={ style.conditions }>{ this.state.cond }</div>
 					<span class={ tempStyles }>{ this.state.temp }</span>
 					<span>{ this.state.wspeed }</span>
+					<span>{ this.state.humid }</span>
 				</div>
 				<div class={ style.details }></div>
 				<div class= { style_iphone.container }> 
@@ -61,6 +62,7 @@ export default class Iphone extends Component {
 		var temp_c = parsed_json['main']['temp'];
 		var conditions = parsed_json['weather']['0']['description'];
 		var wind_speed = parsed_json['wind']['speed'];
+		var humidity = parsed_json['main']['humidity'];
 
 
 		// set states for fields so they could be rendered later on
@@ -68,7 +70,8 @@ export default class Iphone extends Component {
 			locate: location,
 			temp: temp_c,
 			cond : conditions,
-			wspeed: wind_speed + " mph"
+			wspeed: wind_speed + " mph",
+			humid : humidity + "%"
 		});      
 	}
 }
