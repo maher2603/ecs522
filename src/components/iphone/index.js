@@ -47,7 +47,7 @@ export default class Iphone extends Component {
 					<div class={ style.city }>{ this.state.locate }</div>
 					<div class={ style.conditions }>{ this.state.cond }</div>
 					<span class={ tempStyles }>{ this.state.temp }</span>
-					<span>{ this.state.wspeed } <p>mph</p></span>
+					<span>{ this.state.wspeed } mph</span>
 				</div>
 				<div class={ style.details }></div>
 				{/* <div class= { style_iphone.container }> 
