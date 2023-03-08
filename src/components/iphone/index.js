@@ -17,7 +17,7 @@ export default class Iphone extends Component {
 		// temperature state
 		this.state.temp = "";
 		// button display state
-		this.setState({ display: false });
+		this.setState({ display: true });
 	}
 
 	// a call to fetch weather data via wunderground
@@ -31,7 +31,7 @@ export default class Iphone extends Component {
 			error : function(req, err){ console.log('API call failed ' + err); }
 		})
 		// once the data is grabbed, hide the button
-		this.setState({ display: true });
+		this.setState({ display: false });
 	}
 
 	// the main render method for the iphone component
