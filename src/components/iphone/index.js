@@ -17,7 +17,7 @@ export default class Iphone extends Component {
 		// temperature state
 		this.state.temp = "";
 		// button display state
-		this.setState({ display: true });
+		// this.setState({ display: true });
 	}
 
 	// a call to fetch weather data via wunderground
@@ -31,11 +31,12 @@ export default class Iphone extends Component {
 			error : function(req, err){ console.log('API call failed ' + err); }
 		})
 		// once the data is grabbed, hide the button
-		this.setState({ display: false });
+		// this.setState({ display: false });
 	}
 
 	// the main render method for the iphone component
 	render() {
+		this.fetchWeatherData
 		// check if temperature data is fetched, if so add the sign styling to the page
 		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
 		
@@ -49,9 +50,9 @@ export default class Iphone extends Component {
 					<span>{ this.state.wspeed } mph</span>
 				</div>
 				<div class={ style.details }></div>
-				<div class= { style_iphone.container }> 
+				{/* <div class= { style_iphone.container }> 
 					{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ this.fetchWeatherData }/ > : null }
-				</div>
+				</div> */}
 			</div>
 		);
 	}
