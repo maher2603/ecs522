@@ -60,7 +60,7 @@ export default class Iphone extends Component {
 		var location = parsed_json['name'];
 		var temp_c = parsed_json['main']['temp'];
 		var conditions = parsed_json['weather']['0']['description'];
-		var wind_speed = parsed_json['main']['speed'];
+		var wind_speed = parsed_json['wind']['speed'];
 
 
 		// set states for fields so they could be rendered later on
