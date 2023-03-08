@@ -59,14 +59,15 @@ export default class Iphone extends Component {
 		var location = parsed_json['name'];
 		var temp_c = parsed_json['main']['temp'];
 		var conditions = parsed_json['weather']['0']['description'];
+		var wind_speed = parsed_json['main']['speed'];
+
 
 		// set states for fields so they could be rendered later on
 		this.setState({
 			locate: location,
 			temp: temp_c,
-			cond : conditions
+			cond : conditions,
+			wspeed: wind_speed
 		});      
 	}
 }
-// testing
-// hello
