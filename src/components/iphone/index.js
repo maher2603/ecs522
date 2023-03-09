@@ -25,14 +25,14 @@ export default class Iphone extends Component {
 	fetchWeatherData = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
 		// Alternate API Key: 5065eab2c0c7e99992ba98ce43ab3e2c
-		var url = "http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=8b5c4801c0233c9cfc2aae8f69b6cdba";
+		var url = "https://api.openweathermap.org/data/2.5/forecast?q=London,GB&appid=8b5c4801c0233c9cfc2aae8f69b6cdba";
 		$.ajax({
 			url: url,
 			dataType: "jsonp",
 			success : this.parseResponse,
 			error : function(req, err){ console.log('API call failed ' + err); }
 		})
-		// once the data is grabbed, hide the button
+		// once the data is grabbed, hide the button and set on main page to be true
 		this.setState({ display: false });
 	}
 
@@ -48,8 +48,10 @@ export default class Iphone extends Component {
 					<div class={ style.city }>{ this.state.locate }</div>
 					<div class={ style.conditions }>{ this.state.cond }</div>
 					<span class={ tempStyles }>{ this.state.temp }</span>
-					<span>{ this.state.wspeed }</span>
+					<span>{ this.state.main }</span>
+					<span>{ this.state.prec }</span>
 					<span>{ this.state.humid }</span>
+					<span>{ this.state.wspeed }</span>
 				</div>
 				<div class={ style.details }></div>
 				<div class= { style_iphone.container }> 
@@ -60,20 +62,51 @@ export default class Iphone extends Component {
 	}
 
 	parseResponse = (parsed_json) => {
-		var location = parsed_json['name'];
-		var temp_c = parsed_json['main']['temp'];
-		var conditions = parsed_json['weather']['0']['description'];
-		var wind_speed = parsed_json['wind']['speed'];
-		var humidity = parsed_json['main']['humidity'];
+		var location = parsed_json['city']['name'];
+		var temp_c = parsed_json['list']['0']['main']['temp'];
+		var main_weather = parsed_json['list']['0']['weather']['0']['main']
+		var conditions = parsed_json['list']['0']['weather']['0']['description'];
+		var precipitation = parsed_json['list']['0']['pop']
+		var humidity = parsed_json['list']['0']['main']['humidity'];
+		var wind_speed = parsed_json['list']['0']['wind']['speed'];
 
 
 		// set states for fields so they could be rendered later on
 		this.setState({
 			locate: location,
-			temp: temp_c,
+			/*
+			Maybe create a dropdown list in Locations page for user to add custom locations?
+			- London
+			- Birmingham
+			- Manchester
+			- Camebridge
+			- Leicester
+			- Bristol
+			- Oxford
+			- Exeter
+			- Nottingham
+			- Leeds
+			*/
+			temp: Math.trunc(temp_c - 273.15), // convert temp from kelvin to celsius
 			cond : conditions,
-			wspeed: wind_speed + " mph",
-			humid : humidity + "%"
-		});      
+			main: "Main Weather: " + main_weather,
+			/*
+			URL: https://openweathermap.org/weather-conditions
+			Main weather conditions:
+			- Clear
+			- Clouds
+			- Rain
+			- Thunderstorm
+			- Drizzle
+			- all under 'Atmosphere' (same weather icon):
+			- Mist
+			- Smoke
+			- Haze
+			- Fog
+			*/
+			prec : "Precipitation: " + (precipitation * 100) + "%", // convert range 0-1 to a percentage
+			humid : "Humidity: " + humidity + "%",
+			wspeed: "Wind Speed: " + Math.trunc(wind_speed) + " mph"
+		});
 	}
 }
