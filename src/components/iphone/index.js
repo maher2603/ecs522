@@ -66,6 +66,10 @@ export default class Iphone extends Component {
 		return (
 			<div class={ style.container }>
 				<div class={ style.header }>
+					<div class={style.ButtonHeader}>
+					<a href = "index.js"> <Button class={ style_iphone.button }/> </a>
+					<a href = "Location.js"> <Button class={ style_iphone.button }/> </a>
+					</div>
 					<div class={ style.city }>
 						{ this.state.locate }
 					</div>
