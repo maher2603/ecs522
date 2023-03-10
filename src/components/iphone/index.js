@@ -66,10 +66,8 @@ export default class Iphone extends Component {
 		return (
 			<div class={ style.container }>
 				<div class={ style.header }>
-					<div class={style.ButtonHeader}>
-					<a href = "index.js"> <Button class={ style_iphone.button }/> </a>
-					<a href = "Location.js"> <Button class={ style_iphone.button }/> </a>
-					</div>
+					<div class={style.ButtonHeader}> { this.state.data_grabbed ? <a href = "index.js"> <Button class={ style_iphone.button }/> </a>: null }</div>
+					<div class={style.ButtonHeader}> { this.state.data_grabbed ? <a href = "Location.js"> <Button class={ style_iphone.button }/> </a> : null}</div>
 					<div class={ style.city }>
 						{ this.state.locate }
 					</div>
@@ -83,12 +81,14 @@ export default class Iphone extends Component {
 						{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
 						{ this.state.main }
 					</div>
+					<div id="precipitation">{this.state.data_grabbed ? <h3>Precipitation</h3> : null}</div>
 					<div class={ style.precipitation }>
-						{ this.state.data_grabbed ? <img id="rainy-icon" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
+						{ this.state.data_grabbed ? <img id="rainy-icon" style="padding-right: 100px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
 						{ this.state.prec }
 					</div>
+					<div id="windspeed">{this.state.data_grabbed ? <h3>Wind Speed</h3> : null}</div>
 					<div class={ style.windspeed }>
-						{ this.state.data_grabbed ? <img id="windspeed-icon" src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"></img> : null }
+						{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding-right: 80px;"></img> : null }
 						{ this.state.wspeed }
 					</div>
 				</div>
@@ -144,8 +144,8 @@ export default class Iphone extends Component {
 			- Haze
 			- Fog
 			*/
-			prec : "Precipitation: " + (precipitation * 100) + "%", // convert range 0-1 to a percentage
-			wspeed: "Wind Speed: " + Math.trunc(wind_speed) + " mph"
+			prec : (precipitation * 100) + "%", // convert range 0-1 to a percentage
+			wspeed: Math.trunc(wind_speed) + " mph"
 		});
 	}
 }
