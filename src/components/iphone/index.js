@@ -70,7 +70,8 @@ export default class Iphone extends Component {
 				<div class={ style.header }>
 					<div class={ style.navigation } style="text-align: centre;">
 						<div> { this.state.data_grabbed ? <a href = "./components/iphone/index.js"> <button class={style.button}>Home</button> </a>: null } </div>
-						<div> { this.state.data_grabbed ? <a href = "./components/iphone/location.js"> <button class={style.button}>Location</button> </a>: null } </div>
+						<div> { this.state.data_grabbed ? <a href = "./components/iphone/Location.js"> <button class={style.button}>Location</button> </a>: null } </div>
+						<div> { this.state.data_grabbed ? <a href = "./components/iphone/WeeklyWeather.js"> <button class={style.button}>Week</button> </a>: null } </div>
 					</div>
 						<div class={contaStyles}>
 						<div class={ style.city }>
