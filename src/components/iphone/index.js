@@ -8,10 +8,6 @@ import style_iphone from '../button/style_iphone';
 import $ from 'jquery';
 // import the Button component
 import Button from '../button';
-import Btn from '../Buttons';
-import Location from '../Location.js'
-import WeeklyWeather from '../WeeklyWeather.js'
-import { Link } from 'preact-router/match';
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
 
@@ -63,48 +59,43 @@ export default class Iphone extends Component {
 
 	// the main render method for the iphone component
 	render() {
-		<Router>
-			<Location path="Location" />
-			<WeeklyWeather path="WeeklyWeather" />
-		</Router>
+	
 		// check if temperature data is fetched, if so add the sign styling to the page
 		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
-		
+		const contaStyles = this.state.main ? `${style.conta}` : style.conta2;
 		// display all weather data
 		return (
 			<div class={ style.container }>
-				<Btn class={ style_iphone.button}>
-					</Btn> 
-				
-				<div class="index"></div>
 
 				<div class={ style.header }>
-					<div class={ style.navigation }>
-						<div> { this.state.data_grabbed ? <a href = "./components/iphone/index.js"> <button>Home</button> </a>: null } </div>
-						<div> { this.state.data_grabbed ? <a href = "./components/iphone/location.js"> <button>Location</button> </a>: null } </div>
+					<div class={ style.navigation } style="text-align: centre;">
+						<div> { this.state.data_grabbed ? <a href = "./components/iphone/index.js"> <button class={style.button}>Home</button> </a>: null } </div>
+						<div> { this.state.data_grabbed ? <a href = "./components/iphone/location.js"> <button class={style.button}>Location</button> </a>: null } </div>
 					</div>
-					<div class={ style.city }>
-						{ this.state.locate }
-					</div>
-					<div class={ style.conditions } hidden>
-						{ this.state.cond }
-					</div>
-					<span class={ tempStyles }>
-						{ this.state.temp }
-					</span>
-					<div>
-						{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
-						{ this.state.main }
-					</div>
-					<div id="precipitation">{this.state.data_grabbed ? <h3>Precipitation</h3> : null}</div>
-					<div class={ style.precipitation }>
+						<div class={contaStyles}>
+						<div class={ style.city }>
+							{ this.state.locate }
+						</div>
+						<div class={ style.conditions } hidden>
+							{ this.state.cond }
+						</div>
+						<span class={ tempStyles }>
+							{ this.state.temp }
+						</span>
+						<div>
+							{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
+							{ this.state.main }
+						</div>
+						<div>{this.state.data_grabbed ? <h3>Precipitation</h3> : null}</div>
+						<div class={ style.precipitation }>
 						{ this.state.data_grabbed ? <img id="rainy-icon" style="padding-right: 100px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
 						{ this.state.prec }
-					</div>
-					<div id="windspeed">{this.state.data_grabbed ? <h3>Wind Speed</h3> : null}</div>
-					<div class={ style.windspeed }>
+						</div>
+						<div id="windspeed">{this.state.data_grabbed ? <h3 style="text-allign: right">Wind Speed</h3> : null}</div>
+						<div class={ style.windspeed }>
 						{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding-right: 80px;"></img> : null }
 						{ this.state.wspeed }
+						</div>
 					</div>
 				</div>
 				<div class={ style.details }></div>
