@@ -66,8 +66,10 @@ export default class Iphone extends Component {
 		return (
 			<div class={ style.container }>
 				<div class={ style.header }>
-					<div class={style.ButtonHeader}> { this.state.data_grabbed ? <a href = "index.js"> <Button class={ style_iphone.button }/> </a>: null }</div>
-					<div class={style.ButtonHeader}> { this.state.data_grabbed ? <a href = "Location.js"> <Button class={ style_iphone.button }/> </a> : null}</div>
+					<div class={ style.navigation }>
+						<div> { this.state.data_grabbed ? <a href = "./components/iphone/index.js"> <button>Home</button> </a>: null } </div>
+						<div> { this.state.data_grabbed ? <a href = "./components/iphone/location.js"> <button>Location</button> </a>: null } </div>
+					</div>
 					<div class={ style.city }>
 						{ this.state.locate }
 					</div>
