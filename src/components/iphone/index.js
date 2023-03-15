@@ -1,5 +1,6 @@
 // import preact
 import { h, render, Component } from 'preact';
+import Router from 'preact-router'
 // import stylesheets for iphone & button
 import style from './style';
 import style_iphone from '../button/style_iphone';
@@ -7,7 +8,10 @@ import style_iphone from '../button/style_iphone';
 import $ from 'jquery';
 // import the Button component
 import Button from '../button';
-
+import Btn from '../Buttons';
+import Location from '../Location.js'
+import WeeklyWeather from '../WeeklyWeather.js'
+import { Link } from 'preact-router/match';
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
 
@@ -59,12 +63,21 @@ export default class Iphone extends Component {
 
 	// the main render method for the iphone component
 	render() {
+		<Router>
+			<Location path="Location" />
+			<WeeklyWeather path="WeeklyWeather" />
+		</Router>
 		// check if temperature data is fetched, if so add the sign styling to the page
 		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
 		
 		// display all weather data
 		return (
 			<div class={ style.container }>
+				<Btn class={ style_iphone.button}>
+					</Btn> 
+				
+				<div class="index"></div>
+
 				<div class={ style.header }>
 					<div class={ style.navigation }>
 						<div> { this.state.data_grabbed ? <a href = "./components/iphone/index.js"> <button>Home</button> </a>: null } </div>
@@ -98,7 +111,7 @@ export default class Iphone extends Component {
 				<div class= { style_iphone.container }> 
 					{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ this.fetchWeatherData }/ > : null }
 				</div>
-			</div>
+				</div>
 		);
 	}
 
