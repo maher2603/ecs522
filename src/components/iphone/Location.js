@@ -19,7 +19,7 @@ export default class Location extends Component {
 						<div> { this.state.data_grabbed ? <a href = "./components/iphone/index.js"> <button>Home</button> </a>: null } </div>
 						<div> { this.state.data_grabbed ? <a href = "./components/iphone/location.js"> <button>Location</button> </a>: null } </div>
 					</div>
-					
+				</div>
 			</div>
 		);
 	}
