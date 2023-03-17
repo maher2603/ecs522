@@ -19,10 +19,9 @@ export default class Iphone extends Component {
 			on_home_page: true,
 			on_location_page: false,
 			on_weekly_weather_page: false,
-			current_weather_index: "0",
-			weather_index_6h: "2",
-			weather_index_12h: "4",
-			weather_index_24h: "8"
+			main_weather_6h: "",
+			main_weather_12h: "",
+			main_Weather_24h: ""
 		}
 	}
 
@@ -104,7 +103,12 @@ export default class Iphone extends Component {
 							</div>
 						</div>
 						<div class={ style.forecast }>
-							
+							<div>6h</div>
+							<div>{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main_weather_6h): null }</div>
+							<div>12h</div>
+							<div>{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main_weather_12h): null }</div>
+							<div>24h</div>
+							<div>{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main_Weather_24h): null }</div>
 						</div>
 					</div>
 					<div class={ style.details }></div>
@@ -155,18 +159,16 @@ export default class Iphone extends Component {
 	}
 
 	parseResponse = (parsed_json) => {
-		var i = 0;
-		if (this.state.on_home_page) {
-			i = this.state.current_weather_index
-		}
 		var city = parsed_json['city']['name'];
 		var country = parsed_json['city']['country'];
-		var temp_c = parsed_json['list'][i]['main']['temp'];
-		var main_weather = parsed_json['list'][i]['weather'][i]['main'];
-		var conditions = parsed_json['list'][i]['weather'][i]['description'];
-		var precipitation = parsed_json['list'][i]['pop'];
-		var wind_speed = parsed_json['list'][i]['wind']['speed'];
-
+		var temp_c = parsed_json['list']["0"]['main']['temp'];
+		var main_weather = parsed_json['list']["0"]['weather']["0"]['main'];
+		var main_6h = parsed_json['list']["2"]['weather']["0"]['main'];
+		var main_12h = parsed_json['list']["4"]['weather']["0"]['main'];
+		var main_24h = parsed_json['list']["8"]['weather']["0"]['main'];
+		var conditions = parsed_json['list']["0"]['weather']["0"]['description'];
+		var precipitation = parsed_json['list']["0"]['pop'];
+		var wind_speed = parsed_json['list']["0"]['wind']['speed'];
 
 		// set states for fields so they could be rendered later on
 		this.setState({
@@ -203,7 +205,10 @@ export default class Iphone extends Component {
 			- Fog
 			*/
 			prec : (precipitation * 100) + "%", // convert range 0-1 to a percentage
-			wspeed: Math.trunc(wind_speed) + " mph"
+			wspeed: Math.trunc(wind_speed) + " mph",
+			main_weather_6h : main_6h,
+			main_weather_12h : main_12h,
+			main_Weather_24h : main_24h
 		});
 	}
 }
