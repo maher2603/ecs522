@@ -62,6 +62,7 @@ export default class Iphone extends Component {
 			// check if temperature data is fetched, if so add the sign styling to the page
 			const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
 			const contaStyles = this.state.main ? `${style.conta}` : style.conta2;
+			const conta3Styles = this.state.main ? `${style.conta3}` : style.conta2;
 			// display all weather data
 			return (
 				<div class={ style.container }>
@@ -75,24 +76,26 @@ export default class Iphone extends Component {
 							<div class={ style.city }>
 								{ this.state.locate }
 							</div>
-							<div class={ style.conditions } hidden>
-								{ this.state.cond }
-							</div>
-							<span class={ tempStyles }>
-								{ this.state.temp }
-							</span>
-							<div>
-								{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
-								{ this.state.main }
+							<div class={conta3Styles}>
+								<div class={ style.conditions } hidden>
+									{ this.state.cond }
+								</div>
+								<span class={ tempStyles }>
+									{ this.state.temp }
+								</span>
+								<div>
+									{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
+									{ this.state.main }
+								</div>
 							</div>
 							<div>{this.state.data_grabbed ? <h3>Precipitation</h3> : null}</div>
 							<div class={ style.precipitation }>
-							{ this.state.data_grabbed ? <img id="rainy-icon" style="padding-right: 100px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
+							{ this.state.data_grabbed ? <img id="rainy-icon" style="padding-right: 100px; vertical-align:bottom;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
 							{ this.state.prec }
 							</div>
 							<div id="windspeed">{this.state.data_grabbed ? <h3 style="text-allign: right">Wind Speed</h3> : null}</div>
 							<div class={ style.windspeed }>
-							{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding-right: 80px;"></img> : null }
+							{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding-right: 70px;vertical-align:bottom;"></img> : null }
 							{ this.state.wspeed }
 							</div>
 						</div>
