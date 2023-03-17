@@ -81,13 +81,12 @@ export default class Iphone extends Component {
 								{ this.state.locate }
 							</div>
 							<div class={conta3Styles}>
-                <div class={ style.conditions } hidden>
-                  { this.state.cond }
+                <div class={ style.conditions } >
+                  { this.state.main }
                 </div>
                 
                 <div>
                   { this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
-                  { this.state.main }
                 </div>
 								<span class={ tempStyles }>
                   { this.state.temp }
