@@ -18,7 +18,11 @@ export default class Iphone extends Component {
 			data_grabbed : false,
 			on_home_page: true,
 			on_location_page: false,
-			on_weekly_weather_page: false
+			on_weekly_weather_page: false,
+			current_weather_index: "0",
+			weather_index_6h: "2",
+			weather_index_12h: "4",
+			weather_index_24h: "8"
 		}
 	}
 
@@ -62,7 +66,6 @@ export default class Iphone extends Component {
 			// check if temperature data is fetched, if so add the sign styling to the page
 			const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
 			const contaStyles = this.state.main ? `${style.conta}` : style.conta2;
-			const conta3Styles = this.state.main ? `${style.conta3}` : style.conta2;
 			// display all weather data
 			return (
 				<div class={ style.container }>
@@ -76,26 +79,24 @@ export default class Iphone extends Component {
 							<div class={ style.city }>
 								{ this.state.locate }
 							</div>
-							<div class={conta3Styles}>
-								<div class={ style.conditions } hidden>
-									{ this.state.cond }
-								</div>
-								<span class={ tempStyles }>
-									{ this.state.temp }
-								</span>
-								<div>
-									{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
-									{ this.state.main }
-								</div>
+							<div class={ style.conditions } hidden>
+								{ this.state.cond }
 							</div>
-							<div>{this.state.data_grabbed ? <h3 style="padding:0">Precipitation</h3> : null}</div>
+							<span class={ tempStyles }>
+								{ this.state.temp }
+							</span>
+							<div>
+								{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
+								{ this.state.main }
+							</div>
+							<div>{this.state.data_grabbed ? <h3>Precipitation</h3> : null}</div>
 							<div class={ style.precipitation }>
-							{ this.state.data_grabbed ? <img id="rainy-icon" style="padding-right: 100px; vertical-align:bottom;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
+							{ this.state.data_grabbed ? <img id="rainy-icon" style="padding-right: 100px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
 							{ this.state.prec }
 							</div>
-							<div id="windspeed">{this.state.data_grabbed ? <h3  style="text-allign: right padding:0">Wind Speed</h3> : null}</div>
+							<div id="windspeed">{this.state.data_grabbed ? <h3 style="text-allign: right">Wind Speed</h3> : null}</div>
 							<div class={ style.windspeed }>
-							{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding-right: 70px;vertical-align:bottom;"></img> : null }
+							{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding-right: 80px;"></img> : null }
 							{ this.state.wspeed }
 							</div>
 						</div>
@@ -151,13 +152,17 @@ export default class Iphone extends Component {
 	}
 
 	parseResponse = (parsed_json) => {
+		var i = 0;
+		if (this.state.on_home_page) {
+			i = this.state.current_weather_index
+		}
 		var city = parsed_json['city']['name'];
 		var country = parsed_json['city']['country'];
-		var temp_c = parsed_json['list']['0']['main']['temp'];
-		var main_weather = parsed_json['list']['0']['weather']['0']['main']
-		var conditions = parsed_json['list']['0']['weather']['0']['description'];
-		var precipitation = parsed_json['list']['0']['pop']
-		var wind_speed = parsed_json['list']['0']['wind']['speed'];
+		var temp_c = parsed_json['list'][i]['main']['temp'];
+		var main_weather = parsed_json['list'][i]['weather'][i]['main'];
+		var conditions = parsed_json['list'][i]['weather'][i]['description'];
+		var precipitation = parsed_json['list'][i]['pop'];
+		var wind_speed = parsed_json['list'][i]['wind']['speed'];
 
 
 		// set states for fields so they could be rendered later on
