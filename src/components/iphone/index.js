@@ -1,15 +1,12 @@
 // import preact
 import { h, render, Component } from 'preact';
-import Router from 'preact-router'
 // import stylesheets for iphone & button
 import style from './style';
 import style_iphone from '../button/style_iphone';
 // import jquery for API calls
-import $ from 'jquery';
-// import the Button component
-import Button from '../button';
+import $ from 'jquery';      
+
 export default class Iphone extends Component {
-//var Iphone = React.createClass({
 
 	// a constructor with initial set states
 	constructor(props){
@@ -18,7 +15,10 @@ export default class Iphone extends Component {
 		this.state = {
 			temp : "",
 			display : true,
-			data_grabbed : false
+			data_grabbed : false,
+			on_home_page: true,
+			on_location_page: false,
+			on_weekly_weather_page: false
 		}
 	}
 
@@ -34,8 +34,7 @@ export default class Iphone extends Component {
 			error : function(req, err){ console.log('API call failed ' + err); }
 		})
 		// once the data is grabbed, hide the button and set it to true
-		this.setState({ display: false });
-		this.setState({ data_grabbed : true });
+		this.setState({ display: false, data_grabbed : true});
 	}
 
 	// decide what image to show depending on the main weather
@@ -59,52 +58,93 @@ export default class Iphone extends Component {
 
 	// the main render method for the iphone component
 	render() {
-	
-		// check if temperature data is fetched, if so add the sign styling to the page
-		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
-		const contaStyles = this.state.main ? `${style.conta}` : style.conta2;
-		// display all weather data
-		return (
-			<div class={ style.container }>
-
-				<div class={ style.header }>
-					<div class={ style.navigation } style="text-align: centre;">
-						<div> { this.state.data_grabbed ? <a href = "./components/iphone/index.js"> <button class={style.button}>Home</button> </a>: null } </div>
-						<div> { this.state.data_grabbed ? <a href = "./components/iphone/Location.js"> <button class={style.button}>Location</button> </a>: null } </div>
-						<div> { this.state.data_grabbed ? <a href = "./components/iphone/WeeklyWeather.js"> <button class={style.button}>Week</button> </a>: null } </div>
-					</div>
+		if (this.state.on_home_page == true) {
+			// check if temperature data is fetched, if so add the sign styling to the page
+			const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
+			const contaStyles = this.state.main ? `${style.conta}` : style.conta2;
+			// display all weather data
+			return (
+				<div class={ style.container }>
+					<div class={ style.header }>
+						<div class={ style.navigation } style="text-align: centre;">
+							<div> { this.state.data_grabbed ? <button class={style.button}>Home</button> : null } </div>
+							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_home_page: false, on_location_page: true })}>Location</button> : null } </div>
+							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_home_page: false, on_weekly_weather_page: true })}>Week</button> : null } </div>
+						</div>
 						<div class={contaStyles}>
-						<div class={ style.city }>
-							{ this.state.locate }
+							<div class={ style.city }>
+								{ this.state.locate }
+							</div>
+							<div class={ style.conditions } hidden>
+								{ this.state.cond }
+							</div>
+							<span class={ tempStyles }>
+								{ this.state.temp }
+							</span>
+							<div>
+								{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
+								{ this.state.main }
+							</div>
+							<div>{this.state.data_grabbed ? <h3>Precipitation</h3> : null}</div>
+							<div class={ style.precipitation }>
+							{ this.state.data_grabbed ? <img id="rainy-icon" style="padding-right: 100px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
+							{ this.state.prec }
+							</div>
+							<div id="windspeed">{this.state.data_grabbed ? <h3 style="text-allign: right">Wind Speed</h3> : null}</div>
+							<div class={ style.windspeed }>
+							{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding-right: 80px;"></img> : null }
+							{ this.state.wspeed }
+							</div>
 						</div>
-						<div class={ style.conditions } hidden>
-							{ this.state.cond }
-						</div>
-						<span class={ tempStyles }>
-							{ this.state.temp }
-						</span>
-						<div>
-							{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
-							{ this.state.main }
-						</div>
-						<div>{this.state.data_grabbed ? <h3>Precipitation</h3> : null}</div>
-						<div class={ style.precipitation }>
-						{ this.state.data_grabbed ? <img id="rainy-icon" style="padding-right: 100px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
-						{ this.state.prec }
-						</div>
-						<div id="windspeed">{this.state.data_grabbed ? <h3 style="text-allign: right">Wind Speed</h3> : null}</div>
-						<div class={ style.windspeed }>
-						{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding-right: 80px;"></img> : null }
-						{ this.state.wspeed }
+						<div class={ style.forecast }>
+							
 						</div>
 					</div>
+					<div class={ style.details }></div>
+					<div class= { style_iphone.container }> 
+						{ this.state.display ? this.fetchWeatherData() : null }
+					</div>
 				</div>
-				<div class={ style.details }></div>
-				<div class= { style_iphone.container }> 
-					{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ this.fetchWeatherData }/ > : null }
+			);
+		} else if (this.state.on_location_page == true) {
+			return (
+				<div class={ style.container }>
+					<div class={ style.header }>
+						<div class={ style.navigation } style="text-align: centre;">
+							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_location_page: false, on_home_page: true })}>Home</button> : null } </div>
+							<div> { this.state.data_grabbed ? <button class={style.button}>Location</button> : null } </div>
+							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_location_page: false, on_weekly_weather_page: true })}>Week</button> : null } </div>
+						</div>
+					</div>
+					<div>
+						<h1>Location</h1>
+					</div>
+					<div class={ style.details }></div>
+					<div class= { style_iphone.container }> 
+						{ this.state.display ? this.fetchWeatherData() : null }
+					</div>
 				</div>
+			);
+		} else if (this.state.on_weekly_weather_page == true) {
+			return (
+				<div class={ style.container }>
+					<div class={ style.header }>
+						<div class={ style.navigation } style="text-align: centre;">
+							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_weekly_weather_page: false, on_home_page: true })}>Home</button> : null } </div>
+							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_weekly_weather_page: false, on_location_page: true })}>Location</button> : null } </div>
+							<div> { this.state.data_grabbed ? <button class={style.button}>Week</button> : null } </div>
+						</div>
+					</div>
+					<div>
+						<h1>Weekly Weather</h1>
+					</div>
+					<div class={ style.details }></div>
+					<div class= { style_iphone.container }> 
+						{ this.state.display ? this.fetchWeatherData() : null }
+					</div>
 				</div>
-		);
+			);
+		}
 	}
 
 	parseResponse = (parsed_json) => {
