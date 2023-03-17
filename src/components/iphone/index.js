@@ -11,7 +11,7 @@ export default class Iphone extends Component {
 	// a constructor with initial set states
 	constructor(props){
 		super(props);
-		// set the temperature, button display and data grabbed state
+		// set the temperature, button display, data grabbed and current page states
 		this.state = {
 			temp : "",
 			display : true,
@@ -19,9 +19,6 @@ export default class Iphone extends Component {
 			on_home_page: true,
 			on_location_page: false,
 			on_weekly_weather_page: false,
-			main_weather_6h: "",
-			main_weather_12h: "",
-			main_Weather_24h: ""
 		}
 	}
 
@@ -80,35 +77,50 @@ export default class Iphone extends Component {
 								{ this.state.locate }
 							</div>
 							<div class={conta3Styles}>
-                <div class={ style.conditions } >
-                  { this.state.main }
-                </div>
-                
-                <div>
-                  { this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
-                </div>
+								<div class={ style.conditions } >
+									{ this.state.main }
+								</div>
+								<div>
+									{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
+								</div>
 								<span class={ tempStyles }>
-                  { this.state.temp }
-                </span>
+									{ this.state.temp }
+								</span>
 							</div>
-							<div>{this.state.data_grabbed ? <h3>Precipitation</h3> : null}</div>
+							<div>
+								{this.state.data_grabbed ? <h3>Precipitation</h3> : null}
+							</div>
 							<div class={ style.precipitation }>
-							{ this.state.data_grabbed ? <img id="rainy-icon" style="padding-right: 100px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
-							{ this.state.prec }
+								{ this.state.data_grabbed ? <img id="rainy-icon" style="padding-right: 100px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
+								{ this.state.prec }
 							</div>
-							<div id="windspeed">{this.state.data_grabbed ? <h3 style="text-allign: right">Wind Speed</h3> : null}</div>
+							<div id="windspeed">
+								{this.state.data_grabbed ? <h3 style="text-allign: right">Wind Speed</h3> : null}
+							</div>
 							<div class={ style.windspeed }>
-							{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding-right: 80px;"></img> : null }
-							{ this.state.wspeed }
+								{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding-right: 80px;"></img> : null }
+								{ this.state.wspeed }
 							</div>
 						</div>
 						<div class={ style.forecast }>
-							<div>6h</div>
-							<div>{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main_weather_6h): null }</div>
-							<div>12h</div>
-							<div>{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main_weather_12h): null }</div>
-							<div>24h</div>
-							<div>{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main_Weather_24h): null }</div>
+							<div class={ style.forecast_text }>
+								6h
+							</div>
+							<div class={ style.forecast_image }>
+								{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main_6h): null }
+							</div>
+							<div class={ style.forecast_text }>
+								12h
+							</div>
+							<div class={ style.forecast_image }>
+								{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main_12h): null }
+							</div>
+							<div class={ style.forecast_text }>
+								24h
+							</div>
+							<div class={ style.forecast_image }>
+								{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main_24h): null }
+							</div>
 						</div>
 					</div>
 					<div class={ style.details }></div>
@@ -162,10 +174,10 @@ export default class Iphone extends Component {
 		var city = parsed_json['city']['name'];
 		var country = parsed_json['city']['country'];
 		var temp_c = parsed_json['list']["0"]['main']['temp'];
-		var main_weather = parsed_json['list']["0"]['weather']["0"]['main'];
-		var main_6h = parsed_json['list']["2"]['weather']["0"]['main'];
-		var main_12h = parsed_json['list']["4"]['weather']["0"]['main'];
-		var main_24h = parsed_json['list']["8"]['weather']["0"]['main'];
+		var main_weather_current = parsed_json['list']["0"]['weather']["0"]['main'];
+		var main_weather_6h = parsed_json['list']["2"]['weather']["0"]['main'];
+		var main_weather_12h = parsed_json['list']["4"]['weather']["0"]['main'];
+		var main_weather_24h = parsed_json['list']["8"]['weather']["0"]['main'];
 		var conditions = parsed_json['list']["0"]['weather']["0"]['description'];
 		var precipitation = parsed_json['list']["0"]['pop'];
 		var wind_speed = parsed_json['list']["0"]['wind']['speed'];
@@ -188,7 +200,7 @@ export default class Iphone extends Component {
 			*/
 			temp: Math.trunc(temp_c - 273.15), // convert temp from kelvin to celsius
 			cond : conditions,
-			main: main_weather,
+			main: main_weather_current,
 			/*
 			URL: https://openweathermap.org/weather-conditions
 			Main weather conditions:
@@ -206,9 +218,9 @@ export default class Iphone extends Component {
 			*/
 			prec : (precipitation * 100) + "%", // convert range 0-1 to a percentage
 			wspeed: Math.trunc(wind_speed) + " mph",
-			main_weather_6h : main_6h,
-			main_weather_12h : main_12h,
-			main_Weather_24h : main_24h
+			main_6h : main_weather_6h,
+			main_12h : main_weather_12h,
+			main_24h : main_weather_24h
 		});
 	}
 }
