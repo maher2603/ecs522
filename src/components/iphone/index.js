@@ -88,12 +88,12 @@ export default class Iphone extends Component {
 									{ this.state.main }
 								</div>
 							</div>
-							<div>{this.state.data_grabbed ? <h3>Precipitation</h3> : null}</div>
+							<div>{this.state.data_grabbed ? <h3 style="padding:0">Precipitation</h3> : null}</div>
 							<div class={ style.precipitation }>
 							{ this.state.data_grabbed ? <img id="rainy-icon" style="padding-right: 100px; vertical-align:bottom;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
 							{ this.state.prec }
 							</div>
-							<div id="windspeed">{this.state.data_grabbed ? <h3 style="text-allign: right">Wind Speed</h3> : null}</div>
+							<div id="windspeed">{this.state.data_grabbed ? <h3  style="text-allign: right padding:0">Wind Speed</h3> : null}</div>
 							<div class={ style.windspeed }>
 							{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding-right: 70px;vertical-align:bottom;"></img> : null }
 							{ this.state.wspeed }
