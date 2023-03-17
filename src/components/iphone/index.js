@@ -46,7 +46,7 @@ export default class Iphone extends Component {
 		if (main_weather == "Clear") {
 			return <img id="clear-icon" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
 		} else if (main_weather == "Clouds") {
-			return <img id="cloudy-icon" src="./assets/icons/cloudy_svg.svg" alt="Cloudy Icon"></img>
+			return <img id="cloudy-icon" src="./assets/icons/rainy_background.svg" alt="Cloudy Icon"></img>
 		} else if (main_weather == "Rain") {
 			return <img id="rainy-icon" src="./assets/icons/rainy_svg.svg" alt="Rainy Icon"></img>
 		} else if (main_weather == "Thunderstorm") {
@@ -66,6 +66,7 @@ export default class Iphone extends Component {
 			// check if temperature data is fetched, if so add the sign styling to the page
 			const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
 			const contaStyles = this.state.main ? `${style.conta}` : style.conta2;
+			const conta3Styles = this.state.main ? `${style.conta3}` : style.conta2;
 			// display all weather data
 			return (
 				<div class={ style.container }>
@@ -79,15 +80,18 @@ export default class Iphone extends Component {
 							<div class={ style.city }>
 								{ this.state.locate }
 							</div>
-							<div class={ style.conditions } hidden>
-								{ this.state.cond }
-							</div>
-							<span class={ tempStyles }>
-								{ this.state.temp }
-							</span>
-							<div>
-								{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
-								{ this.state.main }
+							<div class={conta3Styles}>
+                <div class={ style.conditions } hidden>
+                  { this.state.cond }
+                </div>
+                
+                <div>
+                  { this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
+                  { this.state.main }
+                </div>
+								<span class={ tempStyles }>
+                  { this.state.temp }
+                </span>
 							</div>
 							<div>{this.state.data_grabbed ? <h3>Precipitation</h3> : null}</div>
 							<div class={ style.precipitation }>
