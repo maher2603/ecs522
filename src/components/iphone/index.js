@@ -77,11 +77,11 @@ export default class Iphone extends Component {
 								{ this.state.locate }
 							</div>
 							<div class={conta3Styles}>
-								<div class={ style.conditions } >
-									{ this.state.main }
-								</div>
 								<div>
 									{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
+								</div>		
+								<div class={ style.conditions } >
+									{ this.state.main }
 								</div>
 								<span class={ tempStyles }>
 									{ this.state.temp }
@@ -91,14 +91,14 @@ export default class Iphone extends Component {
 								{this.state.data_grabbed ? <h3>Precipitation</h3> : null}
 							</div>
 							<div class={ style.precipitation }>
-								{ this.state.data_grabbed ? <img id="rainy-icon" style="padding-right: 100px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
+								{ this.state.data_grabbed ? <img id="rainy-icon" style="padding:0px;padding-right: 100px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
 								{ this.state.prec }
 							</div>
 							<div id="windspeed">
 								{this.state.data_grabbed ? <h3 style="text-allign: right">Wind Speed</h3> : null}
 							</div>
 							<div class={ style.windspeed }>
-								{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding-right: 80px;"></img> : null }
+								{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding:0; margin:0;padding-right: 70px;"></img> : null }
 								{ this.state.wspeed }
 							</div>
 						</div>
