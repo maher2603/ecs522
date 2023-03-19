@@ -68,6 +68,25 @@ export default class Iphone extends Component {
 		}
 	}
 
+	miniWeatherImage = (main_weather) => {
+    if (main_weather == "Clear") {
+      return <img id="clear-icon" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
+    } else if (main_weather == "Clouds") {
+      return <img id="cloudy-icon" src="./assets/icons/rainy_svg.svg" alt="Cloudy Icon"></img>
+    } else if (main_weather == "Rain") {
+      return <img id="rainy-icon" src="./assets/icons/rainy_svg.svg" alt="Rainy Icon"></img>
+    } else if (main_weather == "Thunderstorm") {
+      return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_svg.svg" alt="Thunderstorm Icon"></img>
+    } else if (main_weather == "Drizzle") {
+      return <img id="drizzle-icon" src="./assets/icons/drizzle_svg.svg" alt="Drizzle Icon"></img>
+    } else if (main_weather == "Snow") {
+      return <img id="snow-icon" src="./assets/icons/snow_svg.svg" alt="Snow Icon"></img>
+    } else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
+      return <img id="atmosphere-icon" src="./assets/icons/foggy_svg.svg" alt="Atmosphere Icon"></img>
+    }
+  }
+
+
 	// the main render method for the iphone component
 	render() {
 		if (this.state.on_home_page == true) {
@@ -119,19 +138,19 @@ export default class Iphone extends Component {
 								6h
 							</div>
 							<div class={ style.forecast_image }>
-								{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main_6h): null }
+								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_6h): null }
 							</div>
 							<div class={ style.forecast_text }>
 								12h
 							</div>
 							<div class={ style.forecast_image }>
-								{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main_12h): null }
+								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_12h): null }
 							</div>
 							<div class={ style.forecast_text }>
 								24h
 							</div>
 							<div class={ style.forecast_image }>
-								{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main_24h): null }
+								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_24h): null }
 							</div>
 						</div>
 					</div>
