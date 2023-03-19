@@ -122,33 +122,36 @@ export default class Iphone extends Component {
 								{this.state.data_grabbed ? <h3>Precipitation</h3> : null}
 							</div>
 							<div class={ style.precipitation }>
-								{ this.state.data_grabbed ? <img id="rainy-icon" style="padding:0px;padding-right: 100px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
+								{ this.state.data_grabbed ? <img id="rainy-icon" style="padding:0px;padding-right: 160px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
 								{ this.state.prec }
 							</div>
 							<div id="windspeed">
 								{this.state.data_grabbed ? <h3>Wind Speed</h3> : null}
 							</div>
 							<div class={ style.windspeed }>
-								{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding:0; margin:0;padding-right: 70px;"></img> : null }
+								{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding:0; margin:0;padding-right: 100px;"></img> : null }
 								{ this.state.wspeed }
 							</div>
 						</div>
-						<div class={ style.forecast }>
+						<h3 class={style.forecast} style="margin-left:70px; bottom-padding:">Forecast</h3>
 							<div class={ style.forecast_text }>
-								6h
+								<p class={ style.forecast_text }>6h</p>
+								<p class={ style.forecast_text }>12h</p>
+								<p class={ style.forecast_text }>24h</p>
 							</div>
+							<div class={ style.forecast }>
+								
 							<div class={ style.forecast_image }>
 								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_6h): null }
 							</div>
-							<div class={ style.forecast_text }>
-								12h
+
+							<div class={style.vl}>
 							</div>
 							<div class={ style.forecast_image }>
 								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_12h): null }
 							</div>
-							<div class={ style.forecast_text }>
-								24h
-							</div>
+
+							<div class={style.vl}></div>
 							<div class={ style.forecast_image }>
 								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_24h): null }
 							</div>
