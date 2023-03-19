@@ -22,19 +22,32 @@ export default class Iphone extends Component {
 		}
 	}
 
-	// a call to fetch weather data via wunderground
-	fetchWeatherData = () => {
-		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
-		// Alternate API Key: 8b5c4801c0233c9cfc2aae8f69b6cdba
-		var url = "https://api.openweathermap.org/data/2.5/forecast?q=London,GB&appid=5065eab2c0c7e99992ba98ce43ab3e2c";
-		$.ajax({
-			url: url,
-			dataType: "jsonp",
-			success : this.parseResponse,
-			error : function(req, err){ console.log('API call failed ' + err); }
-		})
-		// once the data is grabbed, hide the button and set it to true
-		this.setState({ display: false, data_grabbed : true});
+	componentDidMount() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
+		} else {
+			console.log("Geolocation is not supported by this browser.");
+		}
+	}
+
+	showPosition = (position) => {
+		const { latitude, longitude } = position.coords;
+		const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=5065eab2c0c7e99992ba98ce43ab3e2c`;
+		this.fetchWeatherData(url);
+	}
+
+	showError = (error) => {
+		console.log(`Geolocation error occurred. Error code: ${error.code}`);
+	}
+
+	fetchWeatherData = (url) => {
+		fetch(url)
+			.then(response => response.json())
+			.then(data => {
+				this.parseResponse(data);
+				this.setState({ display: false, data_grabbed: true });
+			})
+			.catch(error => console.log(`API call failed: ${error}`));
 	}
 
 	// decide what image to show depending on the main weather
