@@ -4,18 +4,18 @@ import { h, render, Component } from 'preact';
 import style from './style';
 import style_iphone from '../button/style_iphone';
 // import jquery for API calls
-import $ from 'jquery';      
+import $ from 'jquery';
 
 export default class Iphone extends Component {
 
 	// a constructor with initial set states
-	constructor(props){
+	constructor(props) {
 		super(props);
 		// set the temperature, button display, data grabbed and current page states
 		this.state = {
-			temp : "",
-			display : true,
-			data_grabbed : false,
+			temp: "",
+			display: true,
+			data_grabbed: false,
 			on_home_page: true,
 			on_location_page: false,
 			on_weekly_weather_page: false
@@ -39,7 +39,7 @@ export default class Iphone extends Component {
 		const url = "http://api.openweathermap.org/data/2.5/group?id=2643743,2655603,2643123,2653941,2644668,2654675,2640729&units=metric&appid=5065eab2c0c7e99992ba98ce43ab3e2c";
 		this.fetchWeatherData(url);
 	}
-	
+
 	showError = (error) => {
 		console.log(`Geolocation error occurred. Error code: ${error.code}`);
 	}
@@ -65,42 +65,42 @@ export default class Iphone extends Component {
 	// Oxford - 2640729
 
 	// decide what image to show depending on the main weather
-  mainWeatherImage = (main_weather) => {
-    if (main_weather == "Clear") {
-      return <img id="clear-icon" src="./assets/icons/sunny_bg.svg" alt="Clear Icon"></img>
-    } else if (main_weather == "Clouds") {
-      return <img id="cloudy-icon" src="./assets/icons/partial_cloud_bg.svg" alt="Cloudy Icon"></img>
-    } else if (main_weather == "Rain") {
-      return <img id="rainy-icon" src="./assets/icons/rainy_background.svg" alt="Rainy Icon"></img>
-    } else if (main_weather == "Thunderstorm") {
-      return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_bg.svg" alt="Thunderstorm Icon"></img>
-    } else if (main_weather == "Drizzle") {
-      return <img id="drizzle-icon" src="./assets/icons/drizzle_bg.svg" alt="Drizzle Icon"></img>
-    } else if (main_weather == "Snow") {
-      return <img id="snow-icon" src="./assets/icons/snow_bg.svg" alt="Snow Icon"></img>
-    } else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
-      return <img id="atmosphere-icon" src="./assets/icons/misty_bg.svg" alt="Atmosphere Icon"></img>
-    }
-  }
+	mainWeatherImage = (main_weather) => {
+		if (main_weather == "Clear") {
+			return <img id="clear-icon" src="./assets/icons/sunny_bg.svg" alt="Clear Icon"></img>
+		} else if (main_weather == "Clouds") {
+			return <img id="cloudy-icon" src="./assets/icons/partial_cloud_bg.svg" alt="Cloudy Icon"></img>
+		} else if (main_weather == "Rain") {
+			return <img id="rainy-icon" src="./assets/icons/rainy_background.svg" alt="Rainy Icon"></img>
+		} else if (main_weather == "Thunderstorm") {
+			return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_bg.svg" alt="Thunderstorm Icon"></img>
+		} else if (main_weather == "Drizzle") {
+			return <img id="drizzle-icon" src="./assets/icons/drizzle_bg.svg" alt="Drizzle Icon"></img>
+		} else if (main_weather == "Snow") {
+			return <img id="snow-icon" src="./assets/icons/snow_bg.svg" alt="Snow Icon"></img>
+		} else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
+			return <img id="atmosphere-icon" src="./assets/icons/misty_bg.svg" alt="Atmosphere Icon"></img>
+		}
+	}
 
 
 	miniWeatherImage = (main_weather) => {
-    if (main_weather == "Clear") {
-      return <img id="clear-icon" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
-    } else if (main_weather == "Clouds") {
-      return <img id="cloudy-icon" src="./assets/icons/rainy_svg.svg" alt="Cloudy Icon"></img>
-    } else if (main_weather == "Rain") {
-      return <img id="rainy-icon" src="./assets/icons/rainy_svg.svg" alt="Rainy Icon"></img>
-    } else if (main_weather == "Thunderstorm") {
-      return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_svg.svg" alt="Thunderstorm Icon"></img>
-    } else if (main_weather == "Drizzle") {
-      return <img id="drizzle-icon" src="./assets/icons/drizzle_svg.svg" alt="Drizzle Icon"></img>
-    } else if (main_weather == "Snow") {
-      return <img id="snow-icon" src="./assets/icons/snow_svg.svg" alt="Snow Icon"></img>
-    } else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
-      return <img id="atmosphere-icon" src="./assets/icons/foggy_svg.svg" alt="Atmosphere Icon"></img>
-    }
-  }
+		if (main_weather == "Clear") {
+			return <img id="clear-icon" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
+		} else if (main_weather == "Clouds") {
+			return <img id="cloudy-icon" src="./assets/icons/rainy_svg.svg" alt="Cloudy Icon"></img>
+		} else if (main_weather == "Rain") {
+			return <img id="rainy-icon" src="./assets/icons/rainy_svg.svg" alt="Rainy Icon"></img>
+		} else if (main_weather == "Thunderstorm") {
+			return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_svg.svg" alt="Thunderstorm Icon"></img>
+		} else if (main_weather == "Drizzle") {
+			return <img id="drizzle-icon" src="./assets/icons/drizzle_svg.svg" alt="Drizzle Icon"></img>
+		} else if (main_weather == "Snow") {
+			return <img id="snow-icon" src="./assets/icons/snow_svg.svg" alt="Snow Icon"></img>
+		} else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
+			return <img id="atmosphere-icon" src="./assets/icons/foggy_svg.svg" alt="Atmosphere Icon"></img>
+		}
+	}
 
 
 	// the main render method for the iphone component
@@ -112,106 +112,106 @@ export default class Iphone extends Component {
 			const conta3Styles = this.state.main ? `${style.conta3}` : style.conta2;
 			// display all weather data
 			return (
-				<div class={ style.container }>
-					<div class={ style.header }>
-						<div class={ style.navigation } style="text-align: centre;">
-							<div> { this.state.data_grabbed ? <button class={style.button}>Home</button> : null } </div>
-							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_home_page: false, on_location_page: true })}>Location</button> : null } </div>
-							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_home_page: false, on_weekly_weather_page: true })}>Week</button> : null } </div>
+				<div class={style.container}>
+					<div class={style.header}>
+						<div class={style.navigation} style="text-align: centre;">
+							<div> {this.state.data_grabbed ? <button class={style.button}>Home</button> : null} </div>
+							<div> {this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_home_page: false, on_location_page: true })}>Location</button> : null} </div>
+							<div> {this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_home_page: false, on_weekly_weather_page: true })}>Week</button> : null} </div>
 						</div>
 						<div class={contaStyles}>
-							<div class={ style.city }>
-								{ this.state.locate }
+							<div class={style.city}>
+								{this.state.locate}
 							</div>
 							<div class={conta3Styles}>
 								<div class={style.weather_img}>
-									{ this.state.data_grabbed ? this.mainWeatherImage(this.state.main): null }
-								</div>		
-								<div class={ style.conditions } >
-									{ this.state.main }
+									{this.state.data_grabbed ? this.mainWeatherImage(this.state.main) : null}
 								</div>
-								<span class={ tempStyles }>
-									{ this.state.temp }
+								<div class={style.conditions} >
+									{this.state.main}
+								</div>
+								<span class={tempStyles}>
+									{this.state.temp}
 								</span>
 							</div>
 							<div>
 								{this.state.data_grabbed ? <h3>Precipitation</h3> : null}
 							</div>
-							<div class={ style.precipitation }>
-								{ this.state.data_grabbed ? <img id="rainy-icon" style="padding:0px;padding-right: 160px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
-								{ this.state.prec }
+							<div class={style.precipitation}>
+								{this.state.data_grabbed ? <img id="rainy-icon" style="padding:0px;padding-right: 160px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null}
+								{this.state.prec}
 							</div>
 							<div id="windspeed">
 								{this.state.data_grabbed ? <h3>Wind Speed</h3> : null}
 							</div>
-							<div class={ style.windspeed }>
-								{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding:0; margin:0;padding-right: 100px;"></img> : null }
-								{ this.state.wspeed }
+							<div class={style.windspeed}>
+								{this.state.data_grabbed ? <img id="windspeed-icon" src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon" style="padding:0; margin:0;padding-right: 100px;"></img> : null}
+								{this.state.wspeed}
 							</div>
 						</div>
 						<h3 class={style.forecast} style="margin-left:70px; bottom-padding:">Forecast</h3>
-							<div class={ style.forecast_text }>
-								<p class={ style.forecast_text }>6h</p>
-								<p class={ style.forecast_text }>12h</p>
-								<p class={ style.forecast_text }>24h</p>
-							</div>
-						<div class={ style.forecast }>	
-							<div class={ style.forecast_image }>
-								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_6h): null }
+						<div class={style.forecast_text}>
+							<p class={style.forecast_text}>6h</p>
+							<p class={style.forecast_text}>12h</p>
+							<p class={style.forecast_text}>24h</p>
+						</div>
+						<div class={style.forecast}>
+							<div class={style.forecast_image}>
+								{this.state.data_grabbed ? this.miniWeatherImage(this.state.main_6h) : null}
 							</div>
 
 							<div class={style.vl}></div>
-							<div class={ style.forecast_image }>
-								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_12h): null }
+							<div class={style.forecast_image}>
+								{this.state.data_grabbed ? this.miniWeatherImage(this.state.main_12h) : null}
 							</div>
 							<div class={style.vl}></div>
-							<div class={ style.forecast_image }>
-								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_24h): null }
+							<div class={style.forecast_image}>
+								{this.state.data_grabbed ? this.miniWeatherImage(this.state.main_24h) : null}
 							</div>
 						</div>
 					</div>
-					<div class={ style.details }></div>
-					<div class= { style_iphone.container }> 
-						{ this.state.display ? this.fetchWeatherData() : null }
+					<div class={style.details}></div>
+					<div class={style_iphone.container}>
+						{this.state.display ? this.fetchWeatherData() : null}
 					</div>
 				</div>
 			);
 		} else if (this.state.on_location_page == true) {
 			return (
-				<div class={ style.container }>
-					<div class={ style.header }>
-						<div class={ style.navigation } style="text-align: centre;">
-							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_location_page: false, on_home_page: true })}>Home</button> : null } </div>
-							<div> { this.state.data_grabbed ? <button class={style.button}>Location</button> : null } </div>
-							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_location_page: false, on_weekly_weather_page: true })}>Week</button> : null } </div>
+				<div class={style.container}>
+					<div class={style.header}>
+						<div class={style.navigation} style="text-align: centre;">
+							<div> {this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_location_page: false, on_home_page: true })}>Home</button> : null} </div>
+							<div> {this.state.data_grabbed ? <button class={style.button}>Location</button> : null} </div>
+							<div> {this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_location_page: false, on_weekly_weather_page: true })}>Week</button> : null} </div>
 						</div>
-						{ this.fetchWeatherData() }
+						{this.fetchWeatherData()}
 						<div><h1>Location</h1></div>
 						<div>
 							<div>London, GB</div>
-							<div>{ this.miniWeatherImage(this.state.main_lon) }</div>
-							<div>{ this.state.temp_lon }</div>
+							<div>{this.miniWeatherImage(this.state.main_lon)}</div>
+							<div>{this.state.temp_lon}</div>
 						</div>
 					</div>
-					<div class={ style.details }></div>
+					<div class={style.details}></div>
 				</div>
 			);
 		} else if (this.state.on_weekly_weather_page == true) {
 			return (
-				<div class={ style.container }>
-					<div class={ style.header }>
-						<div class={ style.navigation } style="text-align: centre;">
-							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_weekly_weather_page: false, on_home_page: true })}>Home</button> : null } </div>
-							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_weekly_weather_page: false, on_location_page: true })}>Location</button> : null } </div>
-							<div> { this.state.data_grabbed ? <button class={style.button}>Week</button> : null } </div>
+				<div class={style.container}>
+					<div class={style.header}>
+						<div class={style.navigation} style="text-align: centre;">
+							<div> {this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_weekly_weather_page: false, on_home_page: true })}>Home</button> : null} </div>
+							<div> {this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_weekly_weather_page: false, on_location_page: true })}>Location</button> : null} </div>
+							<div> {this.state.data_grabbed ? <button class={style.button}>Week</button> : null} </div>
 						</div>
 					</div>
 					<div>
 						<h1>Weekly Weather</h1>
 					</div>
-					<div class={ style.details }></div>
-					<div class= { style_iphone.container }> 
-						{ this.state.display ? this.fetchWeatherData() : null }
+					<div class={style.details}></div>
+					<div class={style_iphone.container}>
+						{this.state.display ? this.fetchWeatherData() : null}
 					</div>
 				</div>
 			);
@@ -266,7 +266,7 @@ export default class Iphone extends Component {
 			- Oxford
 			*/
 			temp: Math.trunc(temp_c - 273.15), // convert temp from kelvin to celsius
-			cond : conditions,
+			cond: conditions,
 			main: main_weather_current,
 			/*
 			URL: https://openweathermap.org/weather-conditions
@@ -283,25 +283,25 @@ export default class Iphone extends Component {
 			- Haze
 			- Fog
 			*/
-			prec : (precipitation * 100) + "%", // convert range 0-1 to a percentage
+			prec: (precipitation * 100) + "%", // convert range 0-1 to a percentage
 			wspeed: Math.trunc(wind_speed) + " mph",
-			main_6h : main_weather_6h,
-			main_12h : main_weather_12h,
-			main_24h : main_weather_24h,
-			main_lon : main_weather_london,
-			main_bir : main_weather_birmingham,
-			main_man : main_weather_manchester,
-			main_cam : main_weather_cambridge,
-			main_lei : main_weather_leicester,
-			main_bri : main_weather_bristol,
-			main_oxf : main_weather_oxford,
-			temp_lon : Math.trunc(temp_london - 273.15),
-			temp_bir : Math.trunc(temp_birmingham - 273.15),
-			temp_man : Math.trunc(temp_manchester - 273.15),
-			temp_cam : Math.trunc(temp_cambridge - 273.15),
-			temp_lei : Math.trunc(temp_leicester - 273.15),
-			temp_bri : Math.trunc(temp_bristol - 273.15),
-			temp_oxf : Math.trunc(temp_oxford - 273.15),
+			main_6h: main_weather_6h,
+			main_12h: main_weather_12h,
+			main_24h: main_weather_24h,
+			main_lon: main_weather_london,
+			main_bir: main_weather_birmingham,
+			main_man: main_weather_manchester,
+			main_cam: main_weather_cambridge,
+			main_lei: main_weather_leicester,
+			main_bri: main_weather_bristol,
+			main_oxf: main_weather_oxford,
+			temp_lon: Math.trunc(temp_london - 273.15),
+			temp_bir: Math.trunc(temp_birmingham - 273.15),
+			temp_man: Math.trunc(temp_manchester - 273.15),
+			temp_cam: Math.trunc(temp_cambridge - 273.15),
+			temp_lei: Math.trunc(temp_leicester - 273.15),
+			temp_bri: Math.trunc(temp_bristol - 273.15),
+			temp_oxf: Math.trunc(temp_oxford - 273.15),
 		});
 	}
 }

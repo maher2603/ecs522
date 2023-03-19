@@ -1,28 +1,32 @@
 @import '~style/helpers';
 
-.container { 
+.container {
 	display: flex;
 	flex-direction: column;
-	background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 3%, rgba(218,218,218,1) 100%);
+	background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 3%, rgba(218, 218, 218, 1) 100%);
 	background-blend-mode: color;
-	color: rgb(0,0,0)	;
+	color: rgb(0, 0, 0);
 	width: 414px;
 	height: 736px;
 	// text-align: center;
 	padding-top: 0px;
 	margin: 0 auto;
 }
+
 .header {
 	display: flex;
 	flex-direction: column;
 	flex: 1;
 	// text-align: center;
 }
+
 .details {
 	flex: 4;
 	text-align: center;
 }
+
 .city {
+	font-family: Sans-Serif;
 	flex: 1;
 	font-size: 1.7em;
 	font-weight: 400;
@@ -34,108 +38,115 @@
 	text-align: center;
 	padding: 0 0 0.3em 0;
 }
+
 .conditions {
-  flex:1;
-  font-size: 2.7em;
-  border-radius: 25px;
-  padding: 0;
-  margin: -10px;
-  z-index: 999;
+	flex: 1;
+	font-size: 2.7em;
+	border-radius: 25px;
+	padding: 0;
+	margin: -10px;
+	z-index: 999;
 	position: relative;
 	top: -120px;
-	left:-60px;
+	left: -60px;
 	color: white;
 }
 
-.conta{
+.conta {
 	font-size: 1em;
 	border-radius: 25px;
-  padding: 10px 0px 0px 0px;
-  width: 350px;
+	padding: 10px 0px 0px 0px;
+	width: 350px;
 	background-color: white;
-  height: auto;
+	height: auto;
 	margin: auto;
 	border: 2px solid black;
 	text-align: center;
 }
-.conta2{
+
+.conta2 {
 	display: hidden;
 }
 
-.conta3{
-  border-radius: 25px ;
-  padding: 0em;
-  width: 315px;
-  background-color: white;
-  height: 290px;
-  margin: auto;
-  border: 2px solid black;
+.conta3 {
+	border-radius: 25px;
+	padding: 0em;
+	width: 315px;
+	background-color: white;
+	height: 290px;
+	margin: auto;
+	border: 2px solid black;
 }
 
 .temperature {
-  text-align: center ;
-  // flex: 1;
-  font-size: 3.6em;
-  font-weight: 300;
-  letter-spacing: -4px;
-  width: 15rem;
-  margin: 0;
-  z-index: 999;
-  position: relative;
-  top:-113px;
-  left: -25px;
+	text-align: center;
+	// flex: 1;
+	font-size: 3.6em;
+	font-weight: 300;
+	letter-spacing: -4px;
+	width: 15rem;
+	margin: 0;
+	z-index: 999;
+	position: relative;
+	top: -113px;
+	left: -25px;
 	color: white;
 }
 
 .filled:after {
-  content: "°C";
-  margin: 0 0 0 1rem;
-  font-size: 0.5em;
-  font-weight: 100;
-  display: inline-block;
-  padding-top: 10px;
-  vertical-align: top;
-  text-align: center;
-  z-index: 999;
+	content: "°C";
+	margin: 0 0 0 1rem;
+	font-size: 0.5em;
+	font-weight: 100;
+	display: inline-block;
+	padding-top: 10px;
+	vertical-align: top;
+	text-align: center;
+	z-index: 999;
 }
 
 .precipitation {
-	color: red;
+	font-family: sans-serif;
+	color: rgb(0, 183, 255);
 	text-align: center;
 	font-size: 36px;
 	padding: 0px;
 	margin: auto;
 	margin-top: -10px;
-	vertical-align:baseline;
+	vertical-align: baseline;
 }
+
 .windspeed {
+	font-family: sans-serif;
 	color: rgb(0, 77, 128);
 	text-align: center;
 	font-size: 36px;
 	margin-top: -10px;
-	vertical-align:middle;
+	vertical-align: middle;
 }
+
 h3 {
 	color: black;
 	margin: 10px;
-	margin-left: -45% ;
+	margin-left: -45%;
 	padding: 0;
-	vertical-align:text-top;
+	vertical-align: text-top;
 }
+
 .navigation {
 	display: flex;
-  flex-wrap: nowrap;
+	flex-wrap: nowrap;
 	justify-content: space-between;
 	width: 70%;
 	margin: auto;
 	margin-bottom: 10%;
 }
 
-.button{
+.button {
 	flex: 2;
 	width: auto;
 	font-size: large;
-	font-weight: bold ;
+	font-weight: bold;
 	background: none;
 	border: none;
 	border-bottom: 2px solid #00000044;
@@ -152,9 +163,9 @@ h3 {
 	font-weight: bold;
 }
 
-.forecast{
+.forecast {
 	display: flex;
-  flex-wrap: nowrap;
+	flex-wrap: nowrap;
 	justify-content: space-between;
 	width: 70%;
 	margin: auto;
@@ -165,12 +176,12 @@ h3 {
 
 // }
 
-.forecast_text{
+.forecast_text {
 	display: flex;
-  flex-wrap: nowrap;
+	flex-wrap: nowrap;
 	justify-content: space-between;
 	width: 87.5%;
-	
+
 	text-align: center;
 	margin: 0;
 	margin-top: -10px;
@@ -180,21 +191,22 @@ h3 {
 
 .vl {
 	display: flex;
-  flex-wrap: nowrap;
+	flex-wrap: nowrap;
 	justify-content: space-between;
-  border-left: 4px solid grey;
-  height: 80px;
-  position: relative;
-  left: 0%;
-  top: -30px;
+	border-left: 4px solid grey;
+	height: 80px;
+	position: relative;
+	left: 0%;
+	top: -30px;
 	border-radius: 10px;
 }
- .forecast_title{
+
+.forecast_title {
 	padding: 0;
 	margin: 0;
 	margin-top: 10px;
- }
+}
 
- .weather_img{
+.weather_img {
 	margin-left: -10px;
- }
+}
