@@ -95,7 +95,7 @@ export default class Iphone extends Component {
 								{ this.state.prec }
 							</div>
 							<div id="windspeed">
-								{this.state.data_grabbed ? <h3 style="text-align: right">Wind Speed</h3> : null}
+								{this.state.data_grabbed ? <h3>Wind Speed</h3> : null}
 							</div>
 							<div class={ style.windspeed }>
 								{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding:0; margin:0;padding-right: 70px;"></img> : null }
