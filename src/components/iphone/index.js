@@ -26,7 +26,7 @@ export default class Iphone extends Component {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
 		} else {
-			console.log("Geolocation is not supported by this browser.");
+			console.log("Geolocation is not supported.");
 		}
 	}
 
@@ -35,7 +35,6 @@ export default class Iphone extends Component {
 		const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=5065eab2c0c7e99992ba98ce43ab3e2c`;
 		this.fetchWeatherData(url);
 	}
-
 	showError = (error) => {
 		console.log(`Geolocation error occurred. Error code: ${error.code}`);
 	}
