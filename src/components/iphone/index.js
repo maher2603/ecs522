@@ -67,19 +67,19 @@ export default class Iphone extends Component {
 	// decide what image to show depending on the main weather
   mainWeatherImage = (main_weather) => {
     if (main_weather == "Clear") {
-      return <img id="clear-icon" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
+      return <img id="clear-icon" src="./assets/icons/sunny_bg.svg" alt="Clear Icon"></img>
     } else if (main_weather == "Clouds") {
-      return <img id="cloudy-icon" src="./assets/icons/rainy_background.svg" alt="Cloudy Icon"></img>
+      return <img id="cloudy-icon" src="./assets/icons/partial_cloud_bg.svg" alt="Cloudy Icon"></img>
     } else if (main_weather == "Rain") {
       return <img id="rainy-icon" src="./assets/icons/rainy_background.svg" alt="Rainy Icon"></img>
     } else if (main_weather == "Thunderstorm") {
-      return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_svg.svg" alt="Thunderstorm Icon"></img>
+      return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_bg.svg" alt="Thunderstorm Icon"></img>
     } else if (main_weather == "Drizzle") {
-      return <img id="drizzle-icon" src="./assets/icons/drizzle_svg.svg" alt="Drizzle Icon"></img>
+      return <img id="drizzle-icon" src="./assets/icons/drizzle_bg.svg" alt="Drizzle Icon"></img>
     } else if (main_weather == "Snow") {
-      return <img id="snow-icon" src="./assets/icons/snow_svg.svg" alt="Snow Icon"></img>
+      return <img id="snow-icon" src="./assets/icons/snow_bg.svg" alt="Snow Icon"></img>
     } else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
-      return <img id="atmosphere-icon" src="./assets/icons/foggy_svg.svg" alt="Atmosphere Icon"></img>
+      return <img id="atmosphere-icon" src="./assets/icons/misty_bg.svg" alt="Atmosphere Icon"></img>
     }
   }
 
