@@ -57,7 +57,7 @@ export default class Iphone extends Component {
 		} else if (main_weather == "Clouds") {
 			return <img id="cloudy-icon" src="./assets/icons/rainy_background.svg" alt="Cloudy Icon"></img>
 		} else if (main_weather == "Rain") {
-			return <img id="rainy-icon" src="./assets/icons/rainy_svg.svg" alt="Rainy Icon"></img>
+			return <img id="rainy-icon" src="./assets/icons/rainy_background.svg" alt="Rainy Icon"></img>
 		} else if (main_weather == "Thunderstorm") {
 			return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_svg.svg" alt="Thunderstorm Icon"></img>
 		} else if (main_weather == "Drizzle") {
