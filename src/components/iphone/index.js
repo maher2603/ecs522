@@ -18,7 +18,7 @@ export default class Iphone extends Component {
 			data_grabbed : false,
 			on_home_page: true,
 			on_location_page: false,
-			on_weekly_weather_page: false,
+			on_weekly_weather_page: false
 		}
 	}
 
@@ -31,10 +31,15 @@ export default class Iphone extends Component {
 	}
 
 	showPosition = (position) => {
-		const { latitude, longitude } = position.coords;
-		const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=5065eab2c0c7e99992ba98ce43ab3e2c`;
+		if (this.state.on_home_page) {
+			const { latitude, longitude } = position.coords;
+			const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=5065eab2c0c7e99992ba98ce43ab3e2c`;
+			this.fetchWeatherData(url);
+		}
+		const url = "http://api.openweathermap.org/data/2.5/group?id=2643743,2655603,2643123,2653941,2644668,2654675,2640729&units=metric&appid=5065eab2c0c7e99992ba98ce43ab3e2c";
 		this.fetchWeatherData(url);
 	}
+	
 	showError = (error) => {
 		console.log(`Geolocation error occurred. Error code: ${error.code}`);
 	}
@@ -48,6 +53,16 @@ export default class Iphone extends Component {
 			})
 			.catch(error => console.log(`API call failed: ${error}`));
 	}
+
+	// URL: http://api.openweathermap.org/data/2.5/group?id=2643743,2655603,2643123,2653941,2644668,2654675,2640729&units=metric&appid=5065eab2c0c7e99992ba98ce43ab3e2c
+	// City IDs:
+	// London - 2643743
+	// Birmingahm - 2655603
+	// Manchester - 2643123
+	// Cambridge - 2653941
+	// Leicester - 2644668
+	// Bristol - 2654675
+	// Oxford - 2640729
 
 	// decide what image to show depending on the main weather
 	mainWeatherImage = (main_weather) => {
@@ -139,18 +154,15 @@ export default class Iphone extends Component {
 								<p class={ style.forecast_text }>12h</p>
 								<p class={ style.forecast_text }>24h</p>
 							</div>
-							<div class={ style.forecast }>
-								
+						<div class={ style.forecast }>	
 							<div class={ style.forecast_image }>
 								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_6h): null }
 							</div>
 
-							<div class={style.vl}>
-							</div>
+							<div class={style.vl}></div>
 							<div class={ style.forecast_image }>
 								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_12h): null }
 							</div>
-
 							<div class={style.vl}></div>
 							<div class={ style.forecast_image }>
 								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_24h): null }
@@ -172,14 +184,15 @@ export default class Iphone extends Component {
 							<div> { this.state.data_grabbed ? <button class={style.button}>Location</button> : null } </div>
 							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_location_page: false, on_weekly_weather_page: true })}>Week</button> : null } </div>
 						</div>
-					</div>
-					<div>
-						<h1>Location</h1>
+						{ this.fetchWeatherData() }
+						<div><h1>Location</h1></div>
+						<div>
+							<div>London, GB</div>
+							<div>{ this.miniWeatherImage(this.state.main_lon) }</div>
+							<div>{ this.state.temp_lon }</div>
+						</div>
 					</div>
 					<div class={ style.details }></div>
-					<div class= { style_iphone.container }> 
-						{ this.state.display ? this.fetchWeatherData() : null }
-					</div>
 				</div>
 			);
 		} else if (this.state.on_weekly_weather_page == true) {
@@ -209,12 +222,34 @@ export default class Iphone extends Component {
 		var country = parsed_json['city']['country'];
 		var temp_c = parsed_json['list']["0"]['main']['temp'];
 		var main_weather_current = parsed_json['list']["0"]['weather']["0"]['main'];
-		var main_weather_6h = parsed_json['list']["2"]['weather']["0"]['main'];
-		var main_weather_12h = parsed_json['list']["4"]['weather']["0"]['main'];
-		var main_weather_24h = parsed_json['list']["8"]['weather']["0"]['main'];
 		var conditions = parsed_json['list']["0"]['weather']["0"]['description'];
 		var precipitation = parsed_json['list']["0"]['pop'];
 		var wind_speed = parsed_json['list']["0"]['wind']['speed'];
+
+		var main_weather_6h = parsed_json['list']["2"]['weather']["0"]['main'];
+		var main_weather_12h = parsed_json['list']["4"]['weather']["0"]['main'];
+		var main_weather_24h = parsed_json['list']["8"]['weather']["0"]['main'];
+
+		var temp_london = parsed_json['list']["0"]['main']['temp'];
+		var main_weather_london = parsed_json['list']["0"]['weather']["0"]['main'];
+
+		var temp_birmingham = parsed_json['list']["1"]['main']['temp'];
+		var main_weather_birmingham = parsed_json['list']["1"]['weather']["0"]['main'];
+
+		var temp_manchester = parsed_json['list']["2"]['main']['temp'];
+		var main_weather_manchester = parsed_json['list']["2"]['weather']["0"]['main'];
+
+		var temp_cambridge = parsed_json['list']["3"]['main']['temp'];
+		var main_weather_cambridge = parsed_json['list']["3"]['weather']["0"]['main'];
+
+		var temp_leicester = parsed_json['list']["4"]['main']['temp'];
+		var main_weather_leicester = parsed_json['list']["4"]['weather']["0"]['main'];
+
+		var temp_bristol = parsed_json['list']["5"]['main']['temp'];
+		var main_weather_bristol = parsed_json['list']["5"]['weather']["0"]['main'];
+
+		var temp_oxford = parsed_json['list']["6"]['main']['temp'];
+		var main_weather_oxford = parsed_json['list']["6"]['weather']["0"]['main'];
 
 		// set states for fields so they could be rendered later on
 		this.setState({
@@ -224,13 +259,10 @@ export default class Iphone extends Component {
 			- London
 			- Birmingham
 			- Manchester
-			- Camebridge
+			- Cambridge
 			- Leicester
 			- Bristol
 			- Oxford
-			- Exeter
-			- Nottingham
-			- Leeds
 			*/
 			temp: Math.trunc(temp_c - 273.15), // convert temp from kelvin to celsius
 			cond : conditions,
@@ -254,7 +286,21 @@ export default class Iphone extends Component {
 			wspeed: Math.trunc(wind_speed) + " mph",
 			main_6h : main_weather_6h,
 			main_12h : main_weather_12h,
-			main_24h : main_weather_24h
+			main_24h : main_weather_24h,
+			main_lon : main_weather_london,
+			main_bir : main_weather_birmingham,
+			main_man : main_weather_manchester,
+			main_cam : main_weather_cambridge,
+			main_lei : main_weather_leicester,
+			main_bri : main_weather_bristol,
+			main_oxf : main_weather_oxford,
+			temp_lon : Math.trunc(temp_london - 273.15),
+			temp_bir : Math.trunc(temp_birmingham - 273.15),
+			temp_man : Math.trunc(temp_manchester - 273.15),
+			temp_cam : Math.trunc(temp_cambridge - 273.15),
+			temp_lei : Math.trunc(temp_leicester - 273.15),
+			temp_bri : Math.trunc(temp_bristol - 273.15),
+			temp_oxf : Math.trunc(temp_oxford - 273.15),
 		});
 	}
 }
