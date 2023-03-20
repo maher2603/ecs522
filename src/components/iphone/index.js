@@ -390,7 +390,7 @@ export default class Iphone extends Component {
 		var date3 = new Date(parsed_json['list']["16"]['dt_txt']);
 		var date4 = new Date(parsed_json['list']["24"]['dt_txt']);
 		var date5 = new Date(parsed_json['list']["32"]['dt_txt']);
-		var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 		var dayOfWeek = days[date.getDay()];
 		var day2OfWeek = days[date2.getDay()];
 		var day3OfWeek = days[date3.getDay()];
