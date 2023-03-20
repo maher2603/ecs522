@@ -3,8 +3,7 @@ import { h, render, Component } from 'preact';
 // import stylesheets for iphone & button
 import style from './style';
 import style_iphone from '../button/style_iphone';
-// import jquery for API calls
-import $ from 'jquery';      
+   
 
 export default class Iphone extends Component {
 
@@ -22,7 +21,8 @@ export default class Iphone extends Component {
 		}
 	}
 
-	componentDidMount() {
+	componentDidMount() // Gets the users latitude and longitude
+	{
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
 		} else {
@@ -30,6 +30,7 @@ export default class Iphone extends Component {
 		}
 	}
 
+	// If the user is on the homepage, fetch the weather data using the coordinates from navigator.geolocation. 
 	showPosition = (position) => {
 		if (this.state.on_home_page) {
 			const { latitude, longitude } = position.coords;
@@ -40,11 +41,13 @@ export default class Iphone extends Component {
 		this.fetchWeatherData(url);
 	}
 	
+	// If the user blocks location access, default the homepage data to show London`s weather. 
 	showError = (error) => {
 		const url = `https://api.openweathermap.org/data/2.5/forecast?q=London&appid=5065eab2c0c7e99992ba98ce43ab3e2c`;
 		this.fetchWeatherData(url);
 	}
 
+	// Methods to fetch weather data, catches errors if API call fails.
 	fetchWeatherData = (url) => {
 		fetch(url)
 			.then(response => response.json())
@@ -58,7 +61,7 @@ export default class Iphone extends Component {
 	// URL: http://api.openweathermap.org/data/2.5/group?id=2643743,2655603,2643123,2653941,2644668,2654675,2640729&units=metric&appid=5065eab2c0c7e99992ba98ce43ab3e2c
 	// City IDs:
 	// London - 2643743
-	// Birmingahm - 2655603
+	// Birmingham - 2655603
 	// Manchester - 2643123
 	// Cambridge - 2653941
 	// Leicester - 2644668
@@ -83,7 +86,7 @@ export default class Iphone extends Component {
       return <img id="atmosphere-icon" src="./assets/icons/misty_bg.svg" alt="Atmosphere Icon"></img>
     }
   }
-
+  	// decide what image to show depending on the weather in the 6h,12h,24h forecast section
 	miniWeatherImage = (main_weather) => {
 		if (main_weather == "Clear") {
 			return <img id="clear-icon" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
@@ -102,6 +105,7 @@ export default class Iphone extends Component {
 		}
 	}
 
+	// When the user selects a location from the dropdown list, get the div content of the location by passing id
 	displayLocationSection = (value, divID) => {
 		if((value) == "London") { 
 			document.getElementById(divID).innerHTML = document.getElementById('content_London').innerHTML
@@ -122,6 +126,7 @@ export default class Iphone extends Component {
 
 	// the main render method for the iphone component
 	render() {
+		// If the home button is pressed or app is just opened, the state is set to true so the home page is visible
 		if (this.state.on_home_page == true) {
 			// check if temperature data is fetched, if so add the sign styling to the page
 			const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
@@ -196,7 +201,9 @@ export default class Iphone extends Component {
 					</div>
 				</div>
 			);
-		} else if (this.state.on_location_page == true) {
+		} 
+		// If the location button is pressed, the state is set to true so the location page is visible
+		else if (this.state.on_location_page == true) {
 			return (
 				<div class={ style.container }>
 					<div class={ style.header }>
@@ -206,7 +213,8 @@ export default class Iphone extends Component {
 						</div>
 						{this.fetchWeatherData()}
 						<div class = { style.locations_page }>
-							<div id = "style.location1">
+						<h2 class={style.locationTitle}> Select Locations</h2>
+						<div class={style.LocationDropDown}>
 								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location1_content")}>
 									<option value="">--Select--</option>
 									<option value="London">London</option>
@@ -219,7 +227,7 @@ export default class Iphone extends Component {
 								</select>
 								<div id = "location1_content"></div>
 							</div>
-							<div  id = "style.location2">
+							<div class={style.LocationDropDown}>
 								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location2_content")}>
 									<option value="">--Select--</option>
 									<option value="London">London</option>
@@ -232,7 +240,7 @@ export default class Iphone extends Component {
 								</select>
 								<div id = "location2_content"></div>
 							</div>
-							<div  id = "style.location3">
+							<div class={style.LocationDropDown}>
 								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location3_content")}>
 									<option value="">--Select--</option>
 									<option value="London">London</option>
@@ -245,7 +253,7 @@ export default class Iphone extends Component {
 								</select>
 								<div id = "location3_content"></div>
 							</div>
-							<div  id = "style.location4">
+							<div class={style.LocationDropDown}>
 								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location4_content")}>
 									<option value="">--Select--</option>
 									<option value="London">London</option>
@@ -258,7 +266,7 @@ export default class Iphone extends Component {
 								</select>
 								<div id = "location4_content"></div>
 							</div>
-							<div  id = "style.location5">
+							<div class={style.LocationDropDown}>
 								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location5_content")}>
 									<option value="">--Select--</option>
 									<option value="London">London</option>
@@ -271,75 +279,51 @@ export default class Iphone extends Component {
 								</select>
 								<div id = "location5_content"></div>
 							</div>
-							<div  id = "style.location6">
-								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location6_content")}>
-									<option value="">--Select--</option>
-									<option value="London">London</option>
-									<option value="Birmingham">Birmingham</option>
-									<option value="Manchester">Manchester</option>
-									<option value="Cambridge">Cambridge</option>
-									<option value="Leicester">Leicester</option>
-									<option value="Bristol">Bristol</option>
-									<option value="Oxford">Oxford</option>
-								</select>
-								<div id = "location6_content"></div>
-							</div>
-							<div  id = "style.location7">
-								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location7_content")}>
-									<option value="">--Select--</option>
-									<option value="London">London</option>
-									<option value="Birmingham">Birmingham</option>
-									<option value="Manchester">Manchester</option>
-									<option value="Cambridge">Cambridge</option>
-									<option value="Leicester">Leicester</option>
-									<option value="Bristol">Bristol</option>
-									<option value="Oxford">Oxford</option>
-								</select>
-								<div id = "location7_content"></div>
-							</div>
 						</div>
 						<div class = { style.locations_content } style = "display: none">
-							<div id = "content_London">
-								<div>London, GB</div>
-								<div>{this.miniWeatherImage(this.state.main_lon)}</div>
-								<div>{this.state.temp_lon}</div>
+						<div id = "content_London" class={style.locationBars}>
+								<p class={style.locationDesc}>London, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_lon)}</span>
+								<div class={style.locationTemp}>{this.state.temp_lon}</div>
 							</div>
-							<div id = "content_Birmingham">
-								<div>Birmingahm, GB</div>
-								<div>{this.miniWeatherImage(this.state.main_bir)}</div>
-								<div>{this.state.temp_bir}</div>
+							<div id = "content_Birmingham" class={style.locationBars}>
+								<p class={style.locationDesc}>Birmingham, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_bir)}</span>
+								<div class={style.locationTemp}>{this.state.temp_bir}</div>
 							</div>
-							<div id = "content_Manchester">
-								<div>Manchester, GB</div>
-								<div>{this.miniWeatherImage(this.state.main_man)}</div>
-								<div>{this.state.temp_man}</div>
+							<div id = "content_Manchester" class={style.locationBars}>
+								<p class={style.locationDesc}>Manchester, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_man)}</span>
+								<div class={style.locationTemp}>{this.state.temp_man}</div>
 							</div>
-							<div id = "content_Cambridge">
-								<div>Cambridge, GB</div>
-								<div>{this.miniWeatherImage(this.state.main_cam)}</div>
-								<div>{this.state.temp_cam}</div>
+							<div id = "content_Cambridge" class={style.locationBars}>
+								<p class={style.locationDesc}>Cambridge, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_cam)}</span>
+								<div class={style.locationTemp}>{this.state.temp_cam}</div>
 							</div>
-							<div id = "content_Leicester">
-								<div>Leicester, GB</div>
-								<div>{this.miniWeatherImage(this.state.main_lei)}</div>
-								<div>{this.state.temp_lei}</div>
+							<div id = "content_Oxford" class={style.locationBars}>
+								<p class={style.locationDesc}>Oxford, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_oxf)}</span>
+								<div class={style.locationTemp}>{this.state.temp_oxf}</div>
 							</div>
-							<div id = "content_Bristol">
-								<div>Bristol, GB</div>
-								<div>{this.miniWeatherImage(this.state.main_bri)}</div>
-								<div>{this.state.temp_bri}</div>
+							<div id = "content_Bristol" class={style.locationBars}>
+								<p class={style.locationDesc}>Bristol, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_bri)}</span>
+								<div class={style.locationTemp}>{this.state.temp_bri}</div>
 							</div>
-							<div id = "content_Oxford">
-								<div>Oxford, GB</div>
-								<div>{this.miniWeatherImage(this.state.main_oxf)}</div>
-								<div>{this.state.temp_oxf}</div>
+							<div id = "content_Leicester" class={style.locationBars}>
+								<p class={style.locationDesc}>Leicester, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_lei)}</span>
+								<div class={style.locationTemp}>{this.state.temp_lei}</div>
 							</div>
 						</div>
 					</div>
 					<div class={ style.details }></div>
 				</div>
 			);
-		} else if (this.state.on_weekly_weather_page == true) {
+		} 
+		// If the weekly button is pressed, the state is set to true so the weekly forecast page is visible
+		else if (this.state.on_weekly_weather_page == true) {
 			return (
 				<div class={ style.container }>
 					<div class={ style.header }>
@@ -378,6 +362,7 @@ export default class Iphone extends Component {
 	}
 
 	parseResponse = (parsed_json) => {
+		//General Variables + Mainly for Home Page
 		var city = parsed_json['city']['name'];
 		var country = parsed_json['city']['country'];
 		var temp_c = parsed_json['list']["0"]['main']['temp'];
@@ -385,6 +370,8 @@ export default class Iphone extends Component {
 		var conditions = parsed_json['list']["0"]['weather']["0"]['description'];
 		var precipitation = parsed_json['list']["0"]['pop'];
 		var wind_speed = parsed_json['list']["0"]['wind']['speed'];
+
+		//Variables for Weekly Page
 		var date = new Date(parsed_json['list']["0"]['dt_txt']);
 		var date2 = new Date(parsed_json['list']["8"]['dt_txt']);
 		var date3 = new Date(parsed_json['list']["16"]['dt_txt']);
@@ -406,10 +393,12 @@ export default class Iphone extends Component {
 		var temp_c_day5 = parsed_json['list']["32"]['main']['temp'];
 
 
+		//Forecast on the Home Page
 		var main_weather_6h = parsed_json['list']["2"]['weather']["0"]['main'];
 		var main_weather_12h = parsed_json['list']["4"]['weather']["0"]['main'];
 		var main_weather_24h = parsed_json['list']["8"]['weather']["0"]['main'];
 
+		//Variables for the LLocation Page
 		var temp_london = parsed_json['list']["0"]['main']['temp'];
 		var main_weather_london = parsed_json['list']["0"]['weather']["0"]['main'];
 
@@ -434,39 +423,16 @@ export default class Iphone extends Component {
 		// set states for fields so they could be rendered later on
 		this.setState({
 			locate: city + ", " + country,
-			/*
-			Maybe create a dropdown list in Locations page for user to add custom locations?
-			- London
-			- Birmingham
-			- Manchester
-			- Cambridge
-			- Leicester
-			- Bristol
-			- Oxford
-			*/
 			temp: Math.trunc(temp_c - 273.15), // convert temp from kelvin to celsius
 			cond : conditions,
 			main: main_weather_current,
-			/*
-			URL: https://openweathermap.org/weather-conditions
-			Main weather conditions:
-			- Clear
-			- Clouds
-			- Rain
-			- Thunderstorm
-			- Drizzle
-			- Snow
-			- all under 'Atmosphere' (same weather icon):
-			- Mist
-			- Smoke
-			- Haze
-			- Fog
-			*/
 			prec : (precipitation * 100) + "%", // convert range 0-1 to a percentage
 			wspeed: Math.trunc(wind_speed) + " mph",
+
 			main_6h : main_weather_6h,
 			main_12h : main_weather_12h,
 			main_24h : main_weather_24h,
+
 			main_lon : main_weather_london,
 			main_bir : main_weather_birmingham,
 			main_man : main_weather_manchester,
@@ -474,6 +440,7 @@ export default class Iphone extends Component {
 			main_lei : main_weather_leicester,
 			main_bri : main_weather_bristol,
 			main_oxf : main_weather_oxford,
+
 			temp_lon : Math.trunc(temp_london - 273.15),
 			temp_bir : Math.trunc(temp_birmingham - 273.15),
 			temp_man : Math.trunc(temp_manchester - 273.15),
@@ -481,15 +448,18 @@ export default class Iphone extends Component {
 			temp_lei : Math.trunc(temp_leicester - 273.15),
 			temp_bri : Math.trunc(temp_bristol - 273.15),
 			temp_oxf : Math.trunc(temp_oxford - 273.15),
+
 			date_time: dayOfWeek,
 			date_time2: day2OfWeek,
 			date_time3: day3OfWeek,
 			date_time4: day4OfWeek,
 			date_time5: day5OfWeek,
+
 			main2: main_weather2,
 			main3: main_weather3,	
 			main4: main_weather4,	
 			main5: main_weather5,
+
 			tempDay2: Math.trunc(temp_c_day2 - 273.15),
 			tempDay3: Math.trunc(temp_c_day3 - 273.15),
 			tempDay4: Math.trunc(temp_c_day4 - 273.15),
