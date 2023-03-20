@@ -102,6 +102,24 @@ export default class Iphone extends Component {
 		}
 	}
 
+	displayLocationSection = (value, divID) => {
+		if((value) == "London") { 
+			document.getElementById(divID).innerHTML = document.getElementById('content_London').innerHTML
+		} else if ((value) == "Birmingham") {
+			document.getElementById(divID).innerHTML = document.getElementById('content_Birmingham').innerHTML
+		} else if ((value) == "Manchester") {
+			document.getElementById(divID).innerHTML = document.getElementById('content_Manchester').innerHTML
+		} else if ((value) == "Cambridge") {
+			document.getElementById(divID).innerHTML = document.getElementById('content_Cambridge').innerHTML
+		} else if ((value) == "Leicester") {
+			document.getElementById(divID).innerHTML = document.getElementById('content_Leicester').innerHTML
+		} else if ((value) == "Bristol") {
+			document.getElementById(divID).innerHTML = document.getElementById('content_Bristol').innerHTML
+		} else if ((value) == "Oxford") {
+			document.getElementById(divID).innerHTML = document.getElementById('content_Oxford').innerHTML
+		}
+	}
+
 	// the main render method for the iphone component
 	render() {
 		if (this.state.on_home_page == true) {
@@ -188,8 +206,8 @@ export default class Iphone extends Component {
 						</div>
 						{this.fetchWeatherData()}
 						<div class = { style.locations_page }>
-							<div id = { style.location1 }>
-								<select id="location">
+							<div id = "style.location1">
+								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location1_content")}>
 									<option value="">--Select--</option>
 									<option value="London">London</option>
 									<option value="Birmingham">Birmingham</option>
@@ -199,9 +217,10 @@ export default class Iphone extends Component {
 									<option value="Bristol">Bristol</option>
 									<option value="Oxford">Oxford</option>
 								</select>
+								<div id = "location1_content"></div>
 							</div>
-							<div  id = { style.location2 }>
-								<select id="location">
+							<div  id = "style.location2">
+								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location2_content")}>
 									<option value="">--Select--</option>
 									<option value="London">London</option>
 									<option value="Birmingham">Birmingham</option>
@@ -211,9 +230,10 @@ export default class Iphone extends Component {
 									<option value="Bristol">Bristol</option>
 									<option value="Oxford">Oxford</option>
 								</select>
+								<div id = "location2_content"></div>
 							</div>
-							<div  id = { style.location3 }>
-								<select id="location">
+							<div  id = "style.location3">
+								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location3_content")}>
 									<option value="">--Select--</option>
 									<option value="London">London</option>
 									<option value="Birmingham">Birmingham</option>
@@ -223,9 +243,10 @@ export default class Iphone extends Component {
 									<option value="Bristol">Bristol</option>
 									<option value="Oxford">Oxford</option>
 								</select>
+								<div id = "location3_content"></div>
 							</div>
-							<div  id = { style.location4 }>
-								<select id="location">
+							<div  id = "style.location4">
+								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location4_content")}>
 									<option value="">--Select--</option>
 									<option value="London">London</option>
 									<option value="Birmingham">Birmingham</option>
@@ -235,9 +256,10 @@ export default class Iphone extends Component {
 									<option value="Bristol">Bristol</option>
 									<option value="Oxford">Oxford</option>
 								</select>
+								<div id = "location4_content"></div>
 							</div>
-							<div  id = { style.location5 }>
-								<select id="location">
+							<div  id = "style.location5">
+								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location5_content")}>
 									<option value="">--Select--</option>
 									<option value="London">London</option>
 									<option value="Birmingham">Birmingham</option>
@@ -247,9 +269,10 @@ export default class Iphone extends Component {
 									<option value="Bristol">Bristol</option>
 									<option value="Oxford">Oxford</option>
 								</select>
+								<div id = "location5_content"></div>
 							</div>
-							<div  id = { style.location6 }>
-								<select id="location">
+							<div  id = "style.location6">
+								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location6_content")}>
 									<option value="">--Select--</option>
 									<option value="London">London</option>
 									<option value="Birmingham">Birmingham</option>
@@ -259,9 +282,10 @@ export default class Iphone extends Component {
 									<option value="Bristol">Bristol</option>
 									<option value="Oxford">Oxford</option>
 								</select>
+								<div id = "location6_content"></div>
 							</div>
-							<div  id = { style.location7 }>
-								<select id="location">
+							<div  id = "style.location7">
+								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location7_content")}>
 									<option value="">--Select--</option>
 									<option value="London">London</option>
 									<option value="Birmingham">Birmingham</option>
@@ -271,40 +295,41 @@ export default class Iphone extends Component {
 									<option value="Bristol">Bristol</option>
 									<option value="Oxford">Oxford</option>
 								</select>
+								<div id = "location7_content"></div>
 							</div>
 						</div>
-						<div class = { style.locations_content }>
-							<div id = { style.London }>
+						<div class = { style.locations_content } style = "display: none">
+							<div id = "content_London">
 								<div>London, GB</div>
 								<div>{this.miniWeatherImage(this.state.main_lon)}</div>
 								<div>{this.state.temp_lon}</div>
 							</div>
-							<div id = { style.Birmingham }>
+							<div id = "content_Birmingham">
 								<div>Birmingahm, GB</div>
 								<div>{this.miniWeatherImage(this.state.main_bir)}</div>
 								<div>{this.state.temp_bir}</div>
 							</div>
-							<div id = { style.Manchester }>
+							<div id = "content_Manchester">
 								<div>Manchester, GB</div>
 								<div>{this.miniWeatherImage(this.state.main_man)}</div>
 								<div>{this.state.temp_man}</div>
 							</div>
-							<div id = { style.Cambridge }>
+							<div id = "content_Cambridge">
 								<div>Cambridge, GB</div>
 								<div>{this.miniWeatherImage(this.state.main_cam)}</div>
 								<div>{this.state.temp_cam}</div>
 							</div>
-							<div id = { style.Leicester }>
+							<div id = "content_Leicester">
 								<div>Leicester, GB</div>
 								<div>{this.miniWeatherImage(this.state.main_lei)}</div>
 								<div>{this.state.temp_lei}</div>
 							</div>
-							<div id = { style.Bristol }>
+							<div id = "content_Bristol">
 								<div>Bristol, GB</div>
 								<div>{this.miniWeatherImage(this.state.main_bri)}</div>
 								<div>{this.state.temp_bri}</div>
 							</div>
-							<div id = { style.Oxford }>
+							<div id = "content_Oxford">
 								<div>Oxford, GB</div>
 								<div>{this.miniWeatherImage(this.state.main_oxf)}</div>
 								<div>{this.state.temp_oxf}</div>
