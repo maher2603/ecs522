@@ -201,7 +201,7 @@ export default class Iphone extends Component {
 						{this.fetchWeatherData()}
 						<div class = { style.locations_page }>
 							<div class = { style.location_section }>
-								<div id = { style.location1 } onChange = {this.locationSection()}>
+								<div id = { style.location1 }>
 									<select id="location">
 										<option value="">--Select--</option>
 										<option value="London">London</option>
