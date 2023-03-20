@@ -41,7 +41,8 @@ export default class Iphone extends Component {
 	}
 	
 	showError = (error) => {
-		console.log(`Geolocation error occurred. Error code: ${error.code}`);
+		const url = `https://api.openweathermap.org/data/2.5/forecast?q=London&appid=5065eab2c0c7e99992ba98ce43ab3e2c`;
+		this.fetchWeatherData(url);
 	}
 
 	fetchWeatherData = (url) => {
