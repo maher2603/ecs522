@@ -155,18 +155,18 @@ export default class Iphone extends Component {
 								{this.state.data_grabbed ? <h3>Precipitation</h3> : null}
 							</div>
 							<div class={ style.precipitation }>
-								{ this.state.data_grabbed ? <img id="rainy-icon" style="padding:0px;padding-right: 160px;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
+								{ this.state.data_grabbed ? <img id="rainy-icon" style="padding:0px;padding-right: 160px; vertical-align: bottom;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
 								{ this.state.prec }
 							</div>
 							<div id="windspeed">
 								{this.state.data_grabbed ? <h3>Wind Speed</h3> : null}
 							</div>
 							<div class={ style.windspeed }>
-								{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding:0; margin:0;padding-right: 100px;"></img> : null }
+								{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding:0; margin:0;padding-right: 125px; vertical-align: bottom;"></img> : null }
 								{ this.state.wspeed }
 							</div>
 						</div>
-						<h3 class={style.forecast} style="margin-left:70px; padding-bottom:-3% margin-top:1%"> Forecast</h3> 
+						<h3 class={style.forecast} style="margin-left:70px; padding-bottom:-3% margin-top:1%; font-size:larger;"> Forecast</h3> 
 						<div> { this.state.data_grabbed ? <button class={style.Weeklybutton} onClick={() => this.setState({ on_home_page:false, on_weekly_weather_page: true })}>Week</button> : null } </div>
 							<div class={ style.forecast_text }>
 								<p class={ style.forecast_text }>6h</p>
