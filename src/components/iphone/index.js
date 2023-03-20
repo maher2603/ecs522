@@ -324,24 +324,24 @@ export default class Iphone extends Component {
 						</div>
 					</div>
 						<div class = {style.weeklyWeather}>
-							<div id = {style.Day}>
-								<div class={style.conta}>
+							<div class ={style.conta}> 
+								<h2> 5 Day Forecast</h2>
+								<hr></hr>
 								<div class={ style.city }>
 								{ this.state.locate }
 									</div>
-									<div>{this.state.date_time} {this.state.main} {this.state.temp}
-								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main): null } </div>
-								<hr></hr>
-									<div>{this.state.date_time2} {this.state.main2} { this.state.data_grabbed ? this.miniWeatherImage(this.state.main2): null } {this.state.tempDay2}</div>
-									<hr></hr>
-									<div>{this.state.date_time3} {this.state.main3} {this.state.tempDay3}{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main3): null }</div>
-									<div>{this.state.date_time4} {this.state.main4} {this.state.tempDay4}{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main4): null }</div>
-									<div>{this.state.date_time5} {this.state.main5} {this.state.tempDay5}{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main5): null }</div>
+									<br></br>
+									<div class={style.Days}>
+										<p class={style.timeDate}>{this.state.date_time} </p>
+										{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main): null }
+										<p class={style.weeklyDesc}> {this.state.main} {this.state.temp}</p> </div>
+									<div class={style.Days}><p class={style.timeDate}>{this.state.date_time2} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main2): null } <p class={style.weeklyDesc}> {this.state.main2}  {this.state.tempDay2}</p></div>
+									<div class={style.Days}><p class={style.timeDate}>{this.state.date_time3} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main3): null } <p class={style.weeklyDesc}> {this.state.main3}  {this.state.tempDay3}</p></div>
+									<div class={style.Days}><p class={style.timeDate}>{this.state.date_time4} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main4): null } <p class={style.weeklyDesc}> {this.state.main4}  {this.state.tempDay4}</p></div>
+									<div class={style.FinalDay}><p class={style.timeDate}>{this.state.date_time5} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main5): null }<p class={style.weeklyDesc}> {this.state.main5}  {this.state.tempDay5}</p></div>
+									<br></br>
 								</div>
-
-
-							
-							</div>
+								<div class={style.bottomOfWeek}></div>
 						</div>
 					<div class={ style.details }></div>
 					<div class= { style_iphone.container }> 

@@ -8,7 +8,6 @@
 	color: rgb(0, 0, 0);
 	width: 414px;
 	height: 736px;
-	// text-align: center;
 	padding-top: 0px;
 	margin: 0 auto;
 }
@@ -17,7 +16,7 @@
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	// text-align: center;
+
 }
 
 .details {
@@ -25,16 +24,21 @@
 	text-align: center;
 }
 
+h2{
+	text-align: center;
+}
+
+.weeklyDesc:after{
+	content: "°C";
+	color: rgb(68, 68, 68);
+}
+
 .city {
 	font-family: Sans-Serif;
 	flex: 1;
 	font-size: 1.7em;
 	font-weight: 400;
-	// background-color: rgb(189, 189, 189);
-	// border-radius: 10rem;
-	// width: 15rem;
-	// margin: auto;
-	// min-height: 0;
+
 	text-align: center;
 	padding: 0 0 0.3em 0;
 }
@@ -239,7 +243,41 @@ h3 {
 	margin: 0;
 	margin-top: 10px;
 }
+.bottomOfWeek{
+	margin-top: 5%;
+}
 
 .weather_img {
 	margin-left: -10px;
+}
+
+.Days{
+	background-color: #31313144;
+	margin-bottom: 15%;
+	border-radius: 1rem;
+	border-bottom: 2px solid #00000044;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+.FinalDay{
+	background-color: #31313144;
+	margin-bottom: 5%;
+	border-radius: 1rem;
+	border-bottom: 2px solid #00000044;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+.timeDate{
+	float: left;
+	font-size: large;
+	margin-left: 10%;
+	color: rgb(0, 0, 0);
+	font-weight: bold;
+}
+
+.weeklyDesc{
+	color: rgb(0, 0, 0);
+	font-size: large;
+	float: right;
+	margin-right: 8%;
 }
