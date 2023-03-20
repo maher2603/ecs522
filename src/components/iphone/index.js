@@ -83,25 +83,24 @@ export default class Iphone extends Component {
     }
   }
 
-
 	miniWeatherImage = (main_weather) => {
-    if (main_weather == "Clear") {
-      return <img id="clear-icon" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
-    } else if (main_weather == "Clouds") {
-      return <img id="cloudy-icon" src="./assets/icons/cloudy_svg.svg" alt="Cloudy Icon"></img>
-    } else if (main_weather == "Rain") {
-      return <img id="rainy-icon" src="./assets/icons/rainy_svg.svg" alt="Rainy Icon"></img>
-    } else if (main_weather == "Thunderstorm") {
-      return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_svg.svg" alt="Thunderstorm Icon"></img>
-    } else if (main_weather == "Drizzle") {
-      return <img id="drizzle-icon" src="./assets/icons/drizzle_svg.svg" alt="Drizzle Icon"></img>
-    } else if (main_weather == "Snow") {
-      return <img id="snow-icon" src="./assets/icons/snow_svg.svg" alt="Snow Icon"></img>
-    } else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
-      return <img id="atmosphere-icon" src="./assets/icons/foggy_svg.svg" alt="Atmosphere Icon"></img>
-    }
-  }
-  
+		if (main_weather == "Clear") {
+			return <img id="clear-icon" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
+		} else if (main_weather == "Clouds") {
+			return <img id="cloudy-icon" src="./assets/icons/rainy_svg.svg" alt="Cloudy Icon"></img>
+		} else if (main_weather == "Rain") {
+			return <img id="rainy-icon" src="./assets/icons/rainy_svg.svg" alt="Rainy Icon"></img>
+		} else if (main_weather == "Thunderstorm") {
+			return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_svg.svg" alt="Thunderstorm Icon"></img>
+		} else if (main_weather == "Drizzle") {
+			return <img id="drizzle-icon" src="./assets/icons/drizzle_svg.svg" alt="Drizzle Icon"></img>
+		} else if (main_weather == "Snow") {
+			return <img id="snow-icon" src="./assets/icons/snow_svg.svg" alt="Snow Icon"></img>
+		} else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
+			return <img id="atmosphere-icon" src="./assets/icons/foggy_svg.svg" alt="Atmosphere Icon"></img>
+		}
+	}
+
 	// the main render method for the iphone component
 	render() {
 		if (this.state.on_home_page == true) {
@@ -158,7 +157,6 @@ export default class Iphone extends Component {
 							<div class={ style.forecast_image }>
 								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_6h): null }
 							</div>
-
 							<div class={style.vl}></div>
 							<div class={ style.forecast_image }>
 								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_12h): null }
@@ -184,12 +182,129 @@ export default class Iphone extends Component {
 							<div> { this.state.data_grabbed ? <button class={style.button}>Location</button> : null } </div>
 							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_location_page: false, on_weekly_weather_page: true })}>Week</button> : null } </div>
 						</div>
-						{ this.fetchWeatherData() }
-						<div><h1>Location</h1></div>
-						<div>
-							<div>London, GB</div>
-							<div>{ this.miniWeatherImage(this.state.main_lon) }</div>
-							<div>{ this.state.temp_lon }</div>
+						{this.fetchWeatherData()}
+						<div class = { style.locations_page }>
+							<div id = { style.location1 }>
+								<select id="location">
+									<option value="">--Select--</option>
+									<option value="London">London</option>
+									<option value="Birmingham">Birmingham</option>
+									<option value="Manchester">Manchester</option>
+									<option value="Cambridge">Cambridge</option>
+									<option value="Leicester">Leicester</option>
+									<option value="Bristol">Bristol</option>
+									<option value="Oxford">Oxford</option>
+								</select>
+							</div>
+							<div  id = { style.location2 }>
+								<select id="location">
+									<option value="">--Select--</option>
+									<option value="London">London</option>
+									<option value="Birmingham">Birmingham</option>
+									<option value="Manchester">Manchester</option>
+									<option value="Cambridge">Cambridge</option>
+									<option value="Leicester">Leicester</option>
+									<option value="Bristol">Bristol</option>
+									<option value="Oxford">Oxford</option>
+								</select>
+							</div>
+							<div  id = { style.location3 }>
+								<select id="location">
+									<option value="">--Select--</option>
+									<option value="London">London</option>
+									<option value="Birmingham">Birmingham</option>
+									<option value="Manchester">Manchester</option>
+									<option value="Cambridge">Cambridge</option>
+									<option value="Leicester">Leicester</option>
+									<option value="Bristol">Bristol</option>
+									<option value="Oxford">Oxford</option>
+								</select>
+							</div>
+							<div  id = { style.location4 }>
+								<select id="location">
+									<option value="">--Select--</option>
+									<option value="London">London</option>
+									<option value="Birmingham">Birmingham</option>
+									<option value="Manchester">Manchester</option>
+									<option value="Cambridge">Cambridge</option>
+									<option value="Leicester">Leicester</option>
+									<option value="Bristol">Bristol</option>
+									<option value="Oxford">Oxford</option>
+								</select>
+							</div>
+							<div  id = { style.location5 }>
+								<select id="location">
+									<option value="">--Select--</option>
+									<option value="London">London</option>
+									<option value="Birmingham">Birmingham</option>
+									<option value="Manchester">Manchester</option>
+									<option value="Cambridge">Cambridge</option>
+									<option value="Leicester">Leicester</option>
+									<option value="Bristol">Bristol</option>
+									<option value="Oxford">Oxford</option>
+								</select>
+							</div>
+							<div  id = { style.location6 }>
+								<select id="location">
+									<option value="">--Select--</option>
+									<option value="London">London</option>
+									<option value="Birmingham">Birmingham</option>
+									<option value="Manchester">Manchester</option>
+									<option value="Cambridge">Cambridge</option>
+									<option value="Leicester">Leicester</option>
+									<option value="Bristol">Bristol</option>
+									<option value="Oxford">Oxford</option>
+								</select>
+							</div>
+							<div  id = { style.location7 }>
+								<select id="location">
+									<option value="">--Select--</option>
+									<option value="London">London</option>
+									<option value="Birmingham">Birmingham</option>
+									<option value="Manchester">Manchester</option>
+									<option value="Cambridge">Cambridge</option>
+									<option value="Leicester">Leicester</option>
+									<option value="Bristol">Bristol</option>
+									<option value="Oxford">Oxford</option>
+								</select>
+							</div>
+						</div>
+						<div class = { style.locations_content }>
+							<div id = { style.London }>
+								<div>London, GB</div>
+								<div>{this.miniWeatherImage(this.state.main_lon)}</div>
+								<div>{this.state.temp_lon}</div>
+							</div>
+							<div id = { style.Birmingham }>
+								<div>Birmingahm, GB</div>
+								<div>{this.miniWeatherImage(this.state.main_bir)}</div>
+								<div>{this.state.temp_bir}</div>
+							</div>
+							<div id = { style.Manchester }>
+								<div>Manchester, GB</div>
+								<div>{this.miniWeatherImage(this.state.main_man)}</div>
+								<div>{this.state.temp_man}</div>
+							</div>
+							<div id = { style.Cambridge }>
+								<div>Cambridge, GB</div>
+								<div>{this.miniWeatherImage(this.state.main_cam)}</div>
+								<div>{this.state.temp_cam}</div>
+							</div>
+							<div id = { style.Leicester }>
+								<div>Leicester, GB</div>
+								<div>{this.miniWeatherImage(this.state.main_lei)}</div>
+								<div>{this.state.temp_lei}</div>
+							</div>
+							<div id = { style.Bristol }>
+								<div>Bristol, GB</div>
+								<div>{this.miniWeatherImage(this.state.main_bri)}</div>
+								<div>{this.state.temp_bri}</div>
+							</div>
+							<div id = { style.Oxford }>
+								<div>Oxford, GB</div>
+								<div>{this.miniWeatherImage(this.state.main_oxf)}</div>
+								<div>{this.state.temp_oxf}</div>
+							</div>
 						</div>
 					</div>
 					<div class={ style.details }></div>
