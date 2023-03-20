@@ -24,7 +24,7 @@ export default class Iphone extends Component {
 
 	componentDidMount() {
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
+			navigator.geolocation.getCurrentPosition(this.showPosition, this.showPositionManual);
 		} else {
 			console.log("Geolocation is not supported.");
 		}
@@ -40,8 +40,33 @@ export default class Iphone extends Component {
 		this.fetchWeatherData(url);
 	}
 
-	showError = (error) => {
-		console.log(`Geolocation error occurred. Error code: ${error.code}`);
+	// Gets the location of the user VIA their (closest DNS server?) IP (through GoogleAPI)
+	// Takes in an error (when the app fails to get location permission)
+	// Returns None
+	showPositionManual = (error) => {
+        console.log(`Geolocation error occurred. Error code: ${longitude}`);
+        this.fetchLocation("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCuJ8ZhamDC8NIGUcAwHAfmFqsSB__QPtQ")
+		// DEBUG: has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+		// If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+
+		// Example lang-long
+		const latitude = 51.3926
+        const longitude = -0.1977
+        console.log(`Lat: ${latitude}, Long: ${longitude}, `);
+        const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=3e4f7bb401a24b413919b1c03985ca17`;
+        this.fetchWeatherData(url);
+    }
+
+	// GoogleAPI call for getting lang-long of the user's (closest DNS server?) IP
+	// Takes in the URL for the GoogleAPI call
+	// DEBUG: Returns lang-long (possibly additionally location name though reverse-geocode)
+	fetchLocation = (url) => {
+		fetch(url)
+			.then(response => response.json())
+			.then(data => {
+				console.log(data)
+			})
+			.catch(error => console.log(`API call failed: ${error}`));
 	}
 
 	fetchWeatherData = (url) => {
