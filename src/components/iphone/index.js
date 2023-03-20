@@ -327,6 +327,12 @@ export default class Iphone extends Component {
 							<div id = {style.Day}>
 								<p class="Daily Forecast"> Daily Forecast </p>
 								<hr></hr>
+								<div><p>{this.state.date_time}</p><p>{this.state.main}</p></div>
+								<div><p>{this.state.date_time2}</p><p>{this.state.main2}</p></div>
+								<div><p>{this.state.date_time3}</p><p>{this.state.main3}</p></div>
+								<div><p>{this.state.date_time4}</p><p>{this.state.main4}</p></div>
+								<div><p>{this.state.date_time5}</p><p>{this.state.main5}</p></div>
+
 							<div>
 
 							</div>
@@ -349,6 +355,22 @@ export default class Iphone extends Component {
 		var conditions = parsed_json['list']["0"]['weather']["0"]['description'];
 		var precipitation = parsed_json['list']["0"]['pop'];
 		var wind_speed = parsed_json['list']["0"]['wind']['speed'];
+		var date = new Date(parsed_json['list']["0"]['dt_txt']);
+		var date2 = new Date(parsed_json['list']["8"]['dt_txt']);
+		var date3 = new Date(parsed_json['list']["16"]['dt_txt']);
+		var date4 = new Date(parsed_json['list']["24"]['dt_txt']);
+		var date5 = new Date(parsed_json['list']["32"]['dt_txt']);
+		var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		var dayOfWeek = days[date.getDay()];
+		var day2OfWeek = days[date2.getDay()];
+		var day3OfWeek = days[date3.getDay()];
+		var day4OfWeek = days[date4.getDay()];
+		var day5OfWeek = days[date5.getDay()];
+		var main_weather2 = parsed_json['list']["8"]['weather']["0"]['main'];
+		var main_weather3 = parsed_json['list']["16"]['weather']["0"]['main'];
+		var main_weather4 = parsed_json['list']["24"]['weather']["0"]['main'];
+		var main_weather5 = parsed_json['list']["32"]['weather']["0"]['main'];
+
 
 		var main_weather_6h = parsed_json['list']["2"]['weather']["0"]['main'];
 		var main_weather_12h = parsed_json['list']["4"]['weather']["0"]['main'];
@@ -425,6 +447,17 @@ export default class Iphone extends Component {
 			temp_lei : Math.trunc(temp_leicester - 273.15),
 			temp_bri : Math.trunc(temp_bristol - 273.15),
 			temp_oxf : Math.trunc(temp_oxford - 273.15),
+			// date_time: date,
+			// date_time2: date2,
+			date_time: dayOfWeek,
+			date_time2: day2OfWeek,
+			date_time3: day3OfWeek,
+			date_time4: day4OfWeek,
+			date_time5: day5OfWeek,
+			main2: main_weather2,
+			main3: main_weather3,	
+			main4: main_weather4,	
+			main5: main_weather5
 		});
 	}
 }
