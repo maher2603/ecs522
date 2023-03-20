@@ -3,7 +3,6 @@ import { h, render, Component } from 'preact';
 // import stylesheets for iphone & button
 import style from './style';
 import style_iphone from '../button/style_iphone';
-   
 
 export default class Iphone extends Component {
 
@@ -21,7 +20,20 @@ export default class Iphone extends Component {
 		}
 	}
 
-	componentDidMount() // Gets the users latitude and longitude
+	/*
+	URL to use for location page: http://api.openweathermap.org/data/2.5/group?id=2643743,2655603,2643123,2653941,2644668,2654675,2640729&units=metric&appid=5065eab2c0c7e99992ba98ce43ab3e2c
+	City IDs:
+		London - 2643743
+		Birmingham - 2655603
+		Manchester - 2643123
+		Cambridge - 2653941
+		Leicester - 2644668
+		Bristol - 2654675
+		Oxford - 2640729
+	*/
+
+	// gets the user's current location
+	componentDidMount()
 	{
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
@@ -30,7 +42,7 @@ export default class Iphone extends Component {
 		}
 	}
 
-	// If the user is on the homepage, fetch the weather data using the coordinates from navigator.geolocation. 
+	// if the user is on the homepage, fetch the weather data using the coordinates from navigator.geolocation
 	showPosition = (position) => {
 		if (this.state.on_home_page) {
 			const { latitude, longitude } = position.coords;
@@ -41,13 +53,13 @@ export default class Iphone extends Component {
 		this.fetchWeatherData(url);
 	}
 	
-	// If the user blocks location access, default the homepage data to show London`s weather. 
+	// if the user blocks location access, make the home page show London`s weather by default
 	showError = (error) => {
 		const url = `https://api.openweathermap.org/data/2.5/forecast?q=London&appid=5065eab2c0c7e99992ba98ce43ab3e2c`;
 		this.fetchWeatherData(url);
 	}
 
-	// Methods to fetch weather data, catches errors if API call fails.
+	// methods to fetch weather data and catche any errors if API call fails
 	fetchWeatherData = (url) => {
 		fetch(url)
 			.then(response => response.json())
@@ -58,40 +70,30 @@ export default class Iphone extends Component {
 			.catch(error => console.log(`API call failed: ${error}`));
 	}
 
-	// URL: http://api.openweathermap.org/data/2.5/group?id=2643743,2655603,2643123,2653941,2644668,2654675,2640729&units=metric&appid=5065eab2c0c7e99992ba98ce43ab3e2c
-	// City IDs:
-	// London - 2643743
-	// Birmingham - 2655603
-	// Manchester - 2643123
-	// Cambridge - 2653941
-	// Leicester - 2644668
-	// Bristol - 2654675
-	// Oxford - 2640729
-
 	// decide what image to show depending on the main weather
-  mainWeatherImage = (main_weather) => {
-    if (main_weather == "Clear") {
-      return <img id="clear-icon" src="./assets/icons/sunny_bg.svg" alt="Clear Icon"></img>
-    } else if (main_weather == "Clouds") {
-      return <img id="cloudy-icon" src="./assets/icons/partial_cloud_bg.svg" alt="Cloudy Icon"></img>
-    } else if (main_weather == "Rain") {
-      return <img id="rainy-icon" src="./assets/icons/rainy_background.svg" alt="Rainy Icon"></img>
-    } else if (main_weather == "Thunderstorm") {
-      return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_bg.svg" alt="Thunderstorm Icon"></img>
-    } else if (main_weather == "Drizzle") {
-      return <img id="drizzle-icon" src="./assets/icons/drizzle_bg.svg" alt="Drizzle Icon"></img>
-    } else if (main_weather == "Snow") {
-      return <img id="snow-icon" src="./assets/icons/snow_bg.svg" alt="Snow Icon"></img>
-    } else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
-      return <img id="atmosphere-icon" src="./assets/icons/misty_bg.svg" alt="Atmosphere Icon"></img>
-    }
-  }
+  	mainWeatherImage = (main_weather) => {
+		if (main_weather == "Clear") {
+		return <img id="clear-icon" src="./assets/icons/sunny_bg.svg" alt="Clear Icon"></img>
+		} else if (main_weather == "Clouds") {
+		return <img id="cloudy-icon" src="./assets/icons/partial_cloud_bg.svg" alt="Cloudy Icon"></img>
+		} else if (main_weather == "Rain") {
+		return <img id="rainy-icon" src="./assets/icons/rainy_background.svg" alt="Rainy Icon"></img>
+		} else if (main_weather == "Thunderstorm") {
+		return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_bg.svg" alt="Thunderstorm Icon"></img>
+		} else if (main_weather == "Drizzle") {
+		return <img id="drizzle-icon" src="./assets/icons/drizzle_bg.svg" alt="Drizzle Icon"></img>
+		} else if (main_weather == "Snow") {
+		return <img id="snow-icon" src="./assets/icons/snow_bg.svg" alt="Snow Icon"></img>
+		} else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
+		return <img id="atmosphere-icon" src="./assets/icons/misty_bg.svg" alt="Atmosphere Icon"></img>
+		}
+  	}
   	// decide what image to show depending on the weather in the 6h,12h,24h forecast section
 	miniWeatherImage = (main_weather) => {
 		if (main_weather == "Clear") {
 			return <img id="clear-icon" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
 		} else if (main_weather == "Clouds") {
-			return <img id="cloudy-icon" src="./assets/icons/rainy_svg.svg" alt="Cloudy Icon"></img>
+			return <img id="cloudy-icon" src="./assets/icons/cloudy_svg.svg" alt="Cloudy Icon"></img>
 		} else if (main_weather == "Rain") {
 			return <img id="rainy-icon" src="./assets/icons/rainy_svg.svg" alt="Rainy Icon"></img>
 		} else if (main_weather == "Thunderstorm") {
@@ -126,7 +128,7 @@ export default class Iphone extends Component {
 
 	// the main render method for the iphone component
 	render() {
-		// If the home button is pressed or app is just opened, the state is set to true so the home page is visible
+		// when app is opened or the home button is clicked, the state is set to true so the home page is visible
 		if (this.state.on_home_page == true) {
 			// check if temperature data is fetched, if so add the sign styling to the page
 			const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
@@ -139,7 +141,6 @@ export default class Iphone extends Component {
 						<div class={ style.navigation } style="text-align: centre;">
 							<div> { this.state.data_grabbed ? <button class={style.button}>Home</button> : null } </div>
 							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_home_page: false, on_location_page: true })}>Location</button> : null } </div>
-							
 						</div>
 						<div class={contaStyles}>
 							<div class={ style.city }>
@@ -171,13 +172,15 @@ export default class Iphone extends Component {
 								{ this.state.wspeed }
 							</div>
 						</div>
-						<h3 class={style.forecast} style="margin-left:70px; padding-bottom:-3% margin-top:1%; font-size:larger;"> Forecast</h3> 
-						<div> { this.state.data_grabbed ? <button class={style.Weeklybutton} onClick={() => this.setState({ on_home_page:false, on_weekly_weather_page: true })}>Week</button> : null } </div>
-							<div class={ style.forecast_text }>
-								<p class={ style.forecast_text }>6h</p>
-								<p class={ style.forecast_text }>12h</p>
-								<p class={ style.forecast_text }>24h</p>
-							</div>
+						<h3 class={style.forecast} style="margin-left:70px; padding-bottom:-3% margin-top:1%; font-size:larger;">
+							Forecast
+						</h3>
+						<div> { this.state.data_grabbed ? <button class={style.Weeklybutton} onClick={() => this.setState({ on_home_page:false, on_weekly_weather_page: true })}>Week</button> : null }</div>
+						<div class={ style.forecast_text }>
+							<p class={ style.forecast_text }>6h</p>
+							<p class={ style.forecast_text }>12h</p>
+							<p class={ style.forecast_text }>24h</p>
+						</div>
 						<div class={ style.forecast }>	
 							<div class={ style.forecast_image }>
 								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_6h): null }
@@ -202,7 +205,7 @@ export default class Iphone extends Component {
 				</div>
 			);
 		} 
-		// If the location button is pressed, the state is set to true so the location page is visible
+		// if the location button is pressed, the state is set to true so the location page is visible
 		else if (this.state.on_location_page == true) {
 			return (
 				<div class={ style.container }>
@@ -215,73 +218,73 @@ export default class Iphone extends Component {
 						<div class = { style.locations_page }>
 						<h2 class={style.locationTitle}> Select Locations</h2>
 						<div class={style.LocationDropDown}>
-								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location1_content")}>
-									<option value="">--Select--</option>
-									<option value="London">London</option>
-									<option value="Birmingham">Birmingham</option>
-									<option value="Manchester">Manchester</option>
-									<option value="Cambridge">Cambridge</option>
-									<option value="Leicester">Leicester</option>
-									<option value="Bristol">Bristol</option>
-									<option value="Oxford">Oxford</option>
-								</select>
-								<div id = "location1_content"></div>
-							</div>
-							<div class={style.LocationDropDown}>
-								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location2_content")}>
-									<option value="">--Select--</option>
-									<option value="London">London</option>
-									<option value="Birmingham">Birmingham</option>
-									<option value="Manchester">Manchester</option>
-									<option value="Cambridge">Cambridge</option>
-									<option value="Leicester">Leicester</option>
-									<option value="Bristol">Bristol</option>
-									<option value="Oxford">Oxford</option>
-								</select>
-								<div id = "location2_content"></div>
-							</div>
-							<div class={style.LocationDropDown}>
-								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location3_content")}>
-									<option value="">--Select--</option>
-									<option value="London">London</option>
-									<option value="Birmingham">Birmingham</option>
-									<option value="Manchester">Manchester</option>
-									<option value="Cambridge">Cambridge</option>
-									<option value="Leicester">Leicester</option>
-									<option value="Bristol">Bristol</option>
-									<option value="Oxford">Oxford</option>
-								</select>
-								<div id = "location3_content"></div>
-							</div>
-							<div class={style.LocationDropDown}>
-								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location4_content")}>
-									<option value="">--Select--</option>
-									<option value="London">London</option>
-									<option value="Birmingham">Birmingham</option>
-									<option value="Manchester">Manchester</option>
-									<option value="Cambridge">Cambridge</option>
-									<option value="Leicester">Leicester</option>
-									<option value="Bristol">Bristol</option>
-									<option value="Oxford">Oxford</option>
-								</select>
-								<div id = "location4_content"></div>
-							</div>
-							<div class={style.LocationDropDown}>
-								<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location5_content")}>
-									<option value="">--Select--</option>
-									<option value="London">London</option>
-									<option value="Birmingham">Birmingham</option>
-									<option value="Manchester">Manchester</option>
-									<option value="Cambridge">Cambridge</option>
-									<option value="Leicester">Leicester</option>
-									<option value="Bristol">Bristol</option>
-									<option value="Oxford">Oxford</option>
-								</select>
-								<div id = "location5_content"></div>
-							</div>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location1_content")}>
+								<option value="">--Select--</option>
+								<option value="London">London</option>
+								<option value="Birmingham">Birmingham</option>
+								<option value="Manchester">Manchester</option>
+								<option value="Cambridge">Cambridge</option>
+								<option value="Leicester">Leicester</option>
+								<option value="Bristol">Bristol</option>
+								<option value="Oxford">Oxford</option>
+							</select>
+							<div id = "location1_content"></div>
+						</div>
+						<div class={style.LocationDropDown}>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location2_content")}>
+								<option value="">--Select--</option>
+								<option value="London">London</option>
+								<option value="Birmingham">Birmingham</option>
+								<option value="Manchester">Manchester</option>
+								<option value="Cambridge">Cambridge</option>
+								<option value="Leicester">Leicester</option>
+								<option value="Bristol">Bristol</option>
+								<option value="Oxford">Oxford</option>
+							</select>
+							<div id = "location2_content"></div>
+						</div>
+						<div class={style.LocationDropDown}>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location3_content")}>
+								<option value="">--Select--</option>
+								<option value="London">London</option>
+								<option value="Birmingham">Birmingham</option>
+								<option value="Manchester">Manchester</option>
+								<option value="Cambridge">Cambridge</option>
+								<option value="Leicester">Leicester</option>
+								<option value="Bristol">Bristol</option>
+								<option value="Oxford">Oxford</option>
+							</select>
+							<div id = "location3_content"></div>
+						</div>
+						<div class={style.LocationDropDown}>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location4_content")}>
+								<option value="">--Select--</option>
+								<option value="London">London</option>
+								<option value="Birmingham">Birmingham</option>
+								<option value="Manchester">Manchester</option>
+								<option value="Cambridge">Cambridge</option>
+								<option value="Leicester">Leicester</option>
+								<option value="Bristol">Bristol</option>
+								<option value="Oxford">Oxford</option>
+							</select>
+							<div id = "location4_content"></div>
+						</div>
+						<div class={style.LocationDropDown}>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location5_content")}>
+								<option value="">--Select--</option>
+								<option value="London">London</option>
+								<option value="Birmingham">Birmingham</option>
+								<option value="Manchester">Manchester</option>
+								<option value="Cambridge">Cambridge</option>
+								<option value="Leicester">Leicester</option>
+								<option value="Bristol">Bristol</option>
+								<option value="Oxford">Oxford</option>
+							</select>
+							<div id = "location5_content"></div>
+						</div>
 						</div>
 						<div class = { style.locations_content } style = "display: none">
-						<div id = "content_London" class={style.locationBars}>
+							<div id = "content_London" class={style.locationBars}>
 								<p class={style.locationDesc}>London, GB </p>
 								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_lon)}</span>
 								<div class={style.locationTemp}>{this.state.temp_lon}</div>
@@ -301,20 +304,20 @@ export default class Iphone extends Component {
 								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_cam)}</span>
 								<div class={style.locationTemp}>{this.state.temp_cam}</div>
 							</div>
-							<div id = "content_Oxford" class={style.locationBars}>
-								<p class={style.locationDesc}>Oxford, GB </p>
-								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_oxf)}</span>
-								<div class={style.locationTemp}>{this.state.temp_oxf}</div>
+							<div id = "content_Leicester" class={style.locationBars}>
+								<p class={style.locationDesc}>Leicester, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_lei)}</span>
+								<div class={style.locationTemp}>{this.state.temp_lei}</div>
 							</div>
 							<div id = "content_Bristol" class={style.locationBars}>
 								<p class={style.locationDesc}>Bristol, GB </p>
 								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_bri)}</span>
 								<div class={style.locationTemp}>{this.state.temp_bri}</div>
 							</div>
-							<div id = "content_Leicester" class={style.locationBars}>
-								<p class={style.locationDesc}>Leicester, GB </p>
-								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_lei)}</span>
-								<div class={style.locationTemp}>{this.state.temp_lei}</div>
+							<div id = "content_Oxford" class={style.locationBars}>
+								<p class={style.locationDesc}>Oxford, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_oxf)}</span>
+								<div class={style.locationTemp}>{this.state.temp_oxf}</div>
 							</div>
 						</div>
 					</div>
@@ -322,7 +325,7 @@ export default class Iphone extends Component {
 				</div>
 			);
 		} 
-		// If the weekly button is pressed, the state is set to true so the weekly forecast page is visible
+		// if the weekly button is pressed, the state is set to true so the weekly forecast page is visible
 		else if (this.state.on_weekly_weather_page == true) {
 			return (
 				<div class={ style.container }>
@@ -338,19 +341,20 @@ export default class Iphone extends Component {
 								<hr></hr>
 								<div class={ style.city }>
 								{ this.state.locate }
-									</div>
-									<br></br>
-									<div class={style.Days}>
-										<p class={style.timeDate}>{this.state.date_time} </p>
-										{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main): null }
-										<p class={style.weeklyDesc}> {this.state.main} {this.state.temp}</p> </div>
-									<div class={style.Days}><p class={style.timeDate}>{this.state.date_time2} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main2): null } <p class={style.weeklyDesc}> {this.state.main2}  {this.state.tempDay2}</p></div>
-									<div class={style.Days}><p class={style.timeDate}>{this.state.date_time3} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main3): null } <p class={style.weeklyDesc}> {this.state.main3}  {this.state.tempDay3}</p></div>
-									<div class={style.Days}><p class={style.timeDate}>{this.state.date_time4} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main4): null } <p class={style.weeklyDesc}> {this.state.main4}  {this.state.tempDay4}</p></div>
-									<div class={style.FinalDay}><p class={style.timeDate}>{this.state.date_time5} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main5): null }<p class={style.weeklyDesc}> {this.state.main5}  {this.state.tempDay5}</p></div>
-									<br></br>
 								</div>
-								<div class={style.bottomOfWeek}></div>
+								<br></br>
+								<div class={style.Days}>
+									<p class={style.timeDate}>{this.state.date_time} </p>
+									{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main): null }
+									<p class={style.weeklyDesc}> {this.state.main} {this.state.temp}</p> 
+								</div>
+								<div class={style.Days}><p class={style.timeDate}>{this.state.date_time2} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main2): null } <p class={style.weeklyDesc}> {this.state.main2}  {this.state.tempDay2}</p></div>
+								<div class={style.Days}><p class={style.timeDate}>{this.state.date_time3} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main3): null } <p class={style.weeklyDesc}> {this.state.main3}  {this.state.tempDay3}</p></div>
+								<div class={style.Days}><p class={style.timeDate}>{this.state.date_time4} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main4): null } <p class={style.weeklyDesc}> {this.state.main4}  {this.state.tempDay4}</p></div>
+								<div class={style.FinalDay}><p class={style.timeDate}>{this.state.date_time5} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main5): null }<p class={style.weeklyDesc}> {this.state.main5}  {this.state.tempDay5}</p></div>
+								<br></br>
+							</div>
+							<div class={style.bottomOfWeek}></div>
 						</div>
 					<div class={ style.details }></div>
 					<div class= { style_iphone.container }> 
@@ -362,7 +366,7 @@ export default class Iphone extends Component {
 	}
 
 	parseResponse = (parsed_json) => {
-		//General Variables + Mainly for Home Page
+		// general variables that are mainly for the home page
 		var city = parsed_json['city']['name'];
 		var country = parsed_json['city']['country'];
 		var temp_c = parsed_json['list']["0"]['main']['temp'];
@@ -371,7 +375,7 @@ export default class Iphone extends Component {
 		var precipitation = parsed_json['list']["0"]['pop'];
 		var wind_speed = parsed_json['list']["0"]['wind']['speed'];
 
-		//Variables for Weekly Page
+		// variables for the weekly Page
 		var date = new Date(parsed_json['list']["0"]['dt_txt']);
 		var date2 = new Date(parsed_json['list']["8"]['dt_txt']);
 		var date3 = new Date(parsed_json['list']["16"]['dt_txt']);
@@ -393,12 +397,12 @@ export default class Iphone extends Component {
 		var temp_c_day5 = parsed_json['list']["32"]['main']['temp'];
 
 
-		//Forecast on the Home Page
+		// variables for the forecast on the home page
 		var main_weather_6h = parsed_json['list']["2"]['weather']["0"]['main'];
 		var main_weather_12h = parsed_json['list']["4"]['weather']["0"]['main'];
 		var main_weather_24h = parsed_json['list']["8"]['weather']["0"]['main'];
 
-		//Variables for the LLocation Page
+		// variables for the location page
 		var temp_london = parsed_json['list']["0"]['main']['temp'];
 		var main_weather_london = parsed_json['list']["0"]['weather']["0"]['main'];
 
@@ -420,7 +424,7 @@ export default class Iphone extends Component {
 		var temp_oxford = parsed_json['list']["6"]['main']['temp'];
 		var main_weather_oxford = parsed_json['list']["6"]['weather']["0"]['main'];
 
-		// set states for fields so they could be rendered later on
+		// set states for fields so they could be rendered later on in the pages
 		this.setState({
 			locate: city + ", " + country,
 			temp: Math.trunc(temp_c - 273.15), // convert temp from kelvin to celsius
