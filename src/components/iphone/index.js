@@ -147,7 +147,7 @@ export default class Iphone extends Component {
 								{ this.state.wspeed }
 							</div>
 						</div>
-						<h3 class={style.forecast} style="margin-left:70px; bottom-padding:">Forecast</h3>
+						<h3 class={style.forecast} style="margin-left:70px; bottom-padding:"></h3>
 							<div class={ style.forecast_text }>
 								<p class={ style.forecast_text }>6h</p>
 								<p class={ style.forecast_text }>12h</p>
