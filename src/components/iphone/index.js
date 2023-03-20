@@ -116,7 +116,7 @@ export default class Iphone extends Component {
 						<div class={ style.navigation } style="text-align: centre;">
 							<div> { this.state.data_grabbed ? <button class={style.button}>Home</button> : null } </div>
 							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_home_page: false, on_location_page: true })}>Location</button> : null } </div>
-							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_home_page: false, on_weekly_weather_page: true })}>Week</button> : null } </div>
+							
 						</div>
 						<div class={contaStyles}>
 							<div class={ style.city }>
@@ -148,7 +148,8 @@ export default class Iphone extends Component {
 								{ this.state.wspeed }
 							</div>
 						</div>
-						<h3 class={style.forecast} style="margin-left:70px; bottom-padding:"></h3>
+						<h3 class={style.forecast} style="margin-left:70px; padding-bottom:-3% margin-top:1%"> Forecast</h3> 
+						<div> { this.state.data_grabbed ? <button class={style.Weeklybutton} onClick={() => this.setState({ on_home_page:false, on_weekly_weather_page: true })}>Week</button> : null } </div>
 							<div class={ style.forecast_text }>
 								<p class={ style.forecast_text }>6h</p>
 								<p class={ style.forecast_text }>12h</p>
@@ -184,7 +185,6 @@ export default class Iphone extends Component {
 						<div class={ style.navigation } style="text-align: centre;">
 							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_location_page: false, on_home_page: true })}>Home</button> : null } </div>
 							<div> { this.state.data_grabbed ? <button class={style.button}>Location</button> : null } </div>
-							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_location_page: false, on_weekly_weather_page: true })}>Week</button> : null } </div>
 						</div>
 						{this.fetchWeatherData()}
 						<div class = { style.locations_page }>
@@ -321,22 +321,26 @@ export default class Iphone extends Component {
 						<div class={ style.navigation } style="text-align: centre;">
 							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_weekly_weather_page: false, on_home_page: true })}>Home</button> : null } </div>
 							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_weekly_weather_page: false, on_location_page: true })}>Location</button> : null } </div>
-							<div> { this.state.data_grabbed ? <button class={style.button}>Week</button> : null } </div>
 						</div>
 					</div>
 						<div class = {style.weeklyWeather}>
 							<div id = {style.Day}>
-								<p class="Daily Forecast"> Daily Forecast </p>
+								<div class={style.conta}>
+								<div class={ style.city }>
+								{ this.state.locate }
+									</div>
+									<div>{this.state.date_time} {this.state.main} {this.state.temp}
+								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main): null } </div>
 								<hr></hr>
-								<div><p>{this.state.date_time}</p><p>{this.state.main}</p></div>
-								<div><p>{this.state.date_time2}</p><p>{this.state.main2}</p></div>
-								<div><p>{this.state.date_time3}</p><p>{this.state.main3}</p></div>
-								<div><p>{this.state.date_time4}</p><p>{this.state.main4}</p></div>
-								<div><p>{this.state.date_time5}</p><p>{this.state.main5}</p></div>
+									<div>{this.state.date_time2} {this.state.main2} { this.state.data_grabbed ? this.miniWeatherImage(this.state.main2): null } {this.state.tempDay2}</div>
+									<hr></hr>
+									<div>{this.state.date_time3} {this.state.main3} {this.state.tempDay3}{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main3): null }</div>
+									<div>{this.state.date_time4} {this.state.main4} {this.state.tempDay4}{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main4): null }</div>
+									<div>{this.state.date_time5} {this.state.main5} {this.state.tempDay5}{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main5): null }</div>
+								</div>
 
-							<div>
 
-							</div>
+							
 							</div>
 						</div>
 					<div class={ style.details }></div>
@@ -371,6 +375,10 @@ export default class Iphone extends Component {
 		var main_weather3 = parsed_json['list']["16"]['weather']["0"]['main'];
 		var main_weather4 = parsed_json['list']["24"]['weather']["0"]['main'];
 		var main_weather5 = parsed_json['list']["32"]['weather']["0"]['main'];
+		var temp_c_day2 = parsed_json['list']["8"]['main']['temp'];
+		var temp_c_day3 = parsed_json['list']["16"]['main']['temp'];
+		var temp_c_day4 = parsed_json['list']["24"]['main']['temp'];
+		var temp_c_day5 = parsed_json['list']["32"]['main']['temp'];
 
 
 		var main_weather_6h = parsed_json['list']["2"]['weather']["0"]['main'];
@@ -448,8 +456,6 @@ export default class Iphone extends Component {
 			temp_lei : Math.trunc(temp_leicester - 273.15),
 			temp_bri : Math.trunc(temp_bristol - 273.15),
 			temp_oxf : Math.trunc(temp_oxford - 273.15),
-			// date_time: date,
-			// date_time2: date2,
 			date_time: dayOfWeek,
 			date_time2: day2OfWeek,
 			date_time3: day3OfWeek,
@@ -458,7 +464,11 @@ export default class Iphone extends Component {
 			main2: main_weather2,
 			main3: main_weather3,	
 			main4: main_weather4,	
-			main5: main_weather5
+			main5: main_weather5,
+			tempDay2: Math.trunc(temp_c_day2 - 273.15),
+			tempDay3: Math.trunc(temp_c_day3 - 273.15),
+			tempDay4: Math.trunc(temp_c_day4 - 273.15),
+			tempDay5: Math.trunc(temp_c_day5 - 273.15)
 		});
 	}
 }
