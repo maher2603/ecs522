@@ -156,14 +156,17 @@ export default class Iphone extends Component {
 						<div class={ style.forecast }>	
 							<div class={ style.forecast_image }>
 								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_6h): null }
+								<p class={ style.forecast_textLabel }>{this.state.main_6h} </p>
 							</div>
 							<div class={style.vl}></div>
 							<div class={ style.forecast_image }>
 								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_12h): null }
+								<p class={ style.forecast_textLabel }>{this.state.main_12h}</p>
 							</div>
 							<div class={style.vl}></div>
 							<div class={ style.forecast_image }>
 								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_24h): null }
+								<p class={ style.forecast_textLabel }>{this.state.main_24h}</p>
 							</div>
 						</div>
 					</div>
@@ -320,9 +323,15 @@ export default class Iphone extends Component {
 							<div> { this.state.data_grabbed ? <button class={style.button}>Week</button> : null } </div>
 						</div>
 					</div>
-					<div>
-						<h1>Weekly Weather</h1>
-					</div>
+						<div class = {style.weeklyWeather}>
+							<div id = {style.Day}>
+								<p class="Daily Forecast"> Daily Forecast </p>
+								<hr></hr>
+							<div>
+
+							</div>
+							</div>
+						</div>
 					<div class={ style.details }></div>
 					<div class= { style_iphone.container }> 
 						{ this.state.display ? this.fetchWeatherData() : null }
