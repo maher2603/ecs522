@@ -1,49 +1,292 @@
 @import '~style/helpers';
 
-.container { 
-  background-image: url('../../assets/backgrounds/rain-ipad.jpg');
-  color: #fff;
-  width: 768px;
-  height: 1024px;
-  text-align: center;
-  padding-top: 120px;
-  margin: 0 auto;
+.container {
+	display: flex;
+	flex-direction: column;
+	background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 3%, rgba(218, 218, 218, 1) 100%);
+	background-blend-mode: color;
+	//background-image: url(https://i.pinimg.com/236x/9e/90/0f/9e900f91bdc3bb33b9d0a513ef4222a8--light-blue-wallpaper-iphone-phone-backgrounds.jpg);
+	background-size: cover;
+	color: rgb(0, 0, 0);
+	width: 768px;
+	height: 1024px;
+	padding-top: 0px;
+	margin: 0 auto;
 }
 .header {
 	display: flex;
 	flex-direction: column;
 	flex: 1;
+
 }
+
 .details {
-	flex: 2;
+	flex: 4;
+	text-align: center;
 }
+
+h2{
+	text-align: center;
+}
+
+.weeklyDesc:after{
+	content: "°C";
+	color: rgb(68, 68, 68);
+}
+
 .city {
-	flex-direction: row;
-	flex: 1;
-	font-size: 5em;
-	font-weight: 350;	
-}
-.country {
-	font-size: 5em;
-	font-weight: 350;	
-}
-.conditions {
+	font-family: Sans-Serif;
 	flex: 1;
 	font-size: 1.7em;
+	font-weight: 400;
+
+	text-align: center;
+	padding: 0 0 0.3em 0;
 }
+
+.conditions {
+	flex: 1;
+	font-size: 2.7em;
+	border-radius: 25px;
+	padding: 0;
+	margin: -10px;
+	z-index: 999;
+	position: relative;
+	top: -120px;
+	left: -60px;
+	color: white;
+}
+
+.conta {
+	font-size: 1em;
+	border-radius: 25px;
+	padding: 10px 0px 0px 0px;
+	width: 350px;
+	background-color: white;
+	height: auto;
+	margin: auto;
+	margin-top: -5%;
+	border: 2px solid black;
+	text-align: center;
+}
+
+.conta2 {
+	display: hidden;
+}
+
+.conta3 {
+	border-radius: 25px;
+	padding: 0em;
+	width: 315px;
+	background-color: white;
+	height: 290px;
+	margin: auto;
+	border: 2px solid black;
+}
+
 .temperature {
-	flex: 2;
-	margin-top: 0;
-	font-size: 5.2em;
+	text-align: center;
+	// flex: 1;
+	font-size: 3.6em;
 	font-weight: 300;
-	letter-spacing: -12px;
+	letter-spacing: -4px;
+	width: 15rem;
+	margin: 0;
+	z-index: 999;
+	position: relative;
+	top: -113px;
+	left: -25px;
+	color: white;
 }
+
 .filled:after {
-	content: "°";
+	content: "°C";
 	margin: 0 0 0 1rem;
 	font-size: 0.5em;
 	font-weight: 100;
 	display: inline-block;
 	padding-top: 10px;
 	vertical-align: top;
+	text-align: center;
+	z-index: 999;
 }
+
+.precipitation {
+	font-family: sans-serif;
+	color: rgb(0, 183, 255);
+	text-align: center;
+	font-size: 36px;
+	padding: 0px;
+	margin: auto;
+	margin-top: -10px;
+	vertical-align: baseline;
+}
+
+.windspeed {
+	font-family: sans-serif;
+	color: rgb(0, 77, 128);
+	text-align: center;
+	font-size: 36px;
+	margin-top: -10px;
+	vertical-align: middle;
+}
+
+h3 {
+	color: black;
+	margin: 10px;
+	margin-left: -45%;
+	padding: 0;
+	vertical-align: text-top;
+}
+
+.navigation {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	width: 70%;
+	margin: auto;
+	margin-bottom: 10%;
+	margin-top: 2%;
+}
+
+.button {
+	flex: 2;
+	width: auto;
+	font-size: larger;
+	font-weight: bold;
+	background: none;
+	border: none;
+	border-bottom: 2px solid #00000044;
+	color: #00000044;
+	font-weight: bold;
+}
+
+
+.button:hover {
+	border-bottom: 2px solid #000000ea;
+	transition: 0.5s all;
+	color: #000000ea;
+	font-weight: bold;
+}
+
+.Weeklybutton {
+	flex: 2;
+	width: auto;
+	font-size: 1.15rem;
+	font-weight: bold;
+	border: none;
+	float:right;
+	margin-top: -14%;
+	margin-right: 14.5%;
+	border-bottom: 2px solid #00000044;
+	background-color: rgb(192, 192, 192);
+	border-radius: 0.35rem;
+	font-weight: bold;
+}
+
+.Weeklybutton:hover {
+	border-bottom: 2px solid #000000ea;
+	background-color: rgb(184, 184, 184);
+	transition: 0.5s all;
+	color: #000000ea;
+	font-weight: bold;
+}
+
+.forecast {
+	display: flex;
+	flex-wrap: nowrap;
+	margin-top: 10%;
+	font-size: 1.15rem;
+	justify-content: space-between;
+	width: 70%;
+	margin: auto;
+	margin-bottom: 10%;
+}
+
+.forecast_text {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	width: 87.5%;
+
+	text-align: center;
+	margin: 0;
+	margin-top: -10px;
+	margin-bottom: 5px;
+	margin-left: 9.5%;
+}
+
+.forecast_textLabel{
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	width: 87.5%;
+	text-align: center;
+	margin-top: 3px;
+	margin-bottom: 5px;
+	margin-left: 9.5%;
+}
+
+.vl {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	border-left: 4px solid grey;
+	height: 80px;
+	position: relative;
+	left: 0%;
+	top: -20px;
+	border-radius: 10px;
+}
+
+.forecast_title {
+	padding: 0;
+	margin: 0;
+	margin-top: 10px;
+}
+.bottomOfWeek{
+	margin-top: 5%;
+}
+
+.weather_img {
+	margin-left: -10px;
+}
+
+.Days{
+	background-color: #31313144;
+	margin-bottom: 15%;
+	border-radius: 1rem;
+	border-bottom: 2px solid #00000044;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+.FinalDay{
+	background-color: #31313144;
+	margin-bottom: 5%;
+	border-radius: 1rem;
+	border-bottom: 2px solid #00000044;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+.timeDate{
+	float: left;
+	font-size: large;
+	margin-left: 10%;
+	color: rgb(0, 0, 0);
+	font-weight: bold;
+}
+
+.weeklyDesc{
+	color: rgb(0, 0, 0);
+	font-size: large;
+	float: right;
+	margin-right: 8%;
+}
+
+.data {
+	display: none;
+  }
+  
+  .data.active {
+	display: block;
+  }
