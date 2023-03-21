@@ -32,7 +32,7 @@ export default class Iphone extends Component {
 		Oxford - 2640729
 	*/
 
-	// gets the user's current location
+	// get the user's current location
 	componentDidMount()
 	{
 		if (navigator.geolocation) {
@@ -107,7 +107,7 @@ export default class Iphone extends Component {
 		}
 	}
 
-	// When the user selects a location from the dropdown list, get the div content of the location by passing id
+	// when the user selects a location from the dropdown list, render the content of the chosen location
 	displayLocationSection = (value, divID) => {
 		if((value) == "London") { 
 			document.getElementById(divID).innerHTML = document.getElementById('content_London').innerHTML
@@ -348,10 +348,10 @@ export default class Iphone extends Component {
 									{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main): null }
 									<p class={style.weeklyDesc}> {this.state.main} {this.state.temp}</p> 
 								</div>
-								<div class={style.Days}><p class={style.timeDate}>{this.state.date_time2} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main2): null } <p class={style.weeklyDesc}> {this.state.main2}  {this.state.tempDay2}</p></div>
-								<div class={style.Days}><p class={style.timeDate}>{this.state.date_time3} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main3): null } <p class={style.weeklyDesc}> {this.state.main3}  {this.state.tempDay3}</p></div>
-								<div class={style.Days}><p class={style.timeDate}>{this.state.date_time4} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main4): null } <p class={style.weeklyDesc}> {this.state.main4}  {this.state.tempDay4}</p></div>
-								<div class={style.FinalDay}><p class={style.timeDate}>{this.state.date_time5} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main5): null }<p class={style.weeklyDesc}> {this.state.main5}  {this.state.tempDay5}</p></div>
+								<div class={style.Days}><p class={style.timeDate}>{this.state.date_time2} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main2): null } <p class={style.weeklyDesc}> {this.state.main2}  {this.state.temp_day2}</p></div>
+								<div class={style.Days}><p class={style.timeDate}>{this.state.date_time3} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main3): null } <p class={style.weeklyDesc}> {this.state.main3}  {this.state.temp_day3}</p></div>
+								<div class={style.Days}><p class={style.timeDate}>{this.state.date_time4} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main4): null } <p class={style.weeklyDesc}> {this.state.main4}  {this.state.temp_day4}</p></div>
+								<div class={style.FinalDay}><p class={style.timeDate}>{this.state.date_time5} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main5): null }<p class={style.weeklyDesc}> {this.state.main5}  {this.state.temp_day5}</p></div>
 								<br></br>
 							</div>
 							<div class={style.bottomOfWeek}></div>
@@ -366,7 +366,7 @@ export default class Iphone extends Component {
 	}
 
 	parseResponse = (parsed_json) => {
-		// general variables that are mainly for the home page
+		// variables that are mainly for the home page
 		var city = parsed_json['city']['name'];
 		var country = parsed_json['city']['country'];
 		var temp_c = parsed_json['list']["0"]['main']['temp'];
@@ -375,18 +375,18 @@ export default class Iphone extends Component {
 		var precipitation = parsed_json['list']["0"]['pop'];
 		var wind_speed = parsed_json['list']["0"]['wind']['speed'];
 
-		// variables for the weekly Page
+		// variables for the weekly page
 		var date = new Date(parsed_json['list']["0"]['dt_txt']);
 		var date2 = new Date(parsed_json['list']["8"]['dt_txt']);
 		var date3 = new Date(parsed_json['list']["16"]['dt_txt']);
 		var date4 = new Date(parsed_json['list']["24"]['dt_txt']);
 		var date5 = new Date(parsed_json['list']["32"]['dt_txt']);
 		var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-		var dayOfWeek = days[date.getDay()];
-		var day2OfWeek = days[date2.getDay()];
-		var day3OfWeek = days[date3.getDay()];
-		var day4OfWeek = days[date4.getDay()];
-		var day5OfWeek = days[date5.getDay()];
+		var day_of_week = days[date.getDay()];
+		var day2_of_week = days[date2.getDay()];
+		var day3_of_week = days[date3.getDay()];
+		var day4_of_week = days[date4.getDay()];
+		var day5_of_week = days[date5.getDay()];
 		var main_weather2 = parsed_json['list']["8"]['weather']["0"]['main'];
 		var main_weather3 = parsed_json['list']["16"]['weather']["0"]['main'];
 		var main_weather4 = parsed_json['list']["24"]['weather']["0"]['main'];
@@ -453,21 +453,21 @@ export default class Iphone extends Component {
 			temp_bri : Math.trunc(temp_bristol - 273.15),
 			temp_oxf : Math.trunc(temp_oxford - 273.15),
 
-			date_time: dayOfWeek,
-			date_time2: day2OfWeek,
-			date_time3: day3OfWeek,
-			date_time4: day4OfWeek,
-			date_time5: day5OfWeek,
+			date_time: day_of_week,
+			date_time2: day2_of_week,
+			date_time3: day3_of_week,
+			date_time4: day4_of_week,
+			date_time5: day5_of_week,
 
 			main2: main_weather2,
 			main3: main_weather3,	
 			main4: main_weather4,	
 			main5: main_weather5,
 
-			tempDay2: Math.trunc(temp_c_day2 - 273.15),
-			tempDay3: Math.trunc(temp_c_day3 - 273.15),
-			tempDay4: Math.trunc(temp_c_day4 - 273.15),
-			tempDay5: Math.trunc(temp_c_day5 - 273.15)
+			temp_day2: Math.trunc(temp_c_day2 - 273.15),
+			temp_day3: Math.trunc(temp_c_day3 - 273.15),
+			temp_day4: Math.trunc(temp_c_day4 - 273.15),
+			temp_day5: Math.trunc(temp_c_day5 - 273.15)
 		});
 	}
 }
