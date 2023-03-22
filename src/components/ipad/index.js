@@ -112,6 +112,25 @@ export default class Iphone extends Component {
 		});
 	}
 
+	// when the user selects a location from the dropdown list, render the content of the chosen location
+	displayLocationSection = (value, divID) => {
+		if((value) == "London") { 
+			document.getElementById(divID).innerHTML = document.getElementById('content_London').innerHTML
+		} else if ((value) == "Birmingham") {
+			document.getElementById(divID).innerHTML = document.getElementById('content_Birmingham').innerHTML
+		} else if ((value) == "Manchester") {
+			document.getElementById(divID).innerHTML = document.getElementById('content_Manchester').innerHTML
+		} else if ((value) == "Cambridge") {
+			document.getElementById(divID).innerHTML = document.getElementById('content_Cambridge').innerHTML
+		} else if ((value) == "Leicester") {
+			document.getElementById(divID).innerHTML = document.getElementById('content_Leicester').innerHTML
+		} else if ((value) == "Bristol") {
+			document.getElementById(divID).innerHTML = document.getElementById('content_Bristol').innerHTML
+		} else if ((value) == "Oxford") {
+			document.getElementById(divID).innerHTML = document.getElementById('content_Oxford').innerHTML
+		}
+	}
+
 	// the main render method for the iphone component
 	render() {
 		if (this.state.on_home_page == true) {
@@ -198,161 +217,115 @@ export default class Iphone extends Component {
 						</div>
 						{this.fetchWeatherData()}
 						<div class = { style.locations_page }>
-							<div class = { style.location_section }>
-								<div id = { style.location1 }>
-									<select id="location">
-										<option value="">--Select--</option>
-										<option value="London">London</option>
-										<option value="Birmingham">Birmingham</option>
-										<option value="Manchester">Manchester</option>
-										<option value="Cambridge">Cambridge</option>
-										<option value="Leicester">Leicester</option>
-										<option value="Bristol">Bristol</option>
-										<option value="Oxford">Oxford</option>
-									</select>
-								</div>
-							</div>
-							<div class = { style.location_section }>
-								<div  id = { style.location2 }>
-									<select id="location">
-										<option value="">--Select--</option>
-										<option value="London">London</option>
-										<option value="Birmingham">Birmingham</option>
-										<option value="Manchester">Manchester</option>
-										<option value="Cambridge">Cambridge</option>
-										<option value="Leicester">Leicester</option>
-										<option value="Bristol">Bristol</option>
-										<option value="Oxford">Oxford</option>
-									</select>
-								</div>
-							</div>
-							<div class = { style.location_section }>
-								<div  id = { style.location3 }>
-									<select id="location">
-										<option value="">--Select--</option>
-										<option value="London">London</option>
-										<option value="Birmingham">Birmingham</option>
-										<option value="Manchester">Manchester</option>
-										<option value="Cambridge">Cambridge</option>
-										<option value="Leicester">Leicester</option>
-										<option value="Bristol">Bristol</option>
-										<option value="Oxford">Oxford</option>
-									</select>
-								</div>
-							</div>
-							<div class = { style.location_section }>
-								<div  id = { style.location4 }>
-									<select id="location">
-										<option value="">--Select--</option>
-										<option value="London">London</option>
-										<option value="Birmingham">Birmingham</option>
-										<option value="Manchester">Manchester</option>
-										<option value="Cambridge">Cambridge</option>
-										<option value="Leicester">Leicester</option>
-										<option value="Bristol">Bristol</option>
-										<option value="Oxford">Oxford</option>
-									</select>
-								</div>
-							</div>
-							<div class = { style.location_section }>
-								<div  id = { style.location5 }>
-									<select id="location">
-										<option value="">--Select--</option>
-										<option value="London">London</option>
-										<option value="Birmingham">Birmingham</option>
-										<option value="Manchester">Manchester</option>
-										<option value="Cambridge">Cambridge</option>
-										<option value="Leicester">Leicester</option>
-										<option value="Bristol">Bristol</option>
-										<option value="Oxford">Oxford</option>
-									</select>
-								</div>
-							</div>
-							<div class = { style.location_section }>
-								<div  id = { style.location6 }>
-									<select id="location">
-										<option value="">--Select--</option>
-										<option value="London">London</option>
-										<option value="Birmingham">Birmingham</option>
-										<option value="Manchester">Manchester</option>
-										<option value="Cambridge">Cambridge</option>
-										<option value="Leicester">Leicester</option>
-										<option value="Bristol">Bristol</option>
-										<option value="Oxford">Oxford</option>
-									</select>
-								</div>
-							</div>
-							<div class = { style.location_section }>
-								<div  id = { style.location7 }>
-									<select id="location">
-										<option value="">--Select--</option>
-										<option value="London">London</option>
-										<option value="Birmingham">Birmingham</option>
-										<option value="Manchester">Manchester</option>
-										<option value="Cambridge">Cambridge</option>
-										<option value="Leicester">Leicester</option>
-										<option value="Bristol">Bristol</option>
-										<option value="Oxford">Oxford</option>
-									</select>
-								</div>
-							</div>
+						<h2 class={style.locationTitle}> Select Locations</h2>
+						<div class={style.LocationDropDown}>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location1_content")}>
+								<option value="">--Select--</option>
+								<option value="London">London</option>
+								<option value="Birmingham">Birmingham</option>
+								<option value="Manchester">Manchester</option>
+								<option value="Cambridge">Cambridge</option>
+								<option value="Leicester">Leicester</option>
+								<option value="Bristol">Bristol</option>
+								<option value="Oxford">Oxford</option>
+							</select>
+							<div id = "location1_content"></div>
 						</div>
-						<div class = { style.locations_content }>
-							<div class = { style.location_section }>
-								<div id = { style.London } class = { style.data }>
-									<div>London, GB</div>
-									<div>{this.miniWeatherImage(this.state.main_lon)}</div>
-									<div>{this.state.temp_lon}</div>
-								</div>
+						<div class={style.LocationDropDown}>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location2_content")}>
+								<option value="">--Select--</option>
+								<option value="London">London</option>
+								<option value="Birmingham">Birmingham</option>
+								<option value="Manchester">Manchester</option>
+								<option value="Cambridge">Cambridge</option>
+								<option value="Leicester">Leicester</option>
+								<option value="Bristol">Bristol</option>
+								<option value="Oxford">Oxford</option>
+							</select>
+							<div id = "location2_content"></div>
+						</div>
+						<div class={style.LocationDropDown}>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location3_content")}>
+								<option value="">--Select--</option>
+								<option value="London">London</option>
+								<option value="Birmingham">Birmingham</option>
+								<option value="Manchester">Manchester</option>
+								<option value="Cambridge">Cambridge</option>
+								<option value="Leicester">Leicester</option>
+								<option value="Bristol">Bristol</option>
+								<option value="Oxford">Oxford</option>
+							</select>
+							<div id = "location3_content"></div>
+						</div>
+						<div class={style.LocationDropDown}>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location4_content")}>
+								<option value="">--Select--</option>
+								<option value="London">London</option>
+								<option value="Birmingham">Birmingham</option>
+								<option value="Manchester">Manchester</option>
+								<option value="Cambridge">Cambridge</option>
+								<option value="Leicester">Leicester</option>
+								<option value="Bristol">Bristol</option>
+								<option value="Oxford">Oxford</option>
+							</select>
+							<div id = "location4_content"></div>
+						</div>
+						<div class={style.LocationDropDown}>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location5_content")}>
+								<option value="">--Select--</option>
+								<option value="London">London</option>
+								<option value="Birmingham">Birmingham</option>
+								<option value="Manchester">Manchester</option>
+								<option value="Cambridge">Cambridge</option>
+								<option value="Leicester">Leicester</option>
+								<option value="Bristol">Bristol</option>
+								<option value="Oxford">Oxford</option>
+							</select>
+							<div id = "location5_content"></div>
+						</div>
+						</div>
+						<div class = { style.locations_content } style = "display: none">
+							<div id = "content_London" class={style.locationBars}>
+								<p class={style.locationDesc}>London, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_lon)}</span>
+								<div class={style.locationTemp}>{this.state.temp_lon}</div>
 							</div>
-							<div class = { style.location_section }>
-								<div id = { style.Birmingham } class = { style.data }>
-									<div>Birmingahm, GB</div>
-									<div>{this.miniWeatherImage(this.state.main_bir)}</div>
-									<div>{this.state.temp_bir}</div>
-								</div>
+							<div id = "content_Birmingham" class={style.locationBars}>
+								<p class={style.locationDesc}>Birmingham, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_bir)}</span>
+								<div class={style.locationTemp}>{this.state.temp_bir}</div>
 							</div>
-							<div class = { style.location_section }>
-								<div id = { style.Manchester } class = { style.data }>
-									<div>Manchester, GB</div>
-									<div>{this.miniWeatherImage(this.state.main_man)}</div>
-									<div>{this.state.temp_man}</div>
-								</div>
+							<div id = "content_Manchester" class={style.locationBars}>
+								<p class={style.locationDesc}>Manchester, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_man)}</span>
+								<div class={style.locationTemp}>{this.state.temp_man}</div>
 							</div>
-							<div class = { style.location_section }>
-								<div id = { style.Cambridge } class = { style.data }>
-									<div>Cambridge, GB</div>
-									<div>{this.miniWeatherImage(this.state.main_cam)}</div>
-									<div>{this.state.temp_cam}</div>
-								</div>
+							<div id = "content_Cambridge" class={style.locationBars}>
+								<p class={style.locationDesc}>Cambridge, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_cam)}</span>
+								<div class={style.locationTemp}>{this.state.temp_cam}</div>
 							</div>
-							<div class = { style.location_section }>
-								<div id = { style.Leicester } class = { style.data }>
-									<div>Leicester, GB</div>
-									<div>{this.miniWeatherImage(this.state.main_lei)}</div>
-									<div>{this.state.temp_lei}</div>
-								</div>
+							<div id = "content_Leicester" class={style.locationBars}>
+								<p class={style.locationDesc}>Leicester, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_lei)}</span>
+								<div class={style.locationTemp}>{this.state.temp_lei}</div>
 							</div>
-							<div class = { style.location_section }>
-								<div id = { style.Bristol } class = { style.data }>
-									<div>Bristol, GB</div>
-									<div>{this.miniWeatherImage(this.state.main_bri)}</div>
-									<div>{this.state.temp_bri}</div>
-								</div>
+							<div id = "content_Bristol" class={style.locationBars}>
+								<p class={style.locationDesc}>Bristol, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_bri)}</span>
+								<div class={style.locationTemp}>{this.state.temp_bri}</div>
 							</div>
-							<div class = { style.location_section }>
-								<div id = { style.Oxford } class = { style.data }>
-									<div>Oxford, GB</div>
-									<div>{this.miniWeatherImage(this.state.main_oxf)}</div>
-									<div>{this.state.temp_oxf}</div>
-								</div>
+							<div id = "content_Oxford" class={style.locationBars}>
+								<p class={style.locationDesc}>Oxford, GB </p>
+								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_oxf)}</span>
+								<div class={style.locationTemp}>{this.state.temp_oxf}</div>
 							</div>
 						</div>
 					</div>
 					<div class={ style.details }></div>
 				</div>
 			);
-		} else if (this.state.on_weekly_weather_page == true) {
+		}  else if (this.state.on_weekly_weather_page == true) {
 			return (
 				<div class={ style.container }>
 					<div class={ style.header }>
