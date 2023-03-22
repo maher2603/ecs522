@@ -9,20 +9,20 @@ npm -v
 
 ## Instructions of how to run the code
 
-**1. Install the dependencies (if have not already) :**
+**1. Download and extract the zip file containing the source code :**
 
-```sh
-npm install
-```
-
-**2. Download and extract the zip file containing the source code :**
-
-**3. Open a terminal and change the directory so it points to src:**
+**2. Open a terminal and change the directory so it points to src :**
 
 For example
 
 ```sh
 C:\Users\JohnDoe\...\src
+```
+
+**3. Install the dependencies (if you have not already) :**
+
+```sh
+npm install
 ```
 
 ## Development Workflow
