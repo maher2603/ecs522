@@ -17,9 +17,9 @@ npm install
 
 **2. Download the zip file containing the source code :**
 
-**3. Open a terminal and change the directory so it points to ec522**
+**3. Open a terminal and change the directory so it points to ec522:**
 
-For example:
+For example
 
 ```sh
 C:\Users\JohnDoe\...\ecs522
