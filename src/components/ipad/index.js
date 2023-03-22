@@ -128,6 +128,8 @@ export default class Iphone extends Component {
 			document.getElementById(divID).innerHTML = document.getElementById('content_Bristol').innerHTML
 		} else if ((value) == "Oxford") {
 			document.getElementById(divID).innerHTML = document.getElementById('content_Oxford').innerHTML
+		} else {
+			document.getElementById(divID).innerHTML = document.getElementById('content_Empty').innerHTML
 		}
 	}
 
@@ -320,6 +322,7 @@ export default class Iphone extends Component {
 								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_oxf)}</span>
 								<div class={style.locationTemp}>{this.state.temp_oxf}</div>
 							</div>
+							<div id = "content_Empty" class={style.locationBars}></div>
 						</div>
 					</div>
 					<div class={ style.details }></div>

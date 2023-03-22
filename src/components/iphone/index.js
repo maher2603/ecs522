@@ -123,6 +123,8 @@ export default class Iphone extends Component {
 			document.getElementById(divID).innerHTML = document.getElementById('content_Bristol').innerHTML
 		} else if ((value) == "Oxford") {
 			document.getElementById(divID).innerHTML = document.getElementById('content_Oxford').innerHTML
+		} else {
+			document.getElementById(divID).innerHTML = document.getElementById('content_Empty').innerHTML
 		}
 	}
 
@@ -158,14 +160,14 @@ export default class Iphone extends Component {
 								</span>
 							</div>
 							<div>
-								{this.state.data_grabbed ? <h3 class={style.weatherLabel}>Precipitation</h3> : null}
+								{this.state.data_grabbed ? <h3>Precipitation</h3> : null}
 							</div>
 							<div class={ style.precipitation }>
 								{ this.state.data_grabbed ? <img id="rainy-icon" style="padding:0px;padding-right: 160px; vertical-align: bottom;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
 								{ this.state.prec }
 							</div>
 							<div id="windspeed">
-								{this.state.data_grabbed ? <h3 class={style.weatherLabel}>Wind Speed</h3> : null}
+								{this.state.data_grabbed ? <h3>Wind Speed</h3> : null}
 							</div>
 							<div class={ style.windspeed }>
 								{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding:0; margin:0;padding-right: 125px; vertical-align: bottom;"></img> : null }
@@ -218,8 +220,8 @@ export default class Iphone extends Component {
 						<div class = { style.locations_page }>
 						<h2 class={style.locationTitle}> Select Locations</h2>
 						<div class={style.LocationDropDown}>
-							<select  class = {style.dropdownList} onChange={(e) => this.displayLocationSection(e.target.value, "location1_content")}>
-								<option value="">Select</option>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location1_content")}>
+								<option value="">--Select--</option>
 								<option value="London">London</option>
 								<option value="Birmingham">Birmingham</option>
 								<option value="Manchester">Manchester</option>
@@ -231,8 +233,8 @@ export default class Iphone extends Component {
 							<div id = "location1_content"></div>
 						</div>
 						<div class={style.LocationDropDown}>
-							<select class = {style.dropdownList} onChange={(e) => this.displayLocationSection(e.target.value, "location2_content")}>
-								<option value="">Select</option>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location2_content")}>
+								<option value="">--Select--</option>
 								<option value="London">London</option>
 								<option value="Birmingham">Birmingham</option>
 								<option value="Manchester">Manchester</option>
@@ -244,8 +246,8 @@ export default class Iphone extends Component {
 							<div id = "location2_content"></div>
 						</div>
 						<div class={style.LocationDropDown}>
-							<select class = {style.dropdownList} onChange={(e) => this.displayLocationSection(e.target.value, "location3_content")}>
-								<option value="">Select</option>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location3_content")}>
+								<option value="">--Select--</option>
 								<option value="London">London</option>
 								<option value="Birmingham">Birmingham</option>
 								<option value="Manchester">Manchester</option>
@@ -257,8 +259,8 @@ export default class Iphone extends Component {
 							<div id = "location3_content"></div>
 						</div>
 						<div class={style.LocationDropDown}>
-							<select  class = {style.dropdownList} onChange={(e) => this.displayLocationSection(e.target.value, "location4_content")}>
-								<option value="">Select</option>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location4_content")}>
+								<option value="">--Select--</option>
 								<option value="London">London</option>
 								<option value="Birmingham">Birmingham</option>
 								<option value="Manchester">Manchester</option>
@@ -270,8 +272,8 @@ export default class Iphone extends Component {
 							<div id = "location4_content"></div>
 						</div>
 						<div class={style.LocationDropDown}>
-							<select class = {style.dropdownList} onChange={(e) => this.displayLocationSection(e.target.value, "location5_content")}>
-								<option value="">Select</option>
+							<select id="location" onChange={(e) => this.displayLocationSection(e.target.value, "location5_content")}>
+								<option value="">--Select--</option>
 								<option value="London">London</option>
 								<option value="Birmingham">Birmingham</option>
 								<option value="Manchester">Manchester</option>
@@ -319,6 +321,7 @@ export default class Iphone extends Component {
 								<span class={style.locationImg}>{this.miniWeatherImage(this.state.main_oxf)}</span>
 								<div class={style.locationTemp}>{this.state.temp_oxf}</div>
 							</div>
+							<div id = "content_Empty" class={style.locationBars}></div>
 						</div>
 					</div>
 					<div class={ style.details }></div>
