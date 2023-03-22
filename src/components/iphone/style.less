@@ -58,7 +58,7 @@ h2 {
 	z-index: 999;
 	position: relative;
 	top: -120px;
-	left: -90px;
+	margin-left: -40%;
 }
 
 .conta {
@@ -81,7 +81,6 @@ h2 {
 	width: 315px;
 	height: 290px;
 	margin: auto;
-
 }
 
 .temperature {
@@ -159,13 +158,14 @@ h2 {
 	border-bottom: 2px solid #ffffff44;
 	color: rgb(230, 230, 230);
 	font-weight: bold;
+	transition: 0.5s all;
 }
 
 
 .button:hover {
-	border-bottom: 2px solid #000000ea;
+	border-bottom: 2px solid #ffffffea;
 	transition: 0.5s all;
-
+	scale: 1.1;
 	font-weight: bold;
 }
 
@@ -182,15 +182,17 @@ h2 {
 	background-color: rgb(135, 58, 223);
 	border-radius: 0.35rem;
 	font-weight: bold;
+	transition: 0.5s all;
 }
 
 
 .Weeklybutton:hover {
 	border-bottom: 2px solid #000000ea;
-	background-color: rgb(184, 184, 184);
+	background-color: rgb(233,233,233);
 	transition: 0.5s all;
-	color: #000000ea;
+	color: rgb(135, 58, 223);
 	font-weight: bold;
+	scale: 1.1;
 }
 
 .forecast {
@@ -275,7 +277,7 @@ h2 {
 }
 
 .LocationDropDown {
-	background-color: #ffffff44;
+	background-color: #9b9b9b6c;
 	color:black;
 	margin-bottom: 12%;
 	border-radius: 1rem;
@@ -316,16 +318,18 @@ h2 {
 	float: right;
 	margin-right: 10%;
 	margin-top:-11%;
+	font-weight: bold;
 }
 
 .locationDesc {
 	font-size: large;
 	margin-left: 8%;
+	font-weight: 550;
 }
 .locationImg {
 	float: right;
 	margin-top: -17%;
-	margin-right: 40%;
+	margin-right: 35%;
 }
 
 .locationTitle {
