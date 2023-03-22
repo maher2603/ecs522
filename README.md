@@ -1,103 +1,47 @@
-# Preact Boilerplate / Starter Kit for a Weather App
+# Group 55 - Mobile Weather App
 
-## Set-Up Guide
-- [Installation](#installation)
-- [Development Workflow](#development-workflow)
-- [Quick Boilerplate Overview](#quick-boilerplate-overview)
-- [Extra Info](#extra-info)
-
-**0. Before doing any of this, if you're using your own laptop/desktop, make sure you've got the latest versions of node and npm installed (npm v: 4.0.5 & node v: 7.4.0) :**
+**0. Before running the app, if you're using your own laptop/desktop, make sure you've got the latest versions of node and npm installed (npm v: 9.4.0 & node v: 19.6.1) :**
 
 ```sh
 node -v
 npm -v
 ```
 
-## Installation
+## Instructions of how to run the code
 
-**1. Clone this repository :**
-
-```sh
-git clone --depth 1 https://github.com/Juan-Alvarado/weatherapp-boilerplate.git weather-app
-cd weather-app
-```
-
-**2. Make it your own :**
-
-```sh
-rm -rf .git && git init && npm init
-```
-
-> :information_source: Command above re-initializes the repo and sets up your NPM project.
-
-**2a. Make it your own (Windows):**
-
-If you are using Windowsyou can run the three necessary comand using Powershell. You mught need elevated privileges.
-
-```sh
-rm -r -fo .git
-git init 
-npm init
-```
-
-**3. Install the dependencies :**
+**1. Install the dependencies (if have not already) :**
 
 ```sh
 npm install
 ```
 
+**2. Download the zip file containing the source code :**
+
+**3. Open a terminal and change the directory so it points to ec522**
+
+For example:
+
+```sh
+C:\Users\JohnDoe\...\ecs522
+```
+
 ## Development Workflow
 
 
-**4. Start a live-reload development server :**
+**4. Start a live-reload development server to view the weather app :**
 
 ```sh
 npm run dev
 ```
 
-> This is a full web server for your project. Any time you make changes within the `src` directory, it will rebuild and even refresh your browser.
-
-
-**5. Generate a production build in `./build` :**
-
-```sh
-npm run build
-```
-
-**6. Start local production server with [serve](https://github.com/zeit/serve):**
-
-```sh
-npm start
-```
-
-> This simply serves up the contents of `./build`. Bear in mind, if you use this, the localhost port your server is running on will refresh, and you'll also need to restart it to see any changes you've made to the code in `src`.
-
-
-## Quick Boilerplate Overview
+## Weather App Overview
 
 - The initial run will display the iPhone version (iPhone 6/7 Plus screen size); however, if you modify the path on the url bar by adding "/ipad", you can view the tablet version (iPad Air screen size).
 
-- The CSS pre-processor in use is Less. You don't have to worry about the syntax and just write in normal CSS as there are helper modules to assist you (located in `style/helpers`).
+- When starting the app it will ask permission for using your current location. Granting access enables the home page to render weather data for your current location. Denying access makes London to be the default location.
 
-- There are many weather APIs out there; this boilerplate uses OpenWeatherMap. Sign up, is free and you can find out more about it here : https://openweathermap.org/api 
+- The home page shows general weather information (such as temperature, chance of precipitation and wind speed) as well as a forecast for the rest of the day.
 
-- Most importantly, have fun with it ! 👌
+- The weekly weather page is accessed when clicking the 'Week' button on the home page. This shows the 5 day forecast from the day you are currently in.
 
-
-## Extra Info
-
-1. Handling URLS
-
-:information_source: You can use URL Routing as defined [here](http://git.io/preact-router).
-
-Pages are just regular components that get mounted when you navigate to a certain URL. Any URL parameters get passed to the component as `props`.
-
-Defining what component(s) to load for a given URL is easy and declarative. You can even mix-and-match URL parameters and normal props.
-
-```js
-<Router>
-  <A path="/" />
-  <B path="/b" id="42" />
-  <C path="/c/:id" />
-</Router>
-```
+- The location page allows the user to select city names to view the current weather in those locations.
