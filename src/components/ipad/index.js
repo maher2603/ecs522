@@ -2,9 +2,9 @@
 import { h, render, Component } from 'preact';
 // import stylesheets for iphone & button
 import style from './style';
-import style_iphone from '../button/style_iphone';     
+import style_ipad from '../button/style_ipad';
 
-export default class Iphone extends Component {
+export default class Ipad extends Component {
 
 	// a constructor with initial set states
 	constructor(props){
@@ -204,7 +204,7 @@ export default class Iphone extends Component {
 						</div>
 					</div>
 					<div class={ style.details }></div>
-					<div class= { style_iphone.container }> 
+					<div class= { style_ipad.container }> 
 						{ this.state.display ? this.fetchWeatherData() : null }
 					</div>
 				</div>
@@ -358,7 +358,7 @@ export default class Iphone extends Component {
 								<div class={style.bottomOfWeek}></div>
 						</div>
 					<div class={ style.details }></div>
-					<div class= { style_iphone.container }> 
+					<div class= { style_ipad.container }> 
 						{ this.state.display ? this.fetchWeatherData() : null }
 					</div>
 				</div>
