@@ -56,7 +56,6 @@ h2{
 	position: relative;
 	top: -175px;
 	left: -130px;
-	color: white;
 }
 
 .conta {
@@ -97,7 +96,6 @@ h2{
 	position: relative;
 	top: -168px;
 	left: -55px;
-	color: white;
 }
 
 .filled:after {
@@ -114,7 +112,6 @@ h2{
 
 .precipitation {
 	font-family: sans-serif;
-	color: rgb(0, 183, 255);
 	text-align: center;
 	font-size: 36px;
 	padding: 10px;
@@ -126,7 +123,6 @@ h2{
 
 .windspeed {
 	font-family: sans-serif;
-	color: rgb(0, 77, 128);
 	text-align: center;
 	font-size: 36px;
 	padding: 20px;
@@ -135,8 +131,7 @@ h2{
 	scale: 1.5;
 }
 
-h3 {
-	color: black;
+.weatherLabel {
 	margin: 10px;
 	margin-left: -45%;
 	padding: 0;
@@ -161,16 +156,16 @@ h3 {
 	font-weight: 1200;
 	background: none;
 	border: none;
-	border-bottom: 2px solid #00000044;
-	color: #00000044;
+	border-bottom: 2px solid #ffffff44;
+	color: rgb(230, 230, 230);
 	font-weight: bold;
 }
 
 
 .button:hover {
-	border-bottom: 2px solid #000000ea;
+	border-bottom: 2px solid #ffffffea;
 	transition: 0.5s all;
-	color: #000000ea;
+	scale: 1.1;
 	font-weight: bold;
 }
 
@@ -184,17 +179,18 @@ h3 {
 	margin-top: -15%;
 	margin-right: 14.5%;
 	border-bottom: 2px solid #00000044;
-	background-color: rgb(192, 192, 192);
+	background-color: rgb(135, 58, 223);
 	border-radius: 0.35rem;
 	font-weight: bold;
 }
 
 .Weeklybutton:hover {
 	border-bottom: 2px solid #000000ea;
-	background-color: rgb(184, 184, 184);
+	background-color: rgb(233,233,233);
 	transition: 0.5s all;
-	color: #000000ea;
+	color: rgb(135, 58, 223);
 	font-weight: bold;
+	scale: 1.1;
 }
 
 .forecast {
@@ -206,6 +202,7 @@ h3 {
 	width: 70%;
 	margin: auto;
 	margin-bottom: 10%;
+	font-weight:625;
 }
 
 .forecast_text {
@@ -229,7 +226,7 @@ h3 {
 	text-align: top;
 	margin-top: -10px;
 	margin-bottom: 0px;
-	margin-left: 9.5%;
+	margin-left: 8%;
 	font-size: 25px;
 }
 
@@ -249,6 +246,7 @@ h3 {
 	padding: 0;
 	margin: 0;
 	margin-top: 10px;
+	margin-left: -5%;
 }
 .bottomOfWeek{
 	margin-top: 5%;
@@ -275,12 +273,10 @@ h3 {
 	float: left;
 	font-size: large;
 	margin-left: 10%;
-	color: rgb(0, 0, 0);
 	font-weight: bold;
 }
 
 .weeklyDesc{
-	color: rgb(0, 0, 0);
 	font-size: large;
 	float: right;
 	margin-right: 8%;
@@ -300,11 +296,9 @@ h3 {
 
 .locationTemp:after {
 	content: "°C";
-	color: rgb(0, 0, 0);
 }
 
 .locationTemp {
-	color: rgb(0, 0, 0);
 	font-size: 2.25rem;
 	float: right;
 	margin-right: 10%;
@@ -312,7 +306,6 @@ h3 {
 }
 
 .locationDesc {
-	color: rgb(0, 0, 0);
 	font-size: 2.05rem;
 	margin-left: 8%;
 	margin-top: -0.1%;
