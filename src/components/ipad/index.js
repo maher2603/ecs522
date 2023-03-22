@@ -339,9 +339,9 @@ export default class Ipad extends Component {
 					</div>
 						<div class = {style.weeklyWeather}>
 							<div class ={style.conta}> 
-								<h2> 5 Day Forecast</h2>
+								<h2 class={style.weeklyForecast}> 5 Day Forecast</h2>
 								<hr></hr>
-								<div class={ style.weeklyForecast }>
+								<div class={ style.cityWeekly }>
 								{ this.state.locate }
 									</div>
 									<br></br>
