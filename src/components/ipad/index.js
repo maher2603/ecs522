@@ -1,6 +1,7 @@
 // import preact
 import { h, render, Component } from 'preact';
-// import stylesheets for iphone & button
+
+// import stylesheets for ipad & button
 import style from './style';
 import style_ipad from '../button/style_ipad';
 
@@ -20,7 +21,21 @@ export default class Ipad extends Component {
 		}
 	}
 
-	componentDidMount() {
+	/*
+	URL to use for location page: http://api.openweathermap.org/data/2.5/group?id=2643743,2655603,2643123,2653941,2644668,2654675,2640729&units=metric&appid=5065eab2c0c7e99992ba98ce43ab3e2c
+	City IDs:
+		London - 2643743
+		Birmingham - 2655603
+		Manchester - 2643123
+		Cambridge - 2653941
+		Leicester - 2644668
+		Bristol - 2654675
+		Oxford - 2640729
+	*/
+
+	// get the user's current location
+	componentDidMount()
+	{
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
 		} else {
@@ -28,6 +43,7 @@ export default class Ipad extends Component {
 		}
 	}
 
+	// if the user is on the homepage, fetch the weather data using the coordinates from navigator.geolocation
 	showPosition = (position) => {
 		if (this.state.on_home_page) {
 			const { latitude, longitude } = position.coords;
@@ -38,11 +54,13 @@ export default class Ipad extends Component {
 		this.fetchWeatherData(url);
 	}
 	
+	// if the user blocks location access, make the home page show London`s weather by default
 	showError = (error) => {
 		const url = `https://api.openweathermap.org/data/2.5/forecast?q=London&appid=5065eab2c0c7e99992ba98ce43ab3e2c`;
 		this.fetchWeatherData(url);
 	}
 
+	// methods to fetch weather data and catche any errors if API call fails
 	fetchWeatherData = (url) => {
 		fetch(url)
 			.then(response => response.json())
@@ -53,35 +71,26 @@ export default class Ipad extends Component {
 			.catch(error => console.log(`API call failed: ${error}`));
 	}
 
-	// URL: http://api.openweathermap.org/data/2.5/group?id=2643743,2655603,2643123,2653941,2644668,2654675,2640729&units=metric&appid=5065eab2c0c7e99992ba98ce43ab3e2c
-	// City IDs:
-	// London - 2643743
-	// Birmingahm - 2655603
-	// Manchester - 2643123
-	// Cambridge - 2653941
-	// Leicester - 2644668 
-	// Bristol - 2654675
-	// Oxford - 2640729
-
 	// decide what image to show depending on the main weather
-  mainWeatherImage = (main_weather) => {
-    if (main_weather == "Clear") {
-      return <img id="clear-icon" src="./assets/icons/sunny_bg_ipad.svg" alt="Clear Icon"></img>
-    } else if (main_weather == "Clouds") {
-      return <img id="cloudy-icon" src="./assets/icons/cloudy_bg_ipad.svg" alt="Cloudy Icon"></img>
-    } else if (main_weather == "Rain") {
-      return <img id="rainy-icon" style="width:475px;" src="./assets/icons/rainy_background_ipad.svg" alt="Rainy Icon"></img>
-    } else if (main_weather == "Thunderstorm") {
-      return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_bg_ipad.svg" alt="Thunderstorm Icon"></img>
-    } else if (main_weather == "Drizzle") {
-      return <img id="drizzle-icon" src="./assets/icons/drizzle_bg_ipad.svg" alt="Drizzle Icon"></img>
-    } else if (main_weather == "Snow") {
-      return <img id="snow-icon" src="./assets/icons/snow_bg_ipad.svg" alt="Snow Icon"></img>
-    } else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
-      return <img id="atmosphere-icon" src="./assets/icons/misty_bg_ipad.svg" alt="Atmosphere Icon"></img>
-    }
+  	mainWeatherImage = (main_weather) => {
+		if (main_weather == "Clear") {
+		return <img id="clear-icon" src="./assets/icons/sunny_bg_ipad.svg" alt="Clear Icon"></img>
+		} else if (main_weather == "Clouds") {
+		return <img id="cloudy-icon" src="./assets/icons/cloudy_bg_ipad.svg" alt="Cloudy Icon"></img>
+		} else if (main_weather == "Rain") {
+		return <img id="rainy-icon" style="width:475px;" src="./assets/icons/rainy_background_ipad.svg" alt="Rainy Icon"></img>
+		} else if (main_weather == "Thunderstorm") {
+		return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_bg_ipad.svg" alt="Thunderstorm Icon"></img>
+		} else if (main_weather == "Drizzle") {
+		return <img id="drizzle-icon" src="./assets/icons/drizzle_bg_ipad.svg" alt="Drizzle Icon"></img>
+		} else if (main_weather == "Snow") {
+		return <img id="snow-icon" src="./assets/icons/snow_bg_ipad.svg" alt="Snow Icon"></img>
+		} else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
+		return <img id="atmosphere-icon" src="./assets/icons/misty_bg_ipad.svg" alt="Atmosphere Icon"></img>
+		}
   }
 
+  	// decide what image to show depending on the weather in the 6h,12h,24h forecast section
 	miniWeatherImage = (main_weather) => {
 		if (main_weather == "Clear") {
 			return <img id="clear-icon" style="width:60px; filter: invert(85%);" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
@@ -98,18 +107,6 @@ export default class Ipad extends Component {
 		} else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
 			return <img id="atmosphere-icon" style="width:60px; filter: invert(85%);" src="./assets/icons/foggy_svg.svg" alt="Atmosphere Icon"></img>
 		}
-	}
-
-	locationSection = () => {
-		const dropMenu = document.querySelector('#location'),
-		sections = document.querySelectorAll('.data');
-
-		dropMenu.addEventListener('OnChange', function handleChange(event) {
-			sections.forEach(section => {
-				section.classList.remove('active');
-				document.querySelector('#' + event.target.value).classList.add('active');
-			});
-		});
 	}
 
 	// when the user selects a location from the dropdown list, render the content of the chosen location
@@ -133,8 +130,9 @@ export default class Ipad extends Component {
 		}
 	}
 
-	// the main render method for the iphone component
+	// the main render method for the ipad component
 	render() {
+		// when app is opened or the home button is clicked, the state is set to true so the home page is visible
 		if (this.state.on_home_page == true) {
 			// check if temperature data is fetched, if so add the sign styling to the page
 			const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
@@ -146,8 +144,7 @@ export default class Ipad extends Component {
 					<div class={ style.header }>
 						<div class={ style.navigation } style="text-align: centre;">
 							<div> { this.state.data_grabbed ? <button class={style.button}>Home</button> : null } </div>
-							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_home_page: false, on_location_page: true })}>Location</button> : null } </div>
-							
+							<div> { this.state.data_grabbed ? <button class={style.button} onClick={() => this.setState({ on_home_page: false, on_location_page: true })}>Location</button> : null } </div>	
 						</div>
 						<div class={contaStyles}>
 							<div class={ style.city }>
@@ -180,12 +177,14 @@ export default class Ipad extends Component {
 							</div>
 						</div>
 						<h3 class={style.forecast} style="margin-left:155px; padding-bottom:-3%; margin-top:1%;"> Forecast</h3> 
-						<div> { this.state.data_grabbed ? <button class={style.Weeklybutton} onClick={() => this.setState({ on_home_page:false, on_weekly_weather_page: true })}>Week</button> : null } </div>
-							<div class={ style.forecast_text }>
-								<p class={ style.forecast_text }>6h</p>
-								<p class={ style.forecast_text }>12h</p>
-								<p class={ style.forecast_text }>24h</p>
-							</div>
+						<div> 
+							{ this.state.data_grabbed ? <button class={style.Weeklybutton} onClick={() => this.setState({ on_home_page:false, on_weekly_weather_page: true })}>Week</button> : null }
+						</div>
+						<div class={ style.forecast_text }>
+							<p class={ style.forecast_text }>6h</p>
+							<p class={ style.forecast_text }>12h</p>
+							<p class={ style.forecast_text }>24h</p>
+						</div>
 						<div class={ style.forecast }>	
 							<div class={ style.forecast_image }>
 								{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main_6h): null }
@@ -209,7 +208,9 @@ export default class Ipad extends Component {
 					</div>
 				</div>
 			);
-		} else if (this.state.on_location_page == true) {
+		}
+		// if the location button is pressed, the state is set to true so the location page is visible
+		else if (this.state.on_location_page == true) {
 			return (
 				<div class={ style.container }>
 					<div class={ style.header }>
@@ -328,7 +329,9 @@ export default class Ipad extends Component {
 					<div class={ style.details }></div>
 				</div>
 			);
-		}  else if (this.state.on_weekly_weather_page == true) {
+		}
+		// if the week button is pressed, the state is set to true so the weekly forecast page is visible
+		else if (this.state.on_weekly_weather_page == true) {
 			return (
 				<div class={ style.container }>
 					<div class={ style.header }>
@@ -343,30 +346,29 @@ export default class Ipad extends Component {
 								<hr></hr>
 								<div class={ style.cityWeekly }>
 								{ this.state.locate }
-									</div>
-									<br></br>
-									<div class={style.Days}>
-										<p class={style.timeDate}>{this.state.date_time} </p>
-										{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main): null }
-										<p class={style.weeklyDesc}> {this.state.main} {this.state.temp}</p> </div>
-									<div class={style.Days}><p class={style.timeDate}>{this.state.date_time2} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main2): null } <p class={style.weeklyDesc}> {this.state.main2}  {this.state.tempDay2}</p></div>
-									<div class={style.Days}><p class={style.timeDate}>{this.state.date_time3} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main3): null } <p class={style.weeklyDesc}> {this.state.main3}  {this.state.tempDay3}</p></div>
-									<div class={style.Days}><p class={style.timeDate}>{this.state.date_time4} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main4): null } <p class={style.weeklyDesc}> {this.state.main4}  {this.state.tempDay4}</p></div>
-									<div class={style.FinalDay}><p class={style.timeDate}>{this.state.date_time5} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main5): null }<p class={style.weeklyDesc}> {this.state.main5}  {this.state.tempDay5}</p></div>
-									<br></br>
 								</div>
+								<br></br>
+								<div class={style.Days}>
+									<p class={style.timeDate}>{this.state.date_time} </p>
+									{ this.state.data_grabbed ? this.miniWeatherImage(this.state.main): null }
+									<p class={style.weeklyDesc}> {this.state.main} {this.state.temp}</p>
+								</div>
+								<div class={style.Days}><p class={style.timeDate}>{this.state.date_time2} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main2): null } <p class={style.weeklyDesc}> {this.state.main2}  {this.state.temp_day2}</p></div>
+								<div class={style.Days}><p class={style.timeDate}>{this.state.date_time3} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main3): null } <p class={style.weeklyDesc}> {this.state.main3}  {this.state.temp_day3}</p></div>
+								<div class={style.Days}><p class={style.timeDate}>{this.state.date_time4} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main4): null } <p class={style.weeklyDesc}> {this.state.main4}  {this.state.temp_day4}</p></div>
+								<div class={style.FinalDay}><p class={style.timeDate}>{this.state.date_time5} </p> { this.state.data_grabbed ? this.miniWeatherImage(this.state.main5): null }<p class={style.weeklyDesc}> {this.state.main5}  {this.state.temp_day5}</p></div>
+								<br></br>
+							</div>
 								<div class={style.bottomOfWeek}></div>
 						</div>
 					<div class={ style.details }></div>
-					<div class= { style_ipad.container }> 
-						{ this.state.display ? this.fetchWeatherData() : null }
-					</div>
 				</div>
 			);
 		}
 	}
 
 	parseResponse = (parsed_json) => {
+		// variables that are mainly for the home page
 		var city = parsed_json['city']['name'];
 		var country = parsed_json['city']['country'];
 		var temp_c = parsed_json['list']["0"]['main']['temp'];
@@ -374,17 +376,19 @@ export default class Ipad extends Component {
 		var conditions = parsed_json['list']["0"]['weather']["0"]['description'];
 		var precipitation = parsed_json['list']["0"]['pop'];
 		var wind_speed = parsed_json['list']["0"]['wind']['speed'];
+
+		// variables for the weekly page
 		var date = new Date(parsed_json['list']["0"]['dt_txt']);
 		var date2 = new Date(parsed_json['list']["8"]['dt_txt']);
 		var date3 = new Date(parsed_json['list']["16"]['dt_txt']);
 		var date4 = new Date(parsed_json['list']["24"]['dt_txt']);
 		var date5 = new Date(parsed_json['list']["32"]['dt_txt']);
-		var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-		var dayOfWeek = days[date.getDay()];
-		var day2OfWeek = days[date2.getDay()];
-		var day3OfWeek = days[date3.getDay()];
-		var day4OfWeek = days[date4.getDay()];
-		var day5OfWeek = days[date5.getDay()];
+		var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+		var day_of_week = days[date.getDay()];
+		var day2_of_week = days[date2.getDay()];
+		var day3_of_week = days[date3.getDay()];
+		var day4_of_week = days[date4.getDay()];
+		var day5_of_week = days[date5.getDay()];
 		var main_weather2 = parsed_json['list']["8"]['weather']["0"]['main'];
 		var main_weather3 = parsed_json['list']["16"]['weather']["0"]['main'];
 		var main_weather4 = parsed_json['list']["24"]['weather']["0"]['main'];
@@ -395,10 +399,12 @@ export default class Ipad extends Component {
 		var temp_c_day5 = parsed_json['list']["32"]['main']['temp'];
 
 
+		// variables for the forecast on the home page
 		var main_weather_6h = parsed_json['list']["2"]['weather']["0"]['main'];
 		var main_weather_12h = parsed_json['list']["4"]['weather']["0"]['main'];
 		var main_weather_24h = parsed_json['list']["8"]['weather']["0"]['main'];
 
+		// variables for the location page
 		var temp_london = parsed_json['list']["0"]['main']['temp'];
 		var main_weather_london = parsed_json['list']["0"]['weather']["0"]['main'];
 
@@ -420,42 +426,19 @@ export default class Ipad extends Component {
 		var temp_oxford = parsed_json['list']["6"]['main']['temp'];
 		var main_weather_oxford = parsed_json['list']["6"]['weather']["0"]['main'];
 
-		// set states for fields so they could be rendered later on
+		// set states for fields so they could be rendered later on in the pages
 		this.setState({
 			locate: city + ", " + country,
-			/*
-			Maybe create a dropdown list in Locations page for user to add custom locations?
-			- London
-			- Birmingham
-			- Manchester
-			- Cambridge
-			- Leicester
-			- Bristol
-			- Oxford
-			*/
 			temp: Math.trunc(temp_c - 273.15), // convert temp from kelvin to celsius
 			cond : conditions,
 			main: main_weather_current,
-			/*
-			URL: https://openweathermap.org/weather-conditions
-			Main weather conditions:
-			- Clear
-			- Clouds
-			- Rain
-			- Thunderstorm
-			- Drizzle
-			- Snow
-			- all under 'Atmosphere' (same weather icon):
-			- Mist
-			- Smoke
-			- Haze
-			- Fog
-			*/
-			prec : (precipitation * 100) + "%", // convert range 0-1 to a percentage
+			prec : Math.trunc((precipitation * 100)) + "%", // convert range 0-1 to a percentage
 			wspeed: Math.trunc(wind_speed) + " mph",
+
 			main_6h : main_weather_6h,
 			main_12h : main_weather_12h,
 			main_24h : main_weather_24h,
+
 			main_lon : main_weather_london,
 			main_bir : main_weather_birmingham,
 			main_man : main_weather_manchester,
@@ -463,6 +446,7 @@ export default class Ipad extends Component {
 			main_lei : main_weather_leicester,
 			main_bri : main_weather_bristol,
 			main_oxf : main_weather_oxford,
+
 			temp_lon : Math.trunc(temp_london - 273.15),
 			temp_bir : Math.trunc(temp_birmingham - 273.15),
 			temp_man : Math.trunc(temp_manchester - 273.15),
@@ -470,19 +454,22 @@ export default class Ipad extends Component {
 			temp_lei : Math.trunc(temp_leicester - 273.15),
 			temp_bri : Math.trunc(temp_bristol - 273.15),
 			temp_oxf : Math.trunc(temp_oxford - 273.15),
-			date_time: dayOfWeek,
-			date_time2: day2OfWeek,
-			date_time3: day3OfWeek,
-			date_time4: day4OfWeek,
-			date_time5: day5OfWeek,
+
+			date_time: day_of_week,
+			date_time2: day2_of_week,
+			date_time3: day3_of_week,
+			date_time4: day4_of_week,
+			date_time5: day5_of_week,
+
 			main2: main_weather2,
 			main3: main_weather3,	
 			main4: main_weather4,	
 			main5: main_weather5,
-			tempDay2: Math.trunc(temp_c_day2 - 273.15),
-			tempDay3: Math.trunc(temp_c_day3 - 273.15),
-			tempDay4: Math.trunc(temp_c_day4 - 273.15),
-			tempDay5: Math.trunc(temp_c_day5 - 273.15)
+
+			temp_day2: Math.trunc(temp_c_day2 - 273.15),
+			temp_day3: Math.trunc(temp_c_day3 - 273.15),
+			temp_day4: Math.trunc(temp_c_day4 - 273.15),
+			temp_day5: Math.trunc(temp_c_day5 - 273.15)
 		});
 	}
 }

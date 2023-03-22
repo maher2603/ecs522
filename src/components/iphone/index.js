@@ -1,5 +1,6 @@
 // import preact
 import { h, render, Component } from 'preact';
+
 // import stylesheets for iphone & button
 import style from './style';
 import style_iphone from '../button/style_iphone';
@@ -88,7 +89,8 @@ export default class Iphone extends Component {
 		return <img id="atmosphere-icon" src="./assets/icons/misty_bg.svg" alt="Atmosphere Icon"></img>
 		}
   	}
-  	// decide what image to show depending on the weather in the 6h,12h,24h forecast section
+  	
+	// decide what image to show depending on the weather in the 6h,12h,24h forecast section
 	miniWeatherImage = (main_weather) => {
 		if (main_weather == "Clear") {
 			return <img id="clear-icon" style="filter: invert(87.5%);" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
@@ -328,7 +330,7 @@ export default class Iphone extends Component {
 				</div>
 			);
 		} 
-		// if the weekly button is pressed, the state is set to true so the weekly forecast page is visible
+		// if the week button is pressed, the state is set to true so the weekly forecast page is visible
 		else if (this.state.on_weekly_weather_page == true) {
 			return (
 				<div class={ style.container }>
@@ -360,9 +362,6 @@ export default class Iphone extends Component {
 							<div class={style.bottomOfWeek}></div>
 						</div>
 					<div class={ style.details }></div>
-					<div class= { style_iphone.container }> 
-						{ this.state.display ? this.fetchWeatherData() : null }
-					</div>
 				</div>
 			);
 		}
@@ -433,7 +432,7 @@ export default class Iphone extends Component {
 			temp: Math.trunc(temp_c - 273.15), // convert temp from kelvin to celsius
 			cond : conditions,
 			main: main_weather_current,
-			prec : (precipitation * 100) + "%", // convert range 0-1 to a percentage
+			prec : Math.trunc((precipitation * 100)) + "%", // convert range 0-1 to a percentage
 			wspeed: Math.trunc(wind_speed) + " mph",
 
 			main_6h : main_weather_6h,

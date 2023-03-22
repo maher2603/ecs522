@@ -28,7 +28,7 @@ C:\Users\JohnDoe\...\ecs522
 ## Development Workflow
 
 
-**4. Start a live-reload development server to view the weather app :**
+**4. Start a live-reload development server to use the weather app :**
 
 ```sh
 npm run dev
@@ -45,3 +45,11 @@ npm run dev
 - The weekly weather page is accessed when clicking the 'Week' button on the home page. This shows the 5 day forecast from the day you are currently in.
 
 - The location page allows the user to select city names to view the current weather in those locations.
+
+## Extensions
+
+- Making use of navigator.geolocation to help get the user's current location of their device, in order to display weather data that would be relevant to them in real time.
+
+- Utilising the 5 Day / 3 Hour Forecast Weather API to help capture weather data for daily and weekly forecasts.
+
+- Use of XML namespaces to import self-made SVG files for rendering weather images (e.g. sunny, cloud, rain, etc.) on the home page.

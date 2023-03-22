@@ -1,7 +1,11 @@
 @import '~style/helpers';
-*{
+
+/* HOME, LOCATION AND WEEKLY PAGES */
+
+* {
 	color: rgb(255, 255, 255);
 }
+
 .container {
 	display: flex;
 	flex-direction: column;
@@ -19,20 +23,11 @@
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-
 }
 
 .details {
 	flex: 4;
 	text-align: center;
-}
-
-h2 {
-	text-align: center;
-}
-
-.weeklyDesc:after {
-	content: "°C";
 }
 
 .city, .locationTitle, .weeklyForecast {
@@ -44,9 +39,38 @@ h2 {
 	padding: 0 0 0.3em 0;
 	color: rgb(230, 230, 230);
 }
-.weeklyForecast{
+
+.navigation {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	width: 70%;
+	margin: auto;
+	margin-bottom: 10%;
+	margin-top: 2%;
+}
+
+.button {
+	flex: 2;
+	width: auto;
+	font-size: larger;
+	font-weight: bold;
+	background: none;
+	border: none;
+	border-bottom: 2px solid #ffffff44;
+	color: rgb(230, 230, 230);
+	font-weight: bold;
+	transition: 0.5s all;
+}
+
+.button:hover {
+	border-bottom: 2px solid #ffffffea;
+	transition: 0.5s all;
+	scale: 1.1;
 	font-weight: bold;
 }
+
+/* HOME PAGE */
 
 .conditions {
 	flex: 1;
@@ -126,72 +150,13 @@ h2 {
 	vertical-align: middle;
 }
 
-
-.weatherLabel{
+.weatherLabel {
 	margin: 10px;
 	margin-left: -45%;
 	padding: 0;
 	vertical-align: text-top;
 	font-size: 18px;
 	color: white;
-
-}
-
-.navigation {
-	display: flex;
-	flex-wrap: nowrap;
-	justify-content: space-between;
-	width: 70%;
-	margin: auto;
-	margin-bottom: 10%;
-	margin-top: 2%;
-}
-
-.button {
-	flex: 2;
-	width: auto;
-	font-size: larger;
-	font-weight: bold;
-	background: none;
-	border: none;
-	border-bottom: 2px solid #ffffff44;
-	color: rgb(230, 230, 230);
-	font-weight: bold;
-	transition: 0.5s all;
-}
-
-
-.button:hover {
-	border-bottom: 2px solid #ffffffea;
-	transition: 0.5s all;
-	scale: 1.1;
-	font-weight: bold;
-}
-
-.Weeklybutton {
-	flex: 2;
-	width: auto;
-	font-size: 1.15rem;
-	font-weight: bold;
-	border: none;
-	float:right;
-	margin-top: -15.5%;
-	margin-right: 14.5%;
-	border-bottom: 2px solid #00000044;
-	background-color: rgb(135, 58, 223);
-	border-radius: 0.35rem;
-	font-weight: bold;
-	transition: 0.5s all;
-}
-
-
-.Weeklybutton:hover {
-	border-bottom: 2px solid #000000ea;
-	background-color: rgb(233,233,233);
-	transition: 0.5s all;
-	color: rgb(135, 58, 223);
-	font-weight: bold;
-	scale: 1.1;
 }
 
 .forecast {
@@ -256,23 +221,47 @@ h2 {
 	padding: 0;
 	margin: 0;
 	margin-top: 10px;
-	
-}
-.bottomOfWeek{
-	margin-top: 5%;
 }
 
 .weather_img {
 	margin-left: -10px;
 }
 
-.Days {
-	background-color: #31313144;
-	margin-bottom: 15%;
-	border-radius: 1rem;
+.Weeklybutton {
+	flex: 2;
+	width: auto;
+	font-size: 1.15rem;
+	font-weight: bold;
+	border: none;
+	float:right;
+	margin-top: -15.5%;
+	margin-right: 14.5%;
 	border-bottom: 2px solid #00000044;
-	margin-left: 5%;
-	margin-right: 5%;
+	background-color: rgb(135, 58, 223);
+	border-radius: 0.35rem;
+	font-weight: bold;
+	transition: 0.5s all;
+}
+
+.Weeklybutton:hover {
+	border-bottom: 2px solid #000000ea;
+	background-color: rgb(233,233,233);
+	transition: 0.5s all;
+	color: rgb(135, 58, 223);
+	font-weight: bold;
+	scale: 1.1;
+}
+
+/* LOCATION AND WEEKLY PAGES */
+
+h2 {
+	text-align: center;
+}
+
+/* LOCATION PAGE */
+
+.weeklyDesc:after {
+	content: "°C";
 }
 
 .LocationDropDown {
@@ -284,28 +273,6 @@ h2 {
 	margin-left: 5%;
 	margin-right: 5%;
 	height: 4.5rem;
-}
-
-.FinalDay {
-	background-color: #31313144;
-	margin-bottom: 5%;
-	border-radius: 1rem;
-	border-bottom: 2px solid #00000044;
-	margin-left: 5%;
-	margin-right: 5%;
-}
-
-.timeDate {
-	float: left;
-	font-size: large;
-	margin-left: 10%;
-	font-weight: bold;
-}
-
-.weeklyDesc {
-	font-size: large;
-	float: right;
-	margin-right: 8%;
 }
 
 .locationTemp:after {
@@ -336,13 +303,54 @@ h2 {
 	color: rgb(230, 230, 230);
 }
 
-.dropdownList{
+.dropdownList {
 	width: 8rem;
 	height: 1.5rem;
 	border-radius: 0.4rem;
 	color: black;
 }
 
-option{
+option {
 	color: black;
+}
+
+/* WEEKLY PAGE */
+
+.weeklyForecast {
+	font-weight: bold;
+}
+
+.bottomOfWeek {
+	margin-top: 5%;
+}
+
+.Days {
+	background-color: #31313144;
+	margin-bottom: 15%;
+	border-radius: 1rem;
+	border-bottom: 2px solid #00000044;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.FinalDay {
+	background-color: #31313144;
+	margin-bottom: 5%;
+	border-radius: 1rem;
+	border-bottom: 2px solid #00000044;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.timeDate {
+	float: left;
+	font-size: large;
+	margin-left: 10%;
+	font-weight: bold;
+}
+
+.weeklyDesc {
+	font-size: large;
+	float: right;
+	margin-right: 8%;
 }
