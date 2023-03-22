@@ -59,7 +59,7 @@ export default class Iphone extends Component {
 	// Birmingahm - 2655603
 	// Manchester - 2643123
 	// Cambridge - 2653941
-	// Leicester - 2644668
+	// Leicester - 2644668 
 	// Bristol - 2654675
 	// Oxford - 2640729
 
@@ -84,19 +84,19 @@ export default class Iphone extends Component {
 
 	miniWeatherImage = (main_weather) => {
 		if (main_weather == "Clear") {
-			return <img id="clear-icon" style="width:60px" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
+			return <img id="clear-icon" style="width:60px; filter: invert(85%);" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
 		} else if (main_weather == "Clouds") {
-			return <img id="cloudy-icon" style="width:60px" src="./assets/icons/cloudy_svg.svg" alt="Cloudy Icon"></img>
+			return <img id="cloudy-icon" style="width:60px; filter: invert(85%);" src="./assets/icons/cloudy_svg.svg" alt="Cloudy Icon"></img>
 		} else if (main_weather == "Rain") {
-			return <img  id="rainy-icon" style="width:60px" src="./assets/icons/rainy_svg.svg" alt="Rainy Icon"></img>
+			return <img  id="rainy-icon" style="width:60px; filter: invert(85%);" src="./assets/icons/rainy_svg.svg" alt="Rainy Icon"></img>
 		} else if (main_weather == "Thunderstorm") {
-			return <img id="thunderstorm-icon" style="width:60px" src="./assets/icons/thunderstorm_svg.svg" alt="Thunderstorm Icon"></img>
+			return <img id="thunderstorm-icon" style="width:60px; filter: invert(85%);" src="./assets/icons/thunderstorm_svg.svg" alt="Thunderstorm Icon"></img>
 		} else if (main_weather == "Drizzle") {
-			return <img id="drizzle-icon" style="width:60px" src="./assets/icons/drizzle_svg.svg" alt="Drizzle Icon"></img>
+			return <img id="drizzle-icon" style="width:60px; filter: invert(85%);" src="./assets/icons/drizzle_svg.svg" alt="Drizzle Icon"></img>
 		} else if (main_weather == "Snow") {
-			return <img id="snow-icon" style="width:60px;" src="./assets/icons/snow_svg.svg" alt="Snow Icon"></img>
+			return <img id="snow-icon" style="width:60px; filter: invert(85%);" src="./assets/icons/snow_svg.svg" alt="Snow Icon"></img>
 		} else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
-			return <img id="atmosphere-icon" src="./assets/icons/foggy_svg.svg" alt="Atmosphere Icon"></img>
+			return <img id="atmosphere-icon" style="width:60px; filter: invert(85%);" src="./assets/icons/foggy_svg.svg" alt="Atmosphere Icon"></img>
 		}
 	}
 
@@ -168,14 +168,14 @@ export default class Iphone extends Component {
 								{this.state.data_grabbed ? <h3 class={style.weatherLabel}>Precipitation</h3> : null}
 							</div>
 							<div class={ style.precipitation }>
-								{ this.state.data_grabbed ? <img id="rainy-icon" style="padding:0px;padding-right: 160px; vertical-align: bottom;" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
+								{ this.state.data_grabbed ? <img id="rainy-icon" style="padding:0px;padding-right: 160px; vertical-align: bottom; filter: invert(85%);" src="./assets/icons/pop_svg.svg" alt="Raining Icon"></img> : null }
 								{ this.state.prec }
 							</div>
 							<div id="windspeed">
 								{this.state.data_grabbed ? <h3 class={style.weatherLabel}>Wind Speed</h3> : null}
 							</div>
 							<div class={ style.windspeed }>
-								{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon" style="padding:0; margin:0;padding-right: 135px; vertical-align: bottom;"></img> : null }
+								{ this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon" style="padding:0; margin:0;padding-right: 135px; vertical-align: bottom; filter: invert(85%);"></img> : null }
 								{ this.state.wspeed }
 							</div>
 						</div>
