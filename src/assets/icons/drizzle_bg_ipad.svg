@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="528" height="458" fill="none" viewBox="0 0 528 458">
+  <g filter="url(#a)">
+    <rect width="500" height="450" x="23.333" fill="#4B80BD" rx="20"/>
+    <path stroke="#AECEFF" stroke-width="2" d="M0-1h8.186" opacity=".7" transform="matrix(-.17676 .98425 -.96575 -.25948 169.78 202.909)"/>
+    <path stroke="#AECEFF" stroke-width="2" d="M0-1h13.098" opacity=".7" transform="matrix(-.17676 .98425 -.96575 -.25948 238.982 224.182)"/>
+    <path stroke="#AECEFF" stroke-width="2" d="M0-1h8.186" opacity=".7" transform="matrix(-.17677 .98425 -.96575 -.25948 363.114 206.182)"/>
+    <path fill="#D9D9D9" fill-opacity=".7" d="M220 118.555c0-19.386 15.715-35.1 35.1-35.1h134.8c19.385 0 35.1 15.714 35.1 35.1 0 19.385-15.715 35.1-35.1 35.1H255.1c-19.385 0-35.1-15.715-35.1-35.1Z" opacity=".8"/>
+    <path fill="#D9D9D9" fill-opacity=".96" d="M185 86.727C185 68.652 199.653 54 217.727 54h79.546C315.347 54 330 68.653 330 86.727c0 18.075-14.653 32.728-32.727 32.728h-79.546c-18.074 0-32.727-14.653-32.727-32.728Z" opacity=".8"/>
+    <g clip-path="url(#b)">
+      <path fill="#D9D9D9" d="M113.333 120.273c0-14.912 13.929-27 31.111-27h77.778c17.183 0 31.111 12.088 31.111 27 0 14.911-13.928 27-31.111 27h-77.778c-17.182 0-31.111-12.089-31.111-27Z" opacity=".8"/>
+    </g>
+    <path stroke="#AECEFF" stroke-width="2" d="M0-1h16.374" opacity=".9" transform="matrix(-.18846 .98208 -.9627 -.27058 160.017 157.007)"/>
+    <path stroke="#AECEFF" stroke-width="2" d="M0-1h24.559" transform="matrix(-.17676 .98425 -.96575 -.25948 344.341 165.273)"/>
+    <path stroke="#AECEFF" stroke-width="2" d="M0-1h26.197" opacity=".5" transform="matrix(-.17677 .98425 -.96575 -.25948 224.63 165.273)"/>
+    <path stroke="#AECEFF" stroke-width="2" d="M0-1h11.461" opacity=".7" transform="matrix(-.17676 .98425 -.96575 -.25948 280.359 183.273)"/>
+    <mask id="c" width="101" height="91" x="13" y="351" maskUnits="userSpaceOnUse" style="mask-type:alpha">
+      <path fill="#fff" d="M13.333 351.491h100v90h-100z"/>
+    </mask>
+    <g mask="url(#c)">
+      <path fill="#fff" d="M58.333 433.991c-4.803 0-8.897-1.828-12.283-5.485-3.385-3.656-5.078-8.078-5.078-13.265 0-3 .608-5.797 1.823-8.391a18.78 18.78 0 0 1 5.122-6.609v-30c0-3.125 1.012-5.781 3.038-7.969 2.025-2.187 4.485-3.281 7.378-3.281 2.894 0 5.353 1.094 7.379 3.281 2.025 2.188 3.038 4.844 3.038 7.969v30a18.78 18.78 0 0 1 5.122 6.609c1.215 2.594 1.823 5.391 1.823 8.391 0 5.187-1.693 9.609-5.079 13.265-3.385 3.657-7.48 5.485-12.283 5.485Zm-3.472-41.25h6.945v-3.75h-3.473v-3.75h3.473v-7.5h-3.473v-3.75h3.473v-3.75c0-1.063-.333-1.953-.999-2.672-.665-.719-1.49-1.078-2.474-1.078-.983 0-1.808.359-2.474 1.078-.665.719-.998 1.609-.998 2.672v22.5Z"/>
+    </g>
+  </g>
+  <defs>
+    <clipPath id="b">
+      <path fill="#fff" d="M0 0h140v54H0z" transform="translate(113.333 93.273)"/>
+    </clipPath>
+    <filter id="a" width="531.333" height="458" x="-4" y="0" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_245_375"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow_245_375" result="shape"/>
+    </filter>
+  </defs>
+</svg>
