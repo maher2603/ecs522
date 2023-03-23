@@ -23,7 +23,7 @@ class LocationForm extends Component {
     return (
       // <div class={style.formContainer}>
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="location">Location: </label>
+        {/* <label htmlFor="location">Location: </label> */}
         <input class={style.locationInput} type="text" id="location" name="location" />
         <button class={style.locationInputButton} type="submit">Submit</button>
       </form>
