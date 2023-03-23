@@ -34,7 +34,7 @@ class FindLocationWeather extends Component {
           console.log("set vars")
           this.props.onLocationFetch(this.state.location, lat, lon);
           console.log("completed props")
-          // this.setState({ stateMessage: "Location submitted successfully" })
+          this.setState({ stateMessage: "" })
 
 
           // For only GB locations
