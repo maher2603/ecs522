@@ -2,13 +2,14 @@ import { h, Component } from 'preact';
 import LocationForm from './LocationForm.js';
 
 import style from './style';
+import style_iphone from '../button/style_iphone';
 
 class FindLocationWeather extends Component {
   constructor(props) {
     super(props);
     this.state = {
       location: '',
-      stateMessage : "message"
+      stateMessage : ""
     };
   }
 

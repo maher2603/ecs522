@@ -2,6 +2,7 @@
 import { h, Component } from 'preact';
 import FindLocationWeather from './FindLocationWeather.js';
 import style from './style';
+import style_iphone from '../button/style_iphone';
 
 class InfoPage extends Component {
     constructor(props) {

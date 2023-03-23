@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 
 import style from './style';
+import style_iphone from '../button/style_iphone';
 
 class LocationForm extends Component {
   constructor(props) {
