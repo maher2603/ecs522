@@ -27,38 +27,38 @@ class InfoPage extends Component {
 	// decide what image to show depending on the main weather
     mainWeatherImage = (main_weather) => {
 		if (main_weather == "Clear") {
-		return <img id="clear-icon" src="./assets/icons/sunny_bg.svg" alt="Clear Icon"></img>
+		return <img style="width:500px" id="clear-icon" src="./assets/icons/sunny_bg.svg" alt="Clear Icon"></img>
 		} else if (main_weather == "Clouds") {
-		return <img id="cloudy-icon" src="./assets/icons/partial_cloud_bg.svg" alt="Cloudy Icon"></img>
+		return <img style="width:500px" id="cloudy-icon" src="./assets/icons/partial_cloud_bg.svg" alt="Cloudy Icon"></img>
 		} else if (main_weather == "Rain") {
-		return <img id="rainy-icon" src="./assets/icons/rainy_background.svg" alt="Rainy Icon"></img>
+		return <img style="width:500px" id="rainy-icon" src="./assets/icons/rainy_background.svg" alt="Rainy Icon"></img>
 		} else if (main_weather == "Thunderstorm") {
-		return <img id="thunderstorm-icon" src="./assets/icons/thunderstorm_bg.svg" alt="Thunderstorm Icon"></img>
+		return <img style="width:500px" id="thunderstorm-icon" src="./assets/icons/thunderstorm_bg.svg" alt="Thunderstorm Icon"></img>
 		} else if (main_weather == "Drizzle") {
-		return <img id="drizzle-icon" src="./assets/icons/drizzle_bg.svg" alt="Drizzle Icon"></img>
+		return <img style="width:500px" id="drizzle-icon" src="./assets/icons/drizzle_bg.svg" alt="Drizzle Icon"></img>
 		} else if (main_weather == "Snow") {
-		return <img id="snow-icon" src="./assets/icons/snow_bg.svg" alt="Snow Icon"></img>
+		return <img style="width:500px" id="snow-icon" src="./assets/icons/snow_bg.svg" alt="Snow Icon"></img>
 		} else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
-		return <img id="atmosphere-icon" src="./assets/icons/misty_bg.svg" alt="Atmosphere Icon"></img>
+		return <img style="width:500px" id="atmosphere-icon" src="./assets/icons/misty_bg.svg" alt="Atmosphere Icon"></img>
 		}
   	}
   	
 	// decide what image to show depending on the weather in the 6h,12h,24h forecast section
 	miniWeatherImage = (main_weather) => {
 		if (main_weather == "Clear") {
-			return <img id="clear-icon" style="filter: invert(87.5%);" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
+			return <img id="clear-icon" style="filter: invert(87.5%); width:60px;" src="./assets/icons/sunny_svg.svg" alt="Clear Icon"></img>
 		} else if (main_weather == "Clouds") {
-			return <img id="cloudy-icon" style="filter: invert(87.5%);" src="./assets/icons/cloudy_svg.svg" alt="Cloudy Icon"></img>
+			return <img id="cloudy-icon" style="width:60px;filter: invert(87.5%);" src="./assets/icons/cloudy_svg.svg" alt="Cloudy Icon"></img>
 		} else if (main_weather == "Rain") {
-			return <img id="rainy-icon" style="filter: invert(87.5%);" src="./assets/icons/rainy_svg.svg" alt="Rainy Icon"></img>
+			return <img id="rainy-icon" style="filter: invert(87.5%); width:60px;" src="./assets/icons/rainy_svg.svg" alt="Rainy Icon"></img>
 		} else if (main_weather == "Thunderstorm") {
-			return <img id="thunderstorm-icon" style="filter: invert(87.5%);" src="./assets/icons/thunderstorm_svg.svg" alt="Thunderstorm Icon"></img>
+			return <img id="thunderstorm-icon" style="filter: invert(87.5%); width:60px;" src="./assets/icons/thunderstorm_svg.svg" alt="Thunderstorm Icon"></img>
 		} else if (main_weather == "Drizzle") {
-			return <img id="drizzle-icon" style="filter: invert(87.5%);" src="./assets/icons/drizzle_svg.svg" alt="Drizzle Icon"></img>
+			return <img id="drizzle-icon" style="filter: invert(87.5%); width:60px;" src="./assets/icons/drizzle_svg.svg" alt="Drizzle Icon"></img>
 		} else if (main_weather == "Snow") {
-			return <img id="snow-icon" style="filter: invert(87.5%);" src="./assets/icons/snow_svg.svg" alt="Snow Icon"></img>
+			return <img id="snow-icon" style="filter: invert(87.5%); width:60px;" src="./assets/icons/snow_svg.svg" alt="Snow Icon"></img>
 		} else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
-			return <img id="atmosphere-icon" style="filter: invert(87.5%);" src="./assets/icons/foggy_svg.svg" alt="Atmosphere Icon"></img>
+			return <img id="atmosphere-icon" style="filter: invert(87.5%); width:60px;" src="./assets/icons/foggy_svg.svg" alt="Atmosphere Icon"></img>
 		}
 	}
     
@@ -142,11 +142,11 @@ class InfoPage extends Component {
                             {this.state.data_grabbed ? <h3 class={style.weatherLabel}>Wind Speed</h3> : null}
                         </div>
                         <div class={ style.windspeed }>
-                            { this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding:0; margin:0;padding-right: 130px; vertical-align: bottom; filter: invert(87.5%)"></img> : null }
+                            { this.state.data_grabbed ? <img id="windspeed-icon"  src="./assets/icons/windspeed_svg.svg" alt="Wind Speed Icon"style="padding:0; margin:0;padding-right: 100px; vertical-align: bottom; filter: invert(87.5%)"></img> : null }
                             { this.state.wspeed }
                         </div>
                     </div>
-                    <h3 class={style.forecast} style="margin-left:70px; padding-bottom:-3% margin-top:1%; font-size:larger;">
+                    <h3 class={style.forecast} style="margin-left:150px; padding-bottom:-3% margin-top:1%; font-size:30px;">
                         Forecast
                     </h3>
                     <div> { this.state.data_grabbed ? <button class={style.Weeklybutton} onClick={() => this.setState({ location:"", data_grabbed: false })}>Reset</button> : null }</div>
