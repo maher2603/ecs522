@@ -260,61 +260,47 @@ h2 {
 
 /* LOCATION PAGE */
 
-.weeklyDesc:after {
-	content: "°C";
+.formContainer {
+	position: relative;
+	top: -555%;
+	margin: auto;
+	width: 400px;
 }
 
-.LocationDropDown {
-	background-color: #9b9b9b6c;
+.errorMessage {
+	position: absolute;
+	top: 100%;
+	left: 10%;
+	margin: auto;
+	width: 400px;
+}
+
+.locationInput, .locationInputButton {
+	position: relative;
 	color:black;
-	margin-bottom: 12%;
-	border-radius: 1rem;
-	border-bottom: 2px solid #00000044;
-	margin-left: 5%;
-	margin-right: 5%;
-	height: 4.5rem;
+	height: 2em;
+	border-radius: 5px;
 }
 
-.locationTemp:after {
-	content: "°C";
+.locationInputButton {
+	width: 100px;
 }
 
-.locationTemp {
-	font-size: large;
-	float: right;
-	margin-right: 10%;
-	margin-top:-11%;
-	font-weight: bold;
+.locationInput {
+	width: 250px;
+	margin-left: 25px;
 }
 
-.locationDesc {
-	font-size: large;
-	margin-left: 8%;
-	font-weight: 550;
-}
-.locationImg {
-	float: right;
-	margin-top: -17%;
-	margin-right: 35%;
-}
 
-.locationTitle {
-	margin-top: -5%;
-	color: rgb(230, 230, 230);
-}
-
-.dropdownList {
-	width: 8rem;
-	height: 1.5rem;
-	border-radius: 0.4rem;
-	color: black;
-}
-
-option {
-	color: black;
+.locationSubmit {
+	color:black
 }
 
 /* WEEKLY PAGE */
+
+.weeklyDesc:after {
+	content: "°C";
+}
 
 .weeklyForecast {
 	font-weight: bold;
@@ -353,44 +339,4 @@ option {
 	font-size: large;
 	float: right;
 	margin-right: 8%;
-}
-
-/* FORM PAGE */
-
-.formContainer {
-	position: relative;
-	top: -555%;
-	margin: auto;
-	width: 400px;
-}
-
-.errorMessage {
-	position: absolute;
-	top: 100%;
-	left: 10%;
-	margin: auto;
-	width: 400px;
-}
-
-.locationInput, .locationInputButton {
-	position: relative;
-	// top: -10%;
-	color:black;
-	// width: 300px;
-	height: 2em;
-	border-radius: 5px;
-}
-
-.locationInputButton {
-	width: 100px;
-}
-
-.locationInput {
-	width: 250px;
-	margin-left: 25px;
-}
-
-
-.locationSubmit {
-	color:black
 }

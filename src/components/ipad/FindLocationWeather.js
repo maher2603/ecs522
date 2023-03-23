@@ -2,9 +2,16 @@ import { h, Component } from 'preact';
 import LocationForm from './LocationForm.js';
 
 import style from './style';
-import style_iphone from '../button/style_iphone';
 
-class FindLocationWeather extends Component {
+/*
+NOTES:
+- This file will do data handling for the location submitted by the file
+    - Includes Geocaching location into lang/long
+- In the main render part (in the appropriate part of giant If) the same processes for main page will be adapted
+    - Might need to remake the main file code into a new file (think about props)
+*/
+
+export default class FindLocationWeather extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,21 +40,6 @@ class FindLocationWeather extends Component {
           const lon = data[0]["lon"]
           this.props.onLocationFetch(this.state.location, lat, lon);
           this.setState({ stateMessage: "" })
-
-
-          // For only GB locations
-          // for (var i = 0; i < data.length; i++) {
-          //   if (data[i]["country"] == "GB") {
-          //     this.setState({ location: data[i]["name"] })
-          //     const lat = data[i]["lat"]
-          //     const lon = data[i]["lon"]
-          //     console.log("set vars")
-          //     this.props.onLocationFetch(this.state.location, lat, lon);
-          //     console.log("completed props")
-          //     this.setState({ stateMessage: "Location submitted successfully" })
-          //     break;
-          //   }
-          // }
         }
       })
 			.catch(this.badUrl);
@@ -75,13 +67,3 @@ class FindLocationWeather extends Component {
     );
   }
 }
-
-export default FindLocationWeather;
-
-/*
-NOTES:
-- This file will do data handling for the location submitted by the file
-    - Includes Geocaching location into lang/long
-- In the main render part (in the appropriate part of giant If) the same processes for main page will be adapted
-    - Might need to remake the main file code into a new file (think about props)
-*/

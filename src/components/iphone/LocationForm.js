@@ -1,9 +1,8 @@
 import { h, Component } from 'preact';
 
 import style from './style';
-import style_iphone from '../button/style_iphone';
 
-class LocationForm extends Component {
+export default class LocationForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,6 +30,3 @@ class LocationForm extends Component {
     );
   }
 }
-
-
-export default LocationForm;
