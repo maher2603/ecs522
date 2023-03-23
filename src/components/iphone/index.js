@@ -1,6 +1,6 @@
 // import preact
 import { h, render, Component } from 'preact';
-import InfoPage from './InfoPage.js'
+import InfoPage from '../InfoPage.js'
 
 // import stylesheets for iphone & button
 import style from './style';
