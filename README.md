@@ -44,7 +44,7 @@ npm run dev
 
 - The weekly weather page is accessed when clicking the 'Week' button on the home page. This shows the 5 day forecast from the day you are currently in.
 
-- The location page allows the user to select city names to view the current weather in those locations.
+- The location page allows the user to search for cities so they are able to view the weather information in that location. They can search for a new location after pressing the reset button.
 
 ## Extensions
 
@@ -53,3 +53,5 @@ npm run dev
 - Utilising the 5 Day / 3 Hour Forecast Weather API to help capture weather data for daily and weekly forecasts.
 
 - Use of XML namespaces to import self-made SVG files for rendering weather images (e.g. sunny, cloud, rain, etc.) on the home page.
+
+- Use of a search bar in the location page that allows the user to type a city location of their choice to view the weather information in that area.
