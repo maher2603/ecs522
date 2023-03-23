@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+
 import style from './style';
 import style_iphone from '../button/style_iphone';
 
@@ -20,12 +21,12 @@ class LocationForm extends Component {
 
   render() {
     return (
-      // <div class={ style.header }>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="locationFormText">Location:</label>
-          <input class={style.locationFormText} type="text" id="location" name="location"/>
-          <button class={style.locationFormText} type="submit">Submit</button>
-        </form>
+      // <div class={style.formContainer}>
+      <form onSubmit={this.handleSubmit}>
+        <label htmlFor="location">Location: </label>
+        <input class={style.locationInput} type="text" id="location" name="location" />
+        <button class={style.locationInputButton} type="submit">Submit</button>
+      </form>
       // </div>
     );
   }

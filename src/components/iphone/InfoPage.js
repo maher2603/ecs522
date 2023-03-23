@@ -1,3 +1,4 @@
+
 import { h, Component } from 'preact';
 import FindLocationWeather from './FindLocationWeather.js';
 import style from './style';
@@ -179,13 +180,3 @@ class InfoPage extends Component {
 }
 
 export default InfoPage;
-
-/*
-NOTES:
-- This file will do data handling for the location submitted by the file
-    - Includes Geocaching location into lang/long
-- In the main render part (in the appropriate part of giant If) the same processes for main page will be adapted
-    - Might need to remake the main file code into a new file (think about props)
-
-    <div> { this.state.data_grabbed ? <button class={style.Weeklybutton} onClick={() => this.setState({ on_home_page:false, on_weekly_weather_page: true })}>Week</button> : null }</div>
-*/
