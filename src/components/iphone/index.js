@@ -29,8 +29,6 @@ export default class Iphone extends Component {
 	{
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
-		} else {
-			console.log("Geolocation is not supported.");
 		}
 	}
 
@@ -97,27 +95,6 @@ export default class Iphone extends Component {
 			return <img id="snow-icon" style="filter: invert(87.5%);" src="./assets/icons/snow_svg.svg" alt="Snow Icon"></img>
 		} else if (main_weather == "Mist" || main_weather == "Smoke" || main_weather == "Haze" || main_weather == "Fog") {
 			return <img id="atmosphere-icon" style="filter: invert(87.5%);" src="./assets/icons/foggy_svg.svg" alt="Atmosphere Icon"></img>
-		}
-	}
-
-	// when the user selects a location from the dropdown list, render the content of the chosen location
-	displayLocationSection = (value, divID) => {
-		if((value) == "London") { 
-			document.getElementById(divID).innerHTML = document.getElementById('content_London').innerHTML
-		} else if ((value) == "Birmingham") {
-			document.getElementById(divID).innerHTML = document.getElementById('content_Birmingham').innerHTML
-		} else if ((value) == "Manchester") {
-			document.getElementById(divID).innerHTML = document.getElementById('content_Manchester').innerHTML
-		} else if ((value) == "Cambridge") {
-			document.getElementById(divID).innerHTML = document.getElementById('content_Cambridge').innerHTML
-		} else if ((value) == "Leicester") {
-			document.getElementById(divID).innerHTML = document.getElementById('content_Leicester').innerHTML
-		} else if ((value) == "Bristol") {
-			document.getElementById(divID).innerHTML = document.getElementById('content_Bristol').innerHTML
-		} else if ((value) == "Oxford") {
-			document.getElementById(divID).innerHTML = document.getElementById('content_Oxford').innerHTML
-		} else {
-			document.getElementById(divID).innerHTML = document.getElementById('content_Empty').innerHTML
 		}
 	}
 

@@ -91,6 +91,9 @@ export default class InfoPage extends Component {
         });
     }
 
+
+    // Creates the API call URL and passes it on
+    // Gets args from FindLocationWeather (on location submit, after prior processing)
     showPosition = (location, lat, lon) => {
         this.setState({ location: location })
         const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=5065eab2c0c7e99992ba98ce43ab3e2c`;

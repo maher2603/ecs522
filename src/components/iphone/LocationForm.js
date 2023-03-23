@@ -10,6 +10,7 @@ export default class LocationForm extends Component {
     };
   }
 
+  // After the user submit's their inputted location
   handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -20,13 +21,10 @@ export default class LocationForm extends Component {
 
   render() {
     return (
-      // <div class={style.formContainer}>
       <form onSubmit={this.handleSubmit}>
-        {/* <label htmlFor="location">Location: </label> */}
         <input class={style.locationInput} type="text" id="location" name="location" />
         <button class={style.locationInputButton} type="submit">Submit</button>
       </form>
-      // </div>
     );
   }
 }

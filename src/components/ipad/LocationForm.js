@@ -10,6 +10,7 @@ export default class LocationForm extends Component {
     };
   }
 
+  // After the user submit's their inputted location
   handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
