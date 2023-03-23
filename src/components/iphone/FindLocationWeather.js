@@ -1,6 +1,9 @@
 import { h, Component } from 'preact';
 import LocationForm from './LocationForm.js';
 
+import style from './style';
+import style_iphone from '../button/style_iphone';
+
 class FindLocationWeather extends Component {
   constructor(props) {
     super(props);
@@ -19,27 +22,34 @@ class FindLocationWeather extends Component {
 		fetch(url)
 			.then(response => response.json())
 			.then(data => {
+        console.log("Data length:" + data.length)
+        if (!data.length){
+          this.setState({ stateMessage: "Location is not valid" })
+        }
+        else {
+          console.log(data)
+          this.setState({ location: data[0]["name"] })
+          const lat = data[0]["lat"]
+          const lon = data[0]["lon"]
+          console.log("set vars")
+          this.props.onLocationFetch(this.state.location, lat, lon);
+          console.log("completed props")
+          // this.setState({ stateMessage: "Location submitted successfully" })
 
-        console.log(data)
-        this.setState({ location: data[0]["name"] })
-        const lat = data[0]["lat"]
-        const lon = data[0]["lon"]
-        console.log("set vars")
-        this.props.onLocationFetch(this.state.location, lat, lon);
-        console.log("completed props")
-        this.setState({ stateMessage: "Location submitted successfully" })
 
-        for (var i = 0; i < data.length; i++) {
-          if (data[i]["country"] == "GB") {
-            this.setState({ location: data[i]["name"] })
-            const lat = data[i]["lat"]
-            const lon = data[i]["lon"]
-            console.log("set vars")
-            this.props.onLocationFetch(this.state.location, lat, lon);
-            console.log("completed props")
-            this.setState({ stateMessage: "Location submitted successfully" })
-            break;
-          }
+          // For only GB locations
+          // for (var i = 0; i < data.length; i++) {
+          //   if (data[i]["country"] == "GB") {
+          //     this.setState({ location: data[i]["name"] })
+          //     const lat = data[i]["lat"]
+          //     const lon = data[i]["lon"]
+          //     console.log("set vars")
+          //     this.props.onLocationFetch(this.state.location, lat, lon);
+          //     console.log("completed props")
+          //     this.setState({ stateMessage: "Location submitted successfully" })
+          //     break;
+          //   }
+          // }
         }
       })
 			// .catch(this.badUrl);
@@ -58,8 +68,9 @@ class FindLocationWeather extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Input Location</h1>
+      <div class={style.formContainer}>
+        <div class={style.formTitle}>Input Location</div>
+        <hr></hr> <br></br>
         <LocationForm onLocationSubmit={this.handleLocationSubmit} />
         <p>{this.state.stateMessage}</p>
       </div>
