@@ -9,17 +9,13 @@ npm -v
 
 ## Instructions of how to run the code
 
-**1. Download and extract the zip file containing the source code :**
-
-**2. Open a terminal and change the directory so it points to src :**
-
-For example
+**1. Clone this repository :**
 
 ```sh
-C:\Users\JohnDoe\...\src
+git clone --depth 1 https://github.com/maher2603/ecs522.git
 ```
 
-**3. Install the dependencies (if you have not already) :**
+**2. Install the dependencies (if you have not already) :**
 
 ```sh
 npm install
@@ -28,7 +24,7 @@ npm install
 ## Development Workflow
 
 
-**4. Start a live-reload development server to use the weather app :**
+**3. Start a live-reload development server to use the weather app :**
 
 ```sh
 npm run dev
